@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<section id="formulaire">
+
+  <div class="container">
+
+    <div class="row center-align">
+      {% if error %}
+      <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+      {% endif %}
+    </div>
+
+    <div class="row">
+
+      <form action="{{ path("fos_user_security_check") }}" method="post" class="col s8 offset-s2">
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate" id="username" name="_username" value="{{ last_username }}" required="required"/>
+            <label for="username">Nom d'utilisateur ou email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="password" id="password" name="_password" required="required" class="validate"/>
+            <label for="password">Mot de passe</label>
+          </div>
+        </div>
+
+        <p>
+          <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+          <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+        </p>
+
+        <div class="row center-align" style="margin-top:50px;">
+          <input type="submit" id="_submit" class="btn-large waves-effect waves-light" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</section>
+
+{% endblock fos_user_content %}

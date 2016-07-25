@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Welcome!{% endblock %}</title>
+  {% block stylesheets %}
+  <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/main.css')}}">
+  <link rel="stylesheet" href="{{asset('https://fonts.googleapis.com/icon?family=Material+Icons')}}">
+  {% endblock %}
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+
+
+{% block header %}
+<div id="logo">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center-align">
+        <a href="#!" class="brand-logo center">Logo</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+<header>
+
+<nav>
+  <div class="container">
+
+  <div class="nav-wrapper">
+  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+        <ul class="hide-on-med-and-down center-align navCenter">
+          <li><a href="#">Accueil</a></li>
+          <li><a href="#">Lorem</a></li>
+          <li><a href="#">Ipsum</a></li>
+          <li><a href="#">Dolor</a></li>
+          <li><a href="#">S'inscrire</a></li>
+          <li><a href="#">Connectez-vous</a></li>
+        </ul>
+
+  <ul class="side-nav" id="mobile-demo">
+    <li><a href="sass.html">Sass</a></li>
+    <li><a href="badges.html">Components</a></li>
+    <li><a href="collapsible.html">Javascript</a></li>
+    <li><a href="mobile.html">Mobile</a></li>
+  </ul>
+   </div>
+</div>
+</nav>
+</header>
+
+{% endblock %}
+
+
+
+{% block body %}{% endblock %}
+{% block fos_user_content %}{% endblock %}
+
+
+{% block footer %}
+
+<!-- <footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Footer Content</h5>
+        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2016
+      <a class="grey-text text-lighten-4 right" href="http://simplonreunion.co">www.simplonreunion.co</a>
+    </div>
+  </div>
+</footer> -->
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="{{asset('materialize/js/bin/materialize.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/main.js')}}"></script>
+
+<script type="text/javascript">
+$(".button-collapse").sideNav();
+</script>
+
+{% endblock %}
+</body>
+</html>

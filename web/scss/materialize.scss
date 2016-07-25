@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+// Mixins
+// @import "components/prefixer";
+@import "components/mixins";
+@import "components/color";
+
+// Variables;
+@import "components/variables";
+
+// Reset
+@import "components/normalize";
+
+// components
+@import "components/global";
+@import "components/icons-material-design";
+@import "components/grid";
+@import "components/navbar";
+@import "components/roboto";
+@import "components/typography";
+@import "components/cards";
+@import "components/toast";
+@import "components/tabs";
+@import "components/tooltip";
+@import "components/buttons";
+@import "components/dropdown";
+@import "components/waves";
+@import "components/modal";
+@import "components/collapsible";
+@import "components/chips";
+@import "components/materialbox";
+@import "components/forms/forms";
+@import "components/table_of_contents";
+@import "components/sideNav";
+@import "components/preloader";
+@import "components/slider";
+@import "components/carousel";
+@import "components/date_picker/default";
+@import "components/date_picker/default.date";
+@import "components/date_picker/default.time";
+
+
+
+// MAIN
+
+
+
+
+/* DEBUT formulaire */
+#formulaire{
+  margin-top: 60px;
+}
+/* FIN FORMULAIRE */
+
+
+/* DEBUT HEADER */
+#logo{
+  color:#313131;
+  background-color: transparent;
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+  a{
+    text-align: center;
+  }
+}
+
+.navBarFixed {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  box-shadow: 0px 1px 5px rgba(190, 190, 190, 0.46);
+  -webkit-box-shadow: 0px 1px 5px rgba(190, 190, 190, 0.46);
+  -moz-box-shadow: 0px 1px 5px rgba(190, 190, 190, 0.46);
+  background-color: #ffffff;
+}
+
+nav{
+  background-color: transparent;
+  border-top: 1px solid #ECECEC;
+  border-bottom: 1px solid #ECECEC;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  z-index: 999;
+  .button-collapse{
+    color: $primary-color;
+  }
+  .navCenter{
+    width: 100%;
+    position: absolute;
+    li{
+      float:none;
+      display: inline-block;
+      a{
+        // color:#313131;
+        color:$primary-color;
+        text-transform: uppercase;
+        font-weight: bold;
+        &:hover {
+          background-color: transparent;
+          color:$secondary-color;
+        }
+      }
+    }
+  }
+}
+/* FIN HEADER */

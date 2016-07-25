@@ -1,0 +1,7 @@
+{
+    "name": "Plateforme-apprenants",
+    "version": "0.0.0",
+    "dependencies": {
+        "bootstrap": "3.3.6"
+    }
+}

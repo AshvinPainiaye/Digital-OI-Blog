@@ -1,0 +1,50 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<section id="formulaire">
+
+  <div class="container">
+    <div class="row">
+      <div class="col s8 offset-s2">
+
+        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+        <div class="row">
+          <div class="input-field col s12">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email, {'attr':{'class':'validate'}}) }}
+            {{ form_errors(form.email) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            {{ form_label(form.username) }}
+            {{ form_widget(form.username, {'attr':{'class':'validate'}}) }}
+            {{ form_errors(form.username) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            {{ form_label(form.plainPassword.first) }}
+            {{ form_widget(form.plainPassword.first, {'attr':{'class':'validate'}}) }}
+            {{ form_errors(form.plainPassword.first) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            {{ form_label(form.plainPassword.second) }}
+            {{ form_widget(form.plainPassword.second, {'attr':{'class':'validate'}}) }}
+            {{ form_errors(form.plainPassword.second) }}
+          </div>
+        </div>
+
+        <div class="row center-align" style="margin-top:50px;">
+          <input type="submit" class="btn btn-success" value="{{ 'registration.submit'|trans }}" />
+        </div>
+        {{ form_end(form) }}
+
+      </div>
+    </div>
+  </div>
+</section>
