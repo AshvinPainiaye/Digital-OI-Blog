@@ -15,7 +15,7 @@
         <p>{{ article.description | truncate(150, true, '...') }}</p>
       </div>
       <div class="card-action">
-        <a href="#">Lire la suite</a>
+        <a href="{{ path('article_show', { 'id': article.id }) }}">Lire la suite</a>
 
           {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('article_edit', { 'id': article.id }) }}">Modifié</a>
