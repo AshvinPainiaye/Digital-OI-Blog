@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Blog\Bundle\Entity\Article;
 use Blog\Bundle\Form\ArticleType;
 
+// use Vich\UploaderBundle\Form\Type\VichImageType;
+
 /**
  * Article controller.
  *
