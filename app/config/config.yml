@@ -72,9 +72,9 @@ fos_user:
     firewall_name: main
     user_class: Blog\Bundle\Entity\User
 
-    registration:
-        confirmation:
-            enabled: true
+    # registration:
+    #     confirmation:
+    #         enabled: true
 
     from_email:
         sender_name:    Simplon
