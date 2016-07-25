@@ -1,4 +1,31 @@
 {% extends "base.html.twig" %}
+
 {% block body %}
-Hello World!
+<div class="">
+
+<div class="row">
+  {% for article in articles %}
+  <div class="col s4">
+    <div class="card">
+      <div class="card-image">
+        <img src="img/sample-1.jpg">
+        <span class="card-title">{{ article.titre }}</span>
+      </div>
+      <div class="card-content">
+        <p>{{ article.description | truncate(150, true, '...') }}</p>
+      </div>
+      <div class="card-action">
+        <a href="#">Lire la suite</a>
+
+          {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('article_edit', { 'id': article.id }) }}">Modifié</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+</div>
+
 {% endblock %}

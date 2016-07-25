@@ -12,6 +12,13 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('BlogBundle:Default:index.html.twig');
+      $em = $this->getDoctrine()->getManager();
+
+      $articles = $em->getRepository('BlogBundle:Article')->findAll();
+
+      return $this->render('BlogBundle:Default:index.html.twig', array(
+          'articles' => $articles,
+      ));
+
     }
 }

@@ -28,6 +28,10 @@ class ArticleController extends Controller
 
         $articles = $em->getRepository('BlogBundle:Article')->findAll();
 
+        // return $this->render('article/index.html.twig', array(
+        //     'articles' => $articles,
+        // ));
+
         return $this->render('article/index.html.twig', array(
             'articles' => $articles,
         ));

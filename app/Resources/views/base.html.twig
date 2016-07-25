@@ -37,7 +37,7 @@
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
           {% if is_granted('ROLE_ADMIN') %}
-          <li><a href="#">Crée</a></li>
+          <li><a href="/article/new">Crée</a></li>
           {% endif %}
 
           <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i> {{ app.user.username }}</a></li>
