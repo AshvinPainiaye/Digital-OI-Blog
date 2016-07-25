@@ -30,10 +30,6 @@ class ArticleController extends Controller
 
         $articles = $em->getRepository('BlogBundle:Article')->findAll();
 
-        // return $this->render('article/index.html.twig', array(
-        //     'articles' => $articles,
-        // ));
-
         return $this->render('article/index.html.twig', array(
             'articles' => $articles,
         ));
@@ -48,6 +44,7 @@ class ArticleController extends Controller
     public function newAction(Request $request)
     {
         $article = new Article();
+        $article->setDate(new \DateTime('now'));
         $form = $this->createForm('Blog\Bundle\Form\ArticleType', $article);
         $form->handleRequest($request);
 

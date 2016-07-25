@@ -6147,6 +6147,27 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 @media (min-height: 40.125em) {
   .picker--time .picker__box {
     margin-bottom: 5em; } }
+/* DEBUT PRELOADER */
+#page-loader {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 3000; }
+  #page-loader .page-loader-gif {
+    display: block;
+    width: 74px;
+    height: 74px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -32px 0 0 -32px;
+    background: url("../img/preloader.gif") no-repeat;
+    z-index: 1001; }
+
+/* FIN PRELOADER */
 /* DEBUT formulaire */
 #formulaire {
   margin-top: 60px; }
@@ -6162,10 +6183,8 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   #logo a {
     text-align: center; }
 
-.navBarFixed {
-  position: fixed;
-  top: 0px;
-  left: 0px;
+.navbar-fixed {
+  top: -100px;
   box-shadow: 0px 1px 5px rgba(190, 190, 190, 0.46);
   -webkit-box-shadow: 0px 1px 5px rgba(190, 190, 190, 0.46);
   -moz-box-shadow: 0px 1px 5px rgba(190, 190, 190, 0.46);

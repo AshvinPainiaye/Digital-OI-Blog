@@ -75,6 +75,11 @@ fos_user:
     # registration:
     #     confirmation:
     #         enabled: true
+    registration:
+        form:
+            type: Blog\Bundle\Form\RegistrationFormType
+            # if you are using Symfony < 2.8 you should use the type name instead
+            # type: app_user_registration
 
     from_email:
         sender_name:    Simplon
@@ -92,6 +97,14 @@ vich_uploader:
         articles_image:
             uri_prefix:         /img/articles
             upload_destination: %kernel.root_dir%/../web/img/articles
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
+        users_image:
+            uri_prefix:         /img/users
+            upload_destination: %kernel.root_dir%/../web/img/users
 
             inject_on_load:     false
             delete_on_update:   true

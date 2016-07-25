@@ -12,3 +12,8 @@ services:
         class: Twig_Extensions_Extension_Text
         tags:
             - { name: twig.extension }
+
+    app.form.registration:
+        class: Blog\Bundle\Form\RegistrationFormType
+        tags:
+            - { name: form.type, alias: app_user_registration }

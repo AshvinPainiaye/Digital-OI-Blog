@@ -25,6 +25,13 @@ class Article
   private $id;
 
   /**
+  * @var \DateTime
+  *
+  * @ORM\Column(name="date", type="datetime")
+  */
+  private $date;
+
+  /**
   * @var string
   *
   * @ORM\Column(name="Titre", type="string", length=255)
@@ -37,6 +44,12 @@ class Article
   * @ORM\Column(name="Description", type="text")
   */
   private $description;
+
+  /**
+  * @var int
+  * @ORM\Column(name="Disponibilite", type="integer")
+  */
+  private $disponibilite;
 
 
   /**
@@ -169,4 +182,52 @@ class Article
   }
 
 
+
+  /**
+  * Set date
+  *
+  * @param \DateTime $date
+  *
+  * @return Article
+  */
+  public function setDate($date)
+  {
+    $this->date = $date;
+
+    return $this;
+  }
+
+  /**
+  * Get date
+  *
+  * @return \DateTime
+  */
+  public function getDate()
+  {
+    return $this->date;
+  }
+
+    /**
+     * Set disponibilite
+     *
+     * @param integer $disponibilite
+     *
+     * @return Article
+     */
+    public function setDisponibilite($disponibilite)
+    {
+        $this->disponibilite = $disponibilite;
+
+        return $this;
+    }
+
+    /**
+     * Get disponibilite
+     *
+     * @return integer
+     */
+    public function getDisponibilite()
+    {
+        return $this->disponibilite;
+    }
 }

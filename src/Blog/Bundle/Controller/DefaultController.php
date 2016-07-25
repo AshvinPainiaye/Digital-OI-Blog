@@ -14,11 +14,27 @@ class DefaultController extends Controller
     {
       $em = $this->getDoctrine()->getManager();
 
-      $articles = $em->getRepository('BlogBundle:Article')->findAll();
+      $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>1));
 
       return $this->render('BlogBundle:Default:index.html.twig', array(
           'articles' => $articles,
       ));
 
     }
+
+
+/**
+ * @route("/brouillon")
+ */
+    public function brouillonAction()
+    {
+      $em = $this->getDoctrine()->getManager();
+
+      $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>0));
+
+      return $this->render('BlogBundle:Default:index.html.twig', array(
+          'articles' => $articles,
+      ));
+    }
+
 }
