@@ -97,18 +97,24 @@ class ArticleController extends Controller
   {
     $deleteForm = $this->createDeleteForm($article);
 
+    $securityContext = $this->container->get('security.authorization_checker');
+    if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
 
     $commentaire = new Commentaire();
     $commentaire->setDate(new \DateTime('now'));
+
+
+
     $form = $this->createForm('Blog\Bundle\Form\CommentaireType', $commentaire);
     $form->handleRequest($request);
+
 
     $userId = $this->getUser();
     $userId->getId();
     $commentaire->setUser($userId);
 
 
-    // $articleId = $this->getArticle();
+
     $article->getId();
     $commentaire->setArticle($article);
 
@@ -135,17 +141,34 @@ class ArticleController extends Controller
       'commentaires' => $commentaires,
     ));
 
-
-
-
-
-
-
-
-
-
-
   }
+
+else{
+
+  $em = $this->getDoctrine()->getManager();
+
+  $commentaires = $em->getRepository('BlogBundle:Commentaire')->findBy(array('article' =>$article->getId()));
+
+
+  return $this->render('article/show.html.twig', array(
+    'article' => $article,
+    'delete_form' => $deleteForm->createView(),
+    // 'commentaire' => $commentaire,
+    'commentaires' => $commentaires,
+  ));
+
+}
+
+
+
+
+}
+
+
+
+
+
+
 
   /**
   * Displays a form to edit an existing Article entity.
