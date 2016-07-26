@@ -83,6 +83,12 @@ class Article
     */
     private $user;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Commentaire", inversedBy="Article")
+     */
+    private $commentaire;
+
   /**
   * Get id
   *
