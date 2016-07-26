@@ -38,14 +38,10 @@ class Commentaire
 
 
   /**
-  * @ORM\ManyToOne(targetEntity="User", inversedBy="Commentaire")
+  * @ORM\ManyToOne(targetEntity="User", inversedBy="commentaire")
+  * @ORM\JoinColumn(name="users_id", referencedColumnName="id")
   */
-  private $auteur;
-
-  /**
-  * @ORM\ManyToOne(targetEntity="Article", inversedBy="Commentaire")
-  */
-  private $article;
+  private $user;
 
 
   /**
@@ -81,4 +77,29 @@ class Commentaire
   {
     return $this->commentaire;
   }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Commentaire
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
 }

@@ -61,9 +61,10 @@ class User extends BaseUser
 
 
     /**
-    * @ORM\ManyToOne(targetEntity="Commentaire", inversedBy="User")
+    * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="user")
+    * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id")
     */
-    private $auteur;
+    private $commentaire;
 
 
     public function __construct()
@@ -229,5 +230,39 @@ class User extends BaseUser
     public function getAuteur()
     {
         return $this->auteur;
+    }
+
+    /**
+     * Add commentaire
+     *
+     * @param \Blog\Bundle\Entity\Commentaire $commentaire
+     *
+     * @return User
+     */
+    public function addCommentaire(\Blog\Bundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \Blog\Bundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\Blog\Bundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 }

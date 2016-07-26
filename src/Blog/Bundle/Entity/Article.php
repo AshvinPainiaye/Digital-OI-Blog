@@ -76,18 +76,12 @@ class Article
   private $updatedAt;
 
 
-
     /**
     * @ORM\ManyToOne(targetEntity="User", inversedBy="article")
     * @ORM\JoinColumn(name="users_id", referencedColumnName="id")
     */
     private $user;
 
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Commentaire", inversedBy="Article")
-     */
-    private $commentaire;
 
   /**
   * Get id
