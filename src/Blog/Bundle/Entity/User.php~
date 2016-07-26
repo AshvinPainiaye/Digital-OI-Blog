@@ -39,6 +39,11 @@ class User extends BaseUser
     */
     private $imageName;
 
+    /**
+    * @ORM\OneToMany(targetEntity="Article", mappedBy="user")
+    * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+    */
+    private $article;
 
     public function __construct()
     {

@@ -90,12 +90,11 @@
     box-shadow: 0px 1px 5px rgba(190, 190, 190, 0.46);
     -webkit-box-shadow: 0px 1px 5px rgba(190, 190, 190, 0.46);
     -moz-box-shadow: 0px 1px 5px rgba(190, 190, 190, 0.46);
-    background-color: #ffffff;
 }
 
 
 nav{
-  background-color: transparent;
+  background-color: #ffffff;
   border-top: 1px solid #ECECEC;
   border-bottom: 1px solid #ECECEC;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
@@ -110,7 +109,6 @@ nav{
       float:none;
       display: inline-block;
       a{
-        // color:#313131;
         color:$primary-color;
         text-transform: uppercase;
         font-weight: bold;
@@ -123,3 +121,17 @@ nav{
   }
 }
 /* FIN HEADER */
+
+
+/* DEBUT FOOTER */
+
+footer{
+  padding:30px 0 15px 0;
+  background-color: $secondary-color;
+  p{
+    color: #fff;
+  }
+}
+
+
+/* FIN FOOTER */

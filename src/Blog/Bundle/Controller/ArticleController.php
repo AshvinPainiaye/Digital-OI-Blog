@@ -29,7 +29,6 @@ class ArticleController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $articles = $em->getRepository('BlogBundle:Article')->findAll();
-
         return $this->render('article/index.html.twig', array(
             'articles' => $articles,
         ));
@@ -47,6 +46,10 @@ class ArticleController extends Controller
         $article->setDate(new \DateTime('now'));
         $form = $this->createForm('Blog\Bundle\Form\ArticleType', $article);
         $form->handleRequest($request);
+
+        $userId = $this->getUser();
+        $userId->getId();
+        $article->setUser($userId);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -88,6 +91,7 @@ class ArticleController extends Controller
     {
         $deleteForm = $this->createDeleteForm($article);
         $editForm = $this->createForm('Blog\Bundle\Form\ArticleType', $article);
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

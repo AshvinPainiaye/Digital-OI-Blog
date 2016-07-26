@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      {% for article in articles %}
+
+      <h1 class="center-align">{{ article.titre }}</h1>
+      <p>
+        {{ article.description }}
+      </p>
+
+      <a href="#"><i class="fa fa-heart"></i> J'aime</a>
+
+      <br>
+
+      {% if is_granted('ROLE_ADMIN') %}
+      <a href="{{ path('article_edit', { 'id': article.id }) }}">Editer</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

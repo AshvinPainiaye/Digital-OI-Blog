@@ -37,4 +37,23 @@ class DefaultController extends Controller
       ));
     }
 
+
+    /**
+     * @route("/mes-articles")
+     */
+        public function mesArticleAction()
+        {
+
+          $user = $this->getUser();
+
+          $em = $this->getDoctrine()->getManager();
+
+          $articles = $em->getRepository('BlogBundle:Article')->findBy(['user'=>$user]);
+
+          return $this->render('article/mes-articles.html.twig', array(
+              'articles' => $articles,
+               'user' => $user,
+          ));
+        }
+
 }

@@ -39,6 +39,11 @@ class User extends BaseUser
     */
     private $imageName;
 
+    /**
+    * @ORM\OneToMany(targetEntity="Article", mappedBy="user")
+    * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+    */
+    private $article;
 
     public function __construct()
     {
@@ -97,5 +102,39 @@ class User extends BaseUser
     public function getImageFile()
     {
       return $this->imageFile;
+    }
+
+    /**
+     * Add article
+     *
+     * @param \Blog\Bundle\Entity\Article $article
+     *
+     * @return User
+     */
+    public function addArticle(\Blog\Bundle\Entity\Article $article)
+    {
+        $this->article[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \Blog\Bundle\Entity\Article $article
+     */
+    public function removeArticle(\Blog\Bundle\Entity\Article $article)
+    {
+        $this->article->removeElement($article);
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticle()
+    {
+        return $this->article;
     }
 }

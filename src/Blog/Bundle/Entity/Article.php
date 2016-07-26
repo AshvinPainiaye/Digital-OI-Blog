@@ -68,7 +68,20 @@ class Article
   */
   private $imageName;
 
+  /**
+  * @ORM\Column(type="datetime")
+  *
+  * @var \DateTime
+  */
+  private $updatedAt;
 
+
+
+    /**
+    * @ORM\ManyToOne(targetEntity="User", inversedBy="article")
+    * @ORM\JoinColumn(name="users_id", referencedColumnName="id")
+    */
+    private $user;
 
   /**
   * Get id
@@ -152,6 +165,7 @@ class Article
     return $this->imageName;
   }
 
+
   /**
   * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
   * of 'UploadedFile' is injected into this setter to trigger the  update. If this
@@ -166,13 +180,17 @@ class Article
   public function setImageFile(File $image = null)
   {
     $this->imageFile = $image;
+
     if ($image) {
       // It is required that at least one field changes if you are using doctrine
       // otherwise the event listeners won't be called and the file is lost
-      $this->date = new \DateTime('now');
+      $this->updatedAt = new \DateTime('now');
     }
+
     return $this;
   }
+
+
   /**
   * @return File
   */
@@ -207,27 +225,75 @@ class Article
     return $this->date;
   }
 
+  /**
+  * Set disponibilite
+  *
+  * @param integer $disponibilite
+  *
+  * @return Article
+  */
+  public function setDisponibilite($disponibilite)
+  {
+    $this->disponibilite = $disponibilite;
+
+    return $this;
+  }
+
+  /**
+  * Get disponibilite
+  *
+  * @return integer
+  */
+  public function getDisponibilite()
+  {
+    return $this->disponibilite;
+  }
+
     /**
-     * Set disponibilite
+     * Set updatedAt
      *
-     * @param integer $disponibilite
+     * @param \DateTime $updatedAt
      *
      * @return Article
      */
-    public function setDisponibilite($disponibilite)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->disponibilite = $disponibilite;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get disponibilite
+     * Get updatedAt
      *
-     * @return integer
+     * @return \DateTime
      */
-    public function getDisponibilite()
+    public function getUpdatedAt()
     {
-        return $this->disponibilite;
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Blog\Bundle\Entity\User $user
+     *
+     * @return Article
+     */
+    public function setUser(\Blog\Bundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Blog\Bundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
