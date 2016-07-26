@@ -59,6 +59,13 @@ class User extends BaseUser
     */
     private $article;
 
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Commentaire", inversedBy="User")
+    */
+    private $auteur;
+
+
     public function __construct()
     {
         parent::__construct();

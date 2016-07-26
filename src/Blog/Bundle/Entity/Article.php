@@ -83,6 +83,12 @@ class Article
     */
     private $user;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Commentaire", inversedBy="Article")
+     */
+    private $commentaire;
+
   /**
   * Get id
   *
@@ -295,5 +301,29 @@ class Article
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param \Blog\Bundle\Entity\Commentaire $commentaire
+     *
+     * @return Article
+     */
+    public function setCommentaire(\Blog\Bundle\Entity\Commentaire $commentaire = null)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return \Blog\Bundle\Entity\Commentaire
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 }

@@ -59,6 +59,13 @@ class User extends BaseUser
     */
     private $article;
 
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Commentaire", inversedBy="User")
+    */
+    private $auteur;
+
+
     public function __construct()
     {
         parent::__construct();
@@ -198,5 +205,29 @@ class User extends BaseUser
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Set auteur
+     *
+     * @param \Blog\Bundle\Entity\Commentaire $auteur
+     *
+     * @return User
+     */
+    public function setAuteur(\Blog\Bundle\Entity\Commentaire $auteur = null)
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * Get auteur
+     *
+     * @return \Blog\Bundle\Entity\Commentaire
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
     }
 }
