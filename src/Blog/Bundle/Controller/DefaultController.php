@@ -4,11 +4,13 @@ namespace Blog\Bundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/" ,name="accueil")
      */
     public function indexAction()
     {
@@ -43,7 +45,6 @@ class DefaultController extends Controller
      */
         public function mesArticleAction()
         {
-
           $user = $this->getUser();
 
           $em = $this->getDoctrine()->getManager();

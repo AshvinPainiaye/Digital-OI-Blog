@@ -24,21 +24,34 @@
         </div>
 
         <div class="row">
-          <div class="input-field col s12">
+          <div class="input-field col s6">
             {{ form_label(form.plainPassword.first) }}
             {{ form_widget(form.plainPassword.first, {'attr':{'class':'validate'}}) }}
             {{ form_errors(form.plainPassword.first) }}
           </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
+  
+          <div class="input-field col s6">
             {{ form_label(form.plainPassword.second) }}
             {{ form_widget(form.plainPassword.second, {'attr':{'class':'validate'}}) }}
             {{ form_errors(form.plainPassword.second) }}
           </div>
         </div>
 
+        <div class="row">
+          <div class="input-field col s12">
+            {{ form_label(form.nom) }}
+            {{ form_widget(form.nom, {'attr':{'class':'validate'}}) }}
+            {{ form_errors(form.nom) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            {{ form_label(form.prenom) }}
+            {{ form_widget(form.prenom, {'attr':{'class':'validate'}}) }}
+            {{ form_errors(form.prenom) }}
+          </div>
+        </div>
 
  {{ form_widget(form.imageFile) }}
 

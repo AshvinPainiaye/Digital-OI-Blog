@@ -40,6 +40,20 @@ class User extends BaseUser
     private $imageName;
 
     /**
+    * @ORM\Column(type="string", length=255)
+    *
+    * @var string
+    */
+    private $prenom;
+
+    /**
+    * @ORM\Column(type="string", length=255)
+    *
+    * @var string
+    */
+    private $nom;
+
+    /**
     * @ORM\OneToMany(targetEntity="Article", mappedBy="user")
     * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
     */
@@ -136,5 +150,53 @@ class User extends BaseUser
     public function getArticle()
     {
         return $this->article;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return User
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return User
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
     }
 }

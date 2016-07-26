@@ -39,26 +39,34 @@
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
             <ul class="hide-on-med-and-down center-align navCenter">
-              <li><a href="/">Accueil</a></li>
+              <li><a href="/">ACCUEIL</a></li>
               {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
               {% if is_granted('ROLE_ADMIN') %}
-              <li><a href="/article/new">Crée</a></li>
-              <li><a href="/brouillon">Brouillon</a></li>
-              <li><a href="/mes-articles">Mes article</a></li>
+              <!-- <li><a href="/article/new">CREE</a></li> -->
+              <!-- <li><a href="/brouillon">BROUILLON</a></li> -->
+              <!-- <li><a href="/mes-articles">MES ARTICLES</a></li> -->
+              <li><a class="dropdown-button" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <ul id="dropdown1" class="dropdown-content">
+                <li><a href="/article">Mes articles</a></li>
+
+                {% if app.user.imageName == null %}
+                <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i> profil</a></li>
+                {% else %}
+                <li><a href="/profile"><img src="img/users/{{ app.user.imageName }}"> {{ app.user.username }}</a></li>
+                {% endif %}
+
+                <li><a href="#!">Commentaires</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+              </ul>
+
+
               {% endif %}
 
-              {% if app.user.imageName == null %}
-              <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i> {{ app.user.username }}</a></li>
-              <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
-              {% else %}
-              <li><a href="/profile"><img src="img/users/{{ app.user.imageName }}"> {{ app.user.username }}</a></li>
-              <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
-              {% endif %}
+
 
               {% else %}
-              <li><a href="/login">Connexion</a></li>
-              <!-- <li><a href="/register">S'inscrire</a></li> -->
+              <li><a href="/login">CONNEXION</a></li>
               {% endif %}
             </ul>
 
@@ -93,10 +101,10 @@
   <div class="container">
     <div class="row">
       <div class="col s12">
-      <p class="center-align">
-        MADE WITH LOVE BY SIMPLON.CO
-      </p>
-    </div>
+        <p class="center-align">
+          MADE WITH LOVE BY SIMPLON.CO
+        </p>
+      </div>
     </div>
   </div>
 </footer>

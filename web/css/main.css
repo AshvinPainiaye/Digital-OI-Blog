@@ -6205,7 +6205,6 @@ nav {
       display: inline-block; }
       nav .navCenter li a {
         color: #212121;
-        text-transform: uppercase;
         font-weight: bold; }
         nav .navCenter li a:hover {
           background-color: transparent;

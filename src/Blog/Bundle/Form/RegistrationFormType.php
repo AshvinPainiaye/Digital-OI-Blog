@@ -14,6 +14,8 @@ class RegistrationFormType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder
+    ->add('nom')
+    ->add('prenom')
     ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => false))
     ;
   }
@@ -29,7 +31,7 @@ class RegistrationFormType extends AbstractType
   {
     return $this->getBlockPrefix();
   }
-  
+
   public function getBlockPrefix()
   {
     return 'app_user_registration';
