@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Blog\Bundle\Entity\Article;
 use Blog\Bundle\Form\ArticleType;
 
+use Blog\Bundle\Entity\Commentaire;
+use Blog\Bundle\Form\CommentaireType;
 // use Vich\UploaderBundle\Form\Type\VichImageType;
 
 /**
@@ -89,16 +91,60 @@ class ArticleController extends Controller
   * Finds and displays a Article entity.
   *
   * @Route("/{id}", name="article_show")
-  * @Method("GET")
+  * @Method({"GET", "POST"})
   */
-  public function showAction(Article $article)
+  public function showAction(Article $article, Request $request)
   {
     $deleteForm = $this->createDeleteForm($article);
+
+
+    $commentaire = new Commentaire();
+    $commentaire->setDate(new \DateTime('now'));
+    $form = $this->createForm('Blog\Bundle\Form\CommentaireType', $commentaire);
+    $form->handleRequest($request);
+
+    $userId = $this->getUser();
+    $userId->getId();
+    $commentaire->setUser($userId);
+
+
+    // $articleId = $this->getArticle();
+    $article->getId();
+    $commentaire->setArticle($article);
+
+
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($commentaire);
+        $em->flush();
+
+        return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+    }
+
+    $em = $this->getDoctrine()->getManager();
+
+    $commentaires = $em->getRepository('BlogBundle:Commentaire')->findBy(array('article' =>$article->getId()));
+
 
     return $this->render('article/show.html.twig', array(
       'article' => $article,
       'delete_form' => $deleteForm->createView(),
+      'commentaire' => $commentaire,
+      'form' => $form->createView(),
+      'commentaires' => $commentaires,
     ));
+
+
+
+
+
+
+
+
+
+
+
   }
 
   /**

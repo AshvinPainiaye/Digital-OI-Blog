@@ -14,6 +14,48 @@
 
 <br>
 
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Create" />
+{{ form_end(form) }}
+
+<br><br><br><br>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Commentaire</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for commentaire in commentaires %}
+        <tr>
+            <td><a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">{{ commentaire.id }}</a></td>
+            <td>{{ commentaire.commentaire }}</td>
+            <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('commentaire_edit', { 'id': commentaire.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<br><br><br><br>
+
+
+
 
         {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('article_edit', { 'id': article.id }) }}">Editer</a>

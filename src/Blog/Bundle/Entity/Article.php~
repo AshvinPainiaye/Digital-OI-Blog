@@ -82,6 +82,12 @@ class Article
     */
     private $user;
 
+    /**
+    * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
+    * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id")
+    */
+    private $commentaire;
+
 
   /**
   * Get id
@@ -319,5 +325,36 @@ class Article
     public function getCommentaire()
     {
         return $this->commentaire;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commentaire = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add commentaire
+     *
+     * @param \Blog\Bundle\Entity\Commentaire $commentaire
+     *
+     * @return Article
+     */
+    public function addCommentaire(\Blog\Bundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \Blog\Bundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\Blog\Bundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire->removeElement($commentaire);
     }
 }
