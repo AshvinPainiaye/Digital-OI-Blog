@@ -34,33 +34,25 @@
     <div id="fix">
       <nav>
         <div class="container">
-
           <div class="nav-wrapper">
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
             <ul class="hide-on-med-and-down center-align navCenter">
               <li><a href="/">ACCUEIL</a></li>
               {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-              {% if is_granted('ROLE_ADMIN') %}
               <li><a class="dropdown-button" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
               <ul id="dropdown1" class="dropdown-content">
+                {% if is_granted('ROLE_ADMIN') %}
                 <li><a href="/article">Mes articles</a></li>
-
+                {% endif %}
                 {% if app.user.imageName == null %}
                 <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i> profil</a></li>
                 {% else %}
                 <li><a href="/profile"><img src="img/users/{{ app.user.imageName }}"> {{ app.user.username }}</a></li>
                 {% endif %}
-
-                <li><a href="#!">Commentaires</a></li>
+                <li><a href="#">Commentaires</a></li>
                 <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
               </ul>
-
-
-              {% endif %}
-
-
 
               {% else %}
               <li><a href="/login">CONNEXION</a></li>
