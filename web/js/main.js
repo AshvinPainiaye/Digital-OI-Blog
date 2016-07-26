@@ -1,9 +1,21 @@
-$(window).scroll(
-     function () {
-         if ($(window).scrollTop() > $("header").offset().top) {
-                 $('nav').addClass("navBarFixed");
-         } else {
-             $('nav').removeClass("navBarFixed");
-         }
-     }
-);
+
+$(document).ready(function () {
+
+  $(window).scroll(
+    function () {
+      if ($(window).scrollTop() > $("header").offset().top) {
+        $('#fix').addClass("navbar-fixed");
+      } else {
+        $('#fix').removeClass("navbar-fixed");
+      }
+    }
+  );
+
+
+  //Preloader
+  $(window).load(function () {
+    $('#page-loader').fadeOut(500);
+  });
+  //fin
+
+});
