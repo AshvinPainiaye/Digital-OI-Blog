@@ -22,8 +22,8 @@ class ArticleType extends AbstractType
             ->add('description')
             ->add('disponibilite', ChoiceType::class, array(
               'choices' => array(
-                0 => 'Brouillon',
-                1 => 'Disponible',
+                'Brouillon' => 'Brouillon',
+                'Publique' => 'Publique',
               )
             ))
             ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => true))
