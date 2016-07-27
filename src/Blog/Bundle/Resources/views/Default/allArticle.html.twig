@@ -4,7 +4,7 @@
 <div class="container">
 
 <div class="row">
-  {% for article in articles|reverse|slice(0, 4) %}
+  {% for article in articles|reverse %}
   <div class="col s6">
     <a href="{{ path('article_show', { 'id': article.id }) }}">
     <div class="card z-depth-1  hoverable ">
@@ -29,7 +29,7 @@
   </div>
   {% endfor %}
 
-   <a href="/all/articles" class="tout waves-effect waves-dark btn-large btn col s12">TOUS LES ARTICLES</a>
+   <a href="/" class="tout waves-effect waves-dark btn-large btn col s12">MOINS D'ARTICLES</a>
 
 </div>
 

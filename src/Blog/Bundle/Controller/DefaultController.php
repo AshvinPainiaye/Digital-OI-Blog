@@ -41,20 +41,18 @@ class DefaultController extends Controller
 
 
     /**
-     * @route("/mes-articles")
+     * @Route("/all/articles")
      */
-        public function mesArticleAction()
-        {
-          $user = $this->getUser();
+    public function allArticlesAction()
+    {
+      $em = $this->getDoctrine()->getManager();
 
-          $em = $this->getDoctrine()->getManager();
+      $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Publique'));
 
-          $articles = $em->getRepository('BlogBundle:Article')->findBy(['user'=>$user]);
+      return $this->render('BlogBundle:Default:allArticle.html.twig', array(
+          'articles' => $articles,
+      ));
 
-          return $this->render('article/mes-articles.html.twig', array(
-              'articles' => $articles,
-               'user' => $user,
-          ));
-        }
+    }
 
 }
