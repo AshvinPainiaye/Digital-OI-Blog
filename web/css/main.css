@@ -6217,5 +6217,30 @@ footer {
     color: #fff; }
 
 /* FIN FOOTER */
+#mes-articles table.highlight > tbody > tr:hover {
+  background-color: #2196F3;
+  color: #fff; }
+#mes-articles table {
+  box-shadow: 0 0px 0px 0 transparent, 0px 5px 7px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 70px; }
+#mes-articles #checkboxPublique label input[type="checkbox"][disabled] + .lever::after, #mes-articles #checkboxPublique .switch label input[type="checkbox"][disabled]:checked + .lever::after {
+  background-color: #a7ceec; }
+#mes-articles #checkboxPublique label .lever {
+  background-color: #a7ceec; }
+  #mes-articles #checkboxPublique label .lever:after {
+    background-color: #2196F3 !important;
+    left: 27px; }
+
+#new-article .sauvegarder {
+  background-color: transparent;
+  border: none; }
+
+#commentaire article {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  padding: 10px 10px 10px 15px;
+  margin-bottom: 20px; }
+  #commentaire article h3 {
+    font-size: 16px;
+    font-weight: bold; }
 
 /*# sourceMappingURL=main.css.map */
