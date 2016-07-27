@@ -54,14 +54,14 @@ class Commentaire
    * @var
    * @ORM\ManyToMany(targetEntity="User", mappedBy="commentairelikes")
    */
-  private $likes;
+  public $likes;
 
 
   /**
    * @var
    * @ORM\ManyToMany(targetEntity="Article", mappedBy="articlelikes")
    */
-  private $likesArticle;
+  public $likesArticle;
 
   /**
   * Get id

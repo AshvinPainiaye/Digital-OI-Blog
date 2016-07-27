@@ -196,4 +196,37 @@ private function createDeleteForm(Article $article)
   ;
 }
 
+
+
+
+
+
+
+/**
+* Add a new like to a commentaire.
+* @Method({"GET", "POST"})
+* @Route("/{article}/{commentaire}/like", name="commentaire_like_new")
+*/
+public function LikeDislikeToCommentaire(Article $article, Commentaire $commentaire, Request $request) {
+  $user = $this->getUser();
+  $listeLikes = $commentaire->getLikes();
+  if ($listeLikes->contains($user)) {
+    $commentaire->removeLike($user);
+    $user->removeCommentairelike($commentaire);
+  } else {
+    $user->addCommentairelike($commentaire);
+    $commentaire->addLike($user);
+  }
+  $em = $this->getDoctrine()->getManager();
+  $em->persist($commentaire);
+  $em->flush();
+  return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+}
+
+
+
+
+
+
+
 }

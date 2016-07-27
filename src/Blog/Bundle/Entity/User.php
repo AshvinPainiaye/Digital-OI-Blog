@@ -71,8 +71,8 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="Commentaire", inversedBy="likes")
      * @ORM\JoinTable(name="commentaire_like")
      */
-    protected $commentairelikes;
-    
+    public $commentairelikes;
+
 
     public function __construct()
     {

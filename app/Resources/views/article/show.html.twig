@@ -78,7 +78,7 @@ Posté par : {{ article.user.username }} le {{article.date|date('Y-m-d H:i:s')}}
             <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d H:i:s') }}{% endif %}</td>
 
             <td>
-
+              <a href="{{ path('commentaire_like_new',{'article':article.id, 'commentaire':commentaire.id}) }}"><i class="material-icons">favorite</i>{{ commentaire.likes|length }}</a>
             </td>
 
             <!-- <td>
