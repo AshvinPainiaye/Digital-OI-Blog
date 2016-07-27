@@ -38,12 +38,14 @@ class Commentaire
 
 
   /**
-  * @ORM\ManyToOne(targetEntity="User", inversedBy="Commentaire")
+  * @ORM\ManyToOne(targetEntity="User", inversedBy="commentaire")
+  * @ORM\JoinColumn(name="users_id", referencedColumnName="id")
   */
-  private $auteur;
+  private $user;
 
   /**
-  * @ORM\ManyToOne(targetEntity="Article", inversedBy="Commentaire")
+  * @ORM\ManyToOne(targetEntity="Article", inversedBy="commentaire")
+  * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
   */
   private $article;
 
@@ -81,4 +83,77 @@ class Commentaire
   {
     return $this->commentaire;
   }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Commentaire
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+
+    /**
+     * Set user
+     *
+     * @param \Blog\Bundle\Entity\User $user
+     *
+     * @return Commentaire
+     */
+    public function setUser(\Blog\Bundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Blog\Bundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set article
+     *
+     * @param \Blog\Bundle\Entity\Article $article
+     *
+     * @return Commentaire
+     */
+    public function setArticle(\Blog\Bundle\Entity\Article $article = null)
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Blog\Bundle\Entity\Article
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
 }

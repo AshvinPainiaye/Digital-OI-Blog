@@ -1,12 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Commentaire list</h1>
+<section id="commentaire">
 
-    <table>
+    <h1 class="center-align">Commentaires</h1>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col s6 offset-s3">
+        {% for commentaire in commentaires %}
+        <article>
+
+<h3>{{commentaire.article.titre}}</h3>
+<p>
+{{ commentaire.commentaire }}
+</p>
+<div class="right-align">
+
+    <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}" class="btn">VOIR</a>
+  </div>
+  </article>
+
+    {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+    <!-- <table>
         <thead>
             <tr>
-                <th>Id</th>
+               <th>Id</th>
+                <th>Nom de l'article</th>
                 <th>Commentaire</th>
                 <th>Date</th>
                 <th>Actions</th>
@@ -15,9 +41,12 @@
         <tbody>
         {% for commentaire in commentaires %}
             <tr>
-                <td><a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">{{ commentaire.id }}</a></td>
+               <td><a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">{{ commentaire.id }}</a></td>
+                <td>
+                  {{commentaire.article.titre}}
+                </td>
                 <td>{{ commentaire.commentaire }}</td>
-                <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+               <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>
@@ -33,9 +62,11 @@
         </tbody>
     </table>
 
-    <ul>
+   <ul>
         <li>
             <a href="{{ path('commentaire_new') }}">Create a new entry</a>
         </li>
-    </ul>
+    </ul> -->
+  </section>
+
 {% endblock %}

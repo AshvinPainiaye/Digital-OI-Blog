@@ -1,14 +1,10 @@
 <?php
-
 namespace Blog\Bundle\Form;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
-
 class ArticleType extends AbstractType
 {
     /**
@@ -22,14 +18,13 @@ class ArticleType extends AbstractType
             ->add('description')
             ->add('disponibilite', ChoiceType::class, array(
               'choices' => array(
-                0 => '0',
-                1 => '1',
+                'Brouillon' => 'Brouillon',
+                'Publique' => 'Publique',
               )
             ))
             ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => true))
         ;
     }
-
     /**
      * @param OptionsResolver $resolver
      */

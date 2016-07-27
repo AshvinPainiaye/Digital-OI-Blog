@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Blog\Bundle\Entity\Commentaire;
 use Blog\Bundle\Form\CommentaireType;
 
+
 /**
  * Commentaire controller.
  *
@@ -42,8 +43,13 @@ class CommentaireController extends Controller
     public function newAction(Request $request)
     {
         $commentaire = new Commentaire();
+        $commentaire->setDate(new \DateTime('now'));
         $form = $this->createForm('Blog\Bundle\Form\CommentaireType', $commentaire);
         $form->handleRequest($request);
+
+        $userId = $this->getUser();
+        $userId->getId();
+        $commentaire->setUser($userId);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();

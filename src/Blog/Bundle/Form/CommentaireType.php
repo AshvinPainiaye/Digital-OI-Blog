@@ -16,12 +16,9 @@ class CommentaireType extends AbstractType
     {
         $builder
             ->add('commentaire')
-            ->add('date', 'datetime')
-            ->add('auteur')
-            ->add('article')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
