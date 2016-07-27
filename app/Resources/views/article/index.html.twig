@@ -10,7 +10,11 @@
     <table class="highlight bordered z-depth-2">
       <thead>
         <tr>
+            <th>
+
+            </th>
           <th class="center-align">Articles</th>
+
           <th>Publié</th>
           <th>Actions</th>
         </tr>
@@ -18,7 +22,15 @@
       <tbody>
         {% for article in articles %}
         <tr>
-          <td><img src="{{ asset('img/articles/')~  article.imageName }}" class="circle">  {{ article.titre }}</td>
+          <td>
+              <img  class="image"src="{{ asset('img/articles/')~  article.imageName }}" >
+          </td>
+          <td>   <h6 >
+                         {{ article.titre | truncate(60, true, '...')  }}
+                     </h6 >
+          </td>
+
+
 
           {% if article.disponibilite == 'Publique' %}
           <td>

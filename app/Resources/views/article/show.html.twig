@@ -1,28 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div id="logo">
-  <div class="container">
-    <div class="row">
-      <div class="col s12 center-align">
-        <a href="#!" class="brand-logo center"><img src="img/logo_Digital.png" alt=""></a>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="container">
   <div class="row">
     <div class="col s12">
-      Posté par : {{ article.user.username }} le {{article.date|date('Y-m-d H:i:s')}}
-      <img src="{{ asset('img/articles/')~  article.imageName }}">
+
+Posté par : {{ article.user.username }} le {{article.date|date('Y-m-d H:i:s')}}
+
+      <div class="row">
+        <div class="col s12 m7">
+          <div class="cards card large center-align">
+            <div class="card-image">
+                   <img src="{{ asset('img/articles/')~  article.imageName }}">
+              <span class="card-title">      <h1 class="center-align">{{ article.titre }}</h1></span>
+            </div>
+            <div class="card-content">
+                <textarea id="textarea1" class="materialize-textarea" length="500000000000">     {{ article.description   }}</textarea>
+          </div>
+        </div>
+      </div>
 
 
-      <h1 class="center-align">{{ article.titre }}</h1>
-      <p>
-        {{ article.description }}
-      </p>
+      <div id="fb-root"></div>
+
+<div class="fb-like" data-href="https://digital-oi.simplonreunion.co" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 
 
+
+
+
+
+
+
+
+<!-- //script  -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- fin script -->
       <br>
 
       {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -58,7 +78,7 @@
             <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d H:i:s') }}{% endif %}</td>
 
             <td>
-            
+
             </td>
 
             <!-- <td>
