@@ -6,7 +6,8 @@
   <div class="row">
     <div class="col s12">
 Posté par : {{ article.user.username }} le {{article.date|date('Y-m-d H:i:s')}}
-      <img src="img/articles/{{ article.imageName }}">
+      <img src="{{ asset('img/articles/')~  article.imageName }}">
+
 
       <h1 class="center-align">{{ article.titre }}</h1>
       <p>
