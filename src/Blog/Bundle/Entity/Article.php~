@@ -46,8 +46,8 @@ class Article
   private $description;
 
   /**
-  * @var int
-  * @ORM\Column(name="Disponibilite", type="integer")
+  * @var string
+  * @ORM\Column(name="Disponibilite", type="string", length=255)
   */
   private $disponibilite;
 

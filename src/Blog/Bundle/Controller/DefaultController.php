@@ -16,7 +16,7 @@ class DefaultController extends Controller
     {
       $em = $this->getDoctrine()->getManager();
 
-      $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>1));
+      $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Publique'));
 
       return $this->render('BlogBundle:Default:index.html.twig', array(
           'articles' => $articles,
@@ -32,7 +32,7 @@ class DefaultController extends Controller
     {
       $em = $this->getDoctrine()->getManager();
 
-      $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>0));
+      $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Brouillon'));
 
       return $this->render('BlogBundle:Default:index.html.twig', array(
           'articles' => $articles,
