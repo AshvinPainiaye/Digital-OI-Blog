@@ -6231,8 +6231,7 @@ h5 {
   font-family: monospace; }
 
 hr {
-  width: 1000px;
-  border: 1px dashed grey; }
+  border: 2px dashed grey; }
 
 .tout {
   left: 50%; }
