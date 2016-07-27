@@ -28,9 +28,12 @@ class CommentaireController extends Controller
     $em = $this->getDoctrine()->getManager();
 
     $commentaires = $em->getRepository('BlogBundle:Commentaire')->findAll();
+    $user = $this->getUser();
 
     return $this->render('commentaire/index.html.twig', array(
       'commentaires' => $commentaires,
+      'user' => $user,
+
     ));
   }
 
@@ -144,6 +147,52 @@ class CommentaireController extends Controller
     ;
   }
 
+
+
+
+
+
+
+
+
+  /**
+  * Lists all Commentaire entities.
+  *
+  * @Route("/postes/{id}", name="commentaire_postes")
+  * @Method("GET")
+  */
+  public function postesAction()
+  {
+    $em = $this->getDoctrine()->getManager();
+    $user = $this->getUser();
+    $commentaires = $em->getRepository('BlogBundle:Commentaire')->findBy(['user'=>$user]);
+
+    return $this->render('commentaire/index.html.twig', array(
+      'commentaires' => $commentaires,
+      'user' => $user,
+    ));
+  }
+
+
+
+
+
+  // /**
+  // * Lists all Commentaire entities.
+  // *
+  // * @Route("/jaime/postes/{id}", name="jaime_postes")
+  // * @Method("GET")
+  // */
+  // public function jaimePostesAction()
+  // {
+  //   $em = $this->getDoctrine()->getManager();
+  //   $user = $this->getUser();
+  //   $commentaires = $em->getRepository('BlogBundle:Commentaire')->findBy(['user'=>$user]);
+  //   return $this->render('commentaire/index.html.twig', array(
+  //     'commentaires' => $commentaires,
+  //     'user' => $user,
+  //   ));
+  // }
 
 
 }
