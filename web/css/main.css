@@ -6208,13 +6208,27 @@ nav {
         background-color: #2196F3;
         color: #fff; }
 
+.logo {
+  margin-top: 10px; }
+
+.image {
+  margin-right: 10px;
+  margin-left: 10px;
+  overflow: hidden;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px; }
+
 .titre {
   font-size: 45px;
   color: #0d47a1; }
 
 h5 {
   color: #606064;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  font-family: monospace; }
 
 hr {
   width: 1000px;
@@ -6257,5 +6271,13 @@ footer {
   #commentaire article h3 {
     font-size: 16px;
     font-weight: bold; }
+
+.card-content {
+  width: 1000px;
+  height: 100%; }
+
+.cards {
+  width: 1000px;
+  height: 100%; }
 
 /*# sourceMappingURL=main.css.map */
