@@ -5,6 +5,9 @@
 <div class="container">
   <div class="row">
     <div class="col s12">
+
+      <img src="img/articles/{{ article.imageName }}">
+
       <h1 class="center-align">{{ article.titre }}</h1>
       <p>
         {{ article.description }}
@@ -12,48 +15,99 @@
 
       <a href="#"><i class="fa fa-heart"></i> J'aime</a>
 
-<br>
+      <br>
 
-        {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('article_edit', { 'id': article.id }) }}">Editer</a>
+      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
-        {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
-        {{ form_end(delete_form) }}
-        {% endif %}
-    </div>
-  </div>
-</div>
-    <!-- <h1>Article</h1>
+      {{ form_start(form) }}
+      {{ form_widget(form) }}
+      <input type="submit" value="Create" />
+      {{ form_end(form) }}
+
+    {% endif %}
+
+    <br><br><br><br>
+
 
     <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{#{ article.id }#}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{#{ article.titre }#}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{#{ article.description }#}</td>
-            </tr>
-        </tbody>
-    </table>
+      <thead>
+        <tr>
+          <!-- <th>Id</th> -->
+          <th>Utilisateur</th>
+          <th>Commentaire</th>
+          <th>Date</th>
+          <!-- <th>Actions</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for commentaire in commentaires %}
+        <tr>
+          <!-- <td><a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">{{ commentaire.id }}</a></td> -->
 
-    <ul>
+        <td>{{ commentaire.user.username }}</td>
+
+        <td>{{ commentaire.commentaire }}</td>
+        <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+        <!-- <td>
+        <ul>
         <li>
-            <a href="{#{ path('article_index') }#}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{#{ path('article_edit', { 'id': article.id }) }#}">Edit</a>
-        </li>
-        <li>
-            {#{ form_start(delete_form) }#}
-                <input type="submit" value="Delete">
-            {#{ form_end(delete_form) }#}
-        </li>
-    </ul> -->
+        <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">show</a>
+      </li>
+      <li>
+      <a href="{{ path('commentaire_edit', { 'id': commentaire.id }) }}">edit</a>
+    </li>
+  </ul>
+</td> -->
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<br><br><br><br>
+
+
+
+
+{% if is_granted('ROLE_ADMIN') %}
+<a href="{{ path('article_edit', { 'id': article.id }) }}">Editer</a>
+
+{{ form_start(delete_form) }}
+<input type="submit" value="Delete">
+{{ form_end(delete_form) }}
+{% endif %}
+</div>
+</div>
+</div>
+<!-- <h1>Article</h1>
+
+<table>
+<tbody>
+<tr>
+<th>Id</th>
+<td>{#{ article.id }#}</td>
+</tr>
+<tr>
+<th>Titre</th>
+<td>{#{ article.titre }#}</td>
+</tr>
+<tr>
+<th>Description</th>
+<td>{#{ article.description }#}</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>
+<a href="{#{ path('article_index') }#}">Back to the list</a>
+</li>
+<li>
+<a href="{#{ path('article_edit', { 'id': article.id }) }#}">Edit</a>
+</li>
+<li>
+{#{ form_start(delete_form) }#}
+<input type="submit" value="Delete">
+{#{ form_end(delete_form) }#}
+</li>
+</ul> -->
 {% endblock %}

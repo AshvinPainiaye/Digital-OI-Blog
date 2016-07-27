@@ -17,3 +17,8 @@ services:
         class: Blog\Bundle\Form\RegistrationFormType
         tags:
             - { name: form.type, alias: app_user_registration }
+
+    app.form.profile:
+        class: Blog\Bundle\Form\ProfileFormType
+        tags:
+            - { name: form.type, alias: app_user_profile }

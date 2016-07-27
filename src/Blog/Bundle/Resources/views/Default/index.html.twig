@@ -1,11 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<div class="">
+<div class="container">
 
 <div class="row">
   {% for article in articles|reverse %}
-  <div class="col s4">
+  <div class="col s6">
+    <a href="{{ path('article_show', { 'id': article.id }) }}">
     <div class="card">
       <div class="card-image">
 
@@ -16,17 +17,16 @@
       <div class="card-content">
         <p>{{ article.description | truncate(150, true, '...') }}</p>
       </div>
+      {% if is_granted('ROLE_ADMIN') %}
       <div class="card-action">
-        <a href="{{ path('article_show', { 'id': article.id }) }}">Lire la suite</a>
+        <!-- <a href="{{ path('article_show', { 'id': article.id }) }}">Lire la suite</a> -->
 
-          {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('article_edit', { 'id': article.id }) }}">Editer</a>
-        {% endif %}
-
-        {{ article.date | date("d/m/Y") }}
-
+          <span>{{ article.date | date ("d/m/Y") }}</span>
       </div>
+      {% endif %}
     </div>
+    </a>
   </div>
   {% endfor %}
 </div>
