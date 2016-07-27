@@ -20,25 +20,33 @@
   <!-- FIN PRELOADER -->
 
   {% block header %}
-  <!-- <div id="logo">
-    <div class="container">
-      <div class="row">
-        <div class="col s12 center-align">
-          <a href="#!" class="brand-logo center"><img src="img/logo_Digital.png" alt=""></a>
-        </div>
+  <div class="container">
+<div class="row">
+<div id="logo">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center-align">
+        <a href="#!" class="brand-logo center"><img src="img/logo_Digital.png" alt=""></a>
       </div>
     </div>
-  </div> -->
+  </div>
+</div>
 
   <header>
-    <div class="navbar-fixed">
-      <nav>
+
+
+
+
+
+
+    <div >
+      <nav class="navbar-fixed">
         <div class="container">
           <div class="nav-wrapper">
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
             <ul class="hide-on-med-and-down center-align navCenter">
-              <li><a href="/">ACCUEIL</a></li>
+              <li><a href="/" class="active">ACCUEIL</a></li>
               {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
               <li><a class="dropdown-button" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
               <ul id="dropdown1" class="dropdown-content">
@@ -78,16 +86,37 @@
 
   </header>
 
+
+
+  <div class="entete">
+      <h1 class="  titre center-align" >DIGITAL OI </h1>
+      <hr>
+      <h5 class=" center-align"> En route vers la culture du numérique  de l'Océan Indien</h5>
+
+  </div>
+</div>
+</div>
 {% endblock header %}
 
 
 
-{% block body %}{% endblock %}
+{% block body %}
+
+
+
+
+
+
+
+
+
+{% endblock %}
 {% block fos_user_content %}{% endblock %}
 
 
 {% block footer %}
-
+<div class="container">
+<div class="row">
 <footer>
   <div class="container">
     <div class="row">
@@ -99,7 +128,8 @@
     </div>
   </div>
 </footer>
-
+</div>
+</div>
 {% endblock %}
 
 {% block javascripts %}
