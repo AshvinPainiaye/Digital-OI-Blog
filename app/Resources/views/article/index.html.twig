@@ -18,7 +18,7 @@
       <tbody>
         {% for article in articles %}
         <tr>
-          <td><img src="img/articles/{{ article.imageName }}" class="circle">  {{ article.titre }}</td>
+          <td><img src="{{ asset('img/articles/')~  article.imageName }}" class="circle">  {{ article.titre }}</td>
 
           {% if article.disponibilite == 'Publique' %}
           <td>
