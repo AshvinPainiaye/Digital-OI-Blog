@@ -20,7 +20,7 @@
   <!-- FIN PRELOADER -->
 
   {% block header %}
-  <div id="logo">
+  <!-- <div id="logo">
     <div class="container">
       <div class="row">
         <div class="col s12 center-align">
@@ -28,10 +28,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <header>
-    <div id="fix">
+    <div class="navbar-fixed">
       <nav>
         <div class="container">
           <div class="nav-wrapper">
@@ -50,7 +50,9 @@
                 {% else %}
                 <li><a href="/profile"><img src="img/users/{{ app.user.imageName }}"> {{ app.user.username }}</a></li>
                 {% endif %}
-                <li><a href="#">Commentaires</a></li>
+                  {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="/commentaire">Commentaires</a></li>
+                  {% endif %}
                 <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
               </ul>
 

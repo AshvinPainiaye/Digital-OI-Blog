@@ -85,22 +85,12 @@
   }
 }
 
-.navbar-fixed {
-    top: -100px;
-    box-shadow: 0px 1px 5px rgba(190, 190, 190, 0.46);
-    -webkit-box-shadow: 0px 1px 5px rgba(190, 190, 190, 0.46);
-    -moz-box-shadow: 0px 1px 5px rgba(190, 190, 190, 0.46);
-}
-
-
 nav{
-  background-color: #ffffff;
-  border-top: 1px solid #ECECEC;
-  border-bottom: 1px solid #ECECEC;
+  background-color: $secondary-color;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   z-index: 999;
   .button-collapse{
-    color: $primary-color;
+    color: #166CC7;
   }
   .navCenter{
     width: 100%;
@@ -109,12 +99,21 @@ nav{
       float:none;
       display: inline-block;
       a{
-        color:$primary-color;
-        // text-transform: uppercase;
+        color:#fff;
         font-weight: bold;
         &:hover {
-          background-color: transparent;
-          color:$secondary-color;
+          background-color: $secondary-color;
+          color:#166CC7;
+        }
+      }
+    }
+    .dropdown-content{
+      a{
+        color:#000;
+        font-weight: bold;
+        &:hover {
+          background-color: $secondary-color;
+          color:#fff;
         }
       }
     }
