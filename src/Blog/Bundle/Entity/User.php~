@@ -67,6 +67,13 @@ class User extends BaseUser
     private $commentaire;
 
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Commentaire", inversedBy="likes")
+     * @ORM\JoinTable(name="commentaire_like")
+     */
+    protected $commentairelikes;
+    
+
     public function __construct()
     {
         parent::__construct();
@@ -264,5 +271,39 @@ class User extends BaseUser
     public function getCommentaire()
     {
         return $this->commentaire;
+    }
+
+    /**
+     * Add commentairelike
+     *
+     * @param \Blog\Bundle\Entity\Commentaire $commentairelike
+     *
+     * @return User
+     */
+    public function addCommentairelike(\Blog\Bundle\Entity\Commentaire $commentairelike)
+    {
+        $this->commentairelikes[] = $commentairelike;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentairelike
+     *
+     * @param \Blog\Bundle\Entity\Commentaire $commentairelike
+     */
+    public function removeCommentairelike(\Blog\Bundle\Entity\Commentaire $commentairelike)
+    {
+        $this->commentairelikes->removeElement($commentairelike);
+    }
+
+    /**
+     * Get commentairelikes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentairelikes()
+    {
+        return $this->commentairelikes;
     }
 }

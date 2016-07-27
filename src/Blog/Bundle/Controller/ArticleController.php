@@ -13,6 +13,8 @@ use Blog\Bundle\Entity\Commentaire;
 use Blog\Bundle\Form\CommentaireType;
 // use Vich\UploaderBundle\Form\Type\VichImageType;
 
+// use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 /**
 * Article controller.
 *

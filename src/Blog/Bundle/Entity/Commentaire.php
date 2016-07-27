@@ -51,6 +51,19 @@ class Commentaire
 
 
   /**
+   * @var
+   * @ORM\ManyToMany(targetEntity="User", mappedBy="commentairelikes")
+   */
+  private $likes;
+
+
+  /**
+   * @var
+   * @ORM\ManyToMany(targetEntity="Article", mappedBy="articlelikes")
+   */
+  private $likesArticle;
+
+  /**
   * Get id
   *
   * @return int
@@ -155,5 +168,80 @@ class Commentaire
     public function getArticle()
     {
         return $this->article;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->likes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add like
+     *
+     * @param \Blog\Bundle\Entity\User $like
+     *
+     * @return Commentaire
+     */
+    public function addLike(\Blog\Bundle\Entity\User $like)
+    {
+        $this->likes[] = $like;
+
+        return $this;
+    }
+
+    /**
+     * Remove like
+     *
+     * @param \Blog\Bundle\Entity\User $like
+     */
+    public function removeLike(\Blog\Bundle\Entity\User $like)
+    {
+        $this->likes->removeElement($like);
+    }
+
+    /**
+     * Get likes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
+    /**
+     * Add likesArticle
+     *
+     * @param \Blog\Bundle\Entity\Article $likesArticle
+     *
+     * @return Commentaire
+     */
+    public function addLikesArticle(\Blog\Bundle\Entity\Article $likesArticle)
+    {
+        $this->likesArticle[] = $likesArticle;
+
+        return $this;
+    }
+
+    /**
+     * Remove likesArticle
+     *
+     * @param \Blog\Bundle\Entity\Article $likesArticle
+     */
+    public function removeLikesArticle(\Blog\Bundle\Entity\Article $likesArticle)
+    {
+        $this->likesArticle->removeElement($likesArticle);
+    }
+
+    /**
+     * Get likesArticle
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLikesArticle()
+    {
+        return $this->likesArticle;
     }
 }

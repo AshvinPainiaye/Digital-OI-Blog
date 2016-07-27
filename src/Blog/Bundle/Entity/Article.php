@@ -89,6 +89,12 @@ class Article
     private $commentaire;
 
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Commentaire", inversedBy="likesArticle")
+     * @ORM\JoinTable(name="article_like")
+     */
+    protected $articlelikes;
+
   /**
   * Get id
   *
@@ -356,5 +362,39 @@ class Article
     public function removeCommentaire(\Blog\Bundle\Entity\Commentaire $commentaire)
     {
         $this->commentaire->removeElement($commentaire);
+    }
+
+    /**
+     * Add articlelike
+     *
+     * @param \Blog\Bundle\Entity\Commentaire $articlelike
+     *
+     * @return Article
+     */
+    public function addArticlelike(\Blog\Bundle\Entity\Commentaire $articlelike)
+    {
+        $this->articlelikes[] = $articlelike;
+
+        return $this;
+    }
+
+    /**
+     * Remove articlelike
+     *
+     * @param \Blog\Bundle\Entity\Commentaire $articlelike
+     */
+    public function removeArticlelike(\Blog\Bundle\Entity\Commentaire $articlelike)
+    {
+        $this->articlelikes->removeElement($articlelike);
+    }
+
+    /**
+     * Get articlelikes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticlelikes()
+    {
+        return $this->articlelikes;
     }
 }

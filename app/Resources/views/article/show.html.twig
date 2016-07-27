@@ -13,7 +13,7 @@
 <div class="container">
   <div class="row">
     <div class="col s12">
-Posté par : {{ article.user.username }} le {{article.date|date('Y-m-d H:i:s')}}
+      Posté par : {{ article.user.username }} le {{article.date|date('Y-m-d H:i:s')}}
       <img src="{{ asset('img/articles/')~  article.imageName }}">
 
 
@@ -22,7 +22,6 @@ Posté par : {{ article.user.username }} le {{article.date|date('Y-m-d H:i:s')}}
         {{ article.description }}
       </p>
 
-      <a href="#"><i class="fa fa-heart"></i> J'aime</a>
 
       <br>
 
@@ -33,41 +32,46 @@ Posté par : {{ article.user.username }} le {{article.date|date('Y-m-d H:i:s')}}
       <input type="submit" value="Create" />
       {{ form_end(form) }}
 
-    {% endif %}
+      {% endif %}
 
-    <br><br><br><br>
+      <br><br><br><br>
 
 
-    <table>
-      <thead>
-        <tr>
-          <!-- <th>Id</th> -->
-          <th>Utilisateur</th>
-          <th>Commentaire</th>
-          <th>Date</th>
-          <!-- <th>Actions</th> -->
-        </tr>
-      </thead>
-      <tbody>
-        {% for commentaire in commentaires %}
-        <tr>
-          <!-- <td><a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">{{ commentaire.id }}</a></td> -->
+      <table>
+        <thead>
+          <tr>
+            <!-- <th>Id</th> -->
+            <th>Utilisateur</th>
+            <th>Commentaire</th>
+            <th>Date</th>
+            <!-- <th>Actions</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          {% for commentaire in commentaires %}
+          <tr>
+            <!-- <td><a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">{{ commentaire.id }}</a></td> -->
 
-        <td>{{ commentaire.user.username }}</td>
+            <td>{{ commentaire.user.username }}</td>
 
-        <td>{{ commentaire.commentaire }}</td>
-        <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d H:i:s') }}{% endif %}</td>
-        <!-- <td>
-        <ul>
-        <li>
-        <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">show</a>
-      </li>
-      <li>
-      <a href="{{ path('commentaire_edit', { 'id': commentaire.id }) }}">edit</a>
-    </li>
-  </ul>
-</td> -->
-</tr>
+            <td>{{ commentaire.commentaire }}</td>
+            <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+
+            <td>
+            
+            </td>
+
+            <!-- <td>
+            <ul>
+            <li>
+            <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">show</a>
+          </li>
+          <li>
+          <a href="{{ path('commentaire_edit', { 'id': commentaire.id }) }}">edit</a>
+        </li>
+      </ul>
+    </td> -->
+  </tr>
 {% endfor %}
 </tbody>
 </table>

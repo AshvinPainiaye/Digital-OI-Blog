@@ -89,6 +89,12 @@ class Article
     private $commentaire;
 
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Commentaire", inversedBy="likesArticle")
+     * @ORM\JoinTable(name="article_like")
+     */
+    protected $articlelikes;
+
   /**
   * Get id
   *

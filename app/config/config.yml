@@ -112,3 +112,8 @@ vich_uploader:
             inject_on_load:     false
             delete_on_update:   true
             delete_on_remove:   true
+
+# sensio_framework_extra:
+#     request:
+#         converters: true
+#         auto_convert: false
