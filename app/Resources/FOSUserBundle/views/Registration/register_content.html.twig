@@ -29,7 +29,7 @@
             {{ form_widget(form.plainPassword.first, {'attr':{'class':'validate'}}) }}
             {{ form_errors(form.plainPassword.first) }}
           </div>
-  
+
           <div class="input-field col s6">
             {{ form_label(form.plainPassword.second) }}
             {{ form_widget(form.plainPassword.second, {'attr':{'class':'validate'}}) }}
@@ -53,13 +53,24 @@
           </div>
         </div>
 
- {{ form_widget(form.imageFile) }}
 
-        <div class="row center-align" style="margin-top:50px;">
-          <input type="submit" class="btn btn-success" value="{{ 'registration.submit'|trans }}" />
-        </div>
-        {{ form_end(form) }}
 
+
+
+        <div class="file-field input-field col s12 m8 offset-m2 l6 offset-l3">
+                  <div class="btn-floating btn-large waves-effect waves-light tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Avatar" style="width:45px !important">
+                    <i class="material-icons" style="top:-4px !important; position: relative;">perm_identity</i>
+                   {{ form_widget(form.imageFile) }}
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                  </div>
+                </div>
+                <br>
+                <div class="row center-align" style="margin-top:50px;">
+                  <input type="submit" class="btn btn-success" value="   INSCRIPTION  "/>
+                </div>
+                        {{ form_end(form) }}
       </div>
     </div>
   </div>

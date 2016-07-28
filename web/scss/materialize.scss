@@ -151,9 +151,10 @@ h5 {
 }
 
 hr{
-
 border: 1px dashed grey;
 }
+
+/* boutton tout les article  */
 .tout{
     left: 50%;
 }
@@ -223,3 +224,25 @@ border: 1px dashed grey;
     }
 }
   }
+
+
+.cards
+{
+ overflow-y : scroll;
+ height: 200px;
+}
+
+.heure{
+      font-family: monospace;
+      font-weight: bold;
+
+}
+h5{
+color: #0d47a1;
+}
+h6{
+      font-weight: bold;
+}
+.image_article{
+
+}

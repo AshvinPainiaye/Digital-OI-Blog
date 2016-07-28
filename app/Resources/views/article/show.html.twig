@@ -1,150 +1,265 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Digital OI{% endblock %}</title>
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('https://fonts.googleapis.com/icon?family=Material+Icons')}}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<!-- body -->
+<body>
 
-{% block body %}
-<div class="container">
-  <div class="row">
-    <div class="col s12">
+    <!-- DEBUT PRELOADER -->
+    <div id="page-loader">
+        <span class="page-loader-gif"></span>
+    </div>
+    <!-- FIN PRELOADER -->
 
-Posté par : {{ article.user.username }} le {{article.date|date('Y-m-d H:i:s')}}
+    <!-- header -->
+    {% block header %}
+    <div class="container">
+        <div class="row">
+            <header>
+                <div >
+                    <nav class="navbar-fixed">
+                        <div class="container">
+                            <div class="nav-wrapper">
+                                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
-  <a href="{{ path('article_like_new',{'id':article.id}) }}"><i class="material-icons">favorite</i>{{ article.like|length }} j'aime</a>
+                                <ul class="hide-on-med-and-down center-align navCenter">
+                                    <li><a href="/" >ACCUEIL</a></li>
+                                    <li><a href="#" class="active">ARTICLES</a></li>
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+                                    <ul id="dropdown1" class="dropdown-content">
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                        <li><a href="/article">Mes articles</a></li>
+                                        {% endif %}
+                                        {% if app.user.imageName == null %}
+                                        <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i> profil</a></li>
+                                        {% else %}
+                                        <li><a href="/profile"><img src="img/users/{{ app.user.imageName }}"> {{ app.user.username }}</a></li>
+                                        {% endif %}
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                        <li><a href="/commentaire">Commentaires</a></li>
+                                        {% endif %}
+                                        <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+                                    </ul>
 
-  {% for commentaire in commentaires %}
-{% if loop.first %}
-   <i class="material-icons">comment</i> {{ commentaires|length }} commentaires
-{% endif %}
-{% endfor %}
+                                    {% else %}
+                                    <li><a href="/login">CONNEXION</a></li>
+                                    {% endif %}
+                                </ul>
 
+                                <ul class="side-nav" id="mobile-demo">
+                                    <li><a href="/">Accueil</a></li>
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <li><a href="/profile"><i class="fa fa-user"aria-hidden="true"></i> <img src="{{asset('img/users/ '){{ app.user.imageName }}}}"> {{ app.user.username }}</a></li>
+                                    <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
+                                    {% else %}
+                                    <li><a href="/login">Connexion</a></li>
+                                    <li><a href="/register">S'inscrire</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+            <!-- Titre -->
 
-      <div class="row">
-        <div class="col s12 m7">
-          <div class="cards card large center-align">
-            <div class="card-image">
-                   <img src="{{ asset('img/articles/')~  article.imageName }}">
-              <span class="card-title">      <h1 class="center-align">{{ article.titre }}</h1></span>
+            <div class="row">
+                <div class="logo col s12 center-align">
+                    <a href="#!" class="brand-logo center"><img src="{{asset('img/logo_Digital.png')}}" alt=""></a>
+                </div>
+                <hr>
+                <h5 class=" center-align"> En route vers la culture du numérique  de l'Océan Indien</h5>
             </div>
-            <div class="card-content">
-             {{ article.description   }}
-          </div>
         </div>
-      </div>
+    </div>
+    {% endblock header %}
+    <!--fin  Titre -->
+    <!-- fin header -->
+
+
+
+
+
+
+    {% block body %}
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+
+    Posté par : {{ article.user.username }} le {{article.date|date('Y-m-d H:i:s')}}
+
+          <div class="row">
+            <div class="col s12 ">
+              <div class=" card large center-align">
+                <div class="card-image">
+                       <img class="image_article"src="{{ asset('img/articles/')~  article.imageName }}">
+                       <span class="card-title">  <h5 class="center-align">{{ article.titre }}</h5></span>
+
+                </div>
+                <div class="">
+                      <a href="{{ path('article_like_new',{'id':article.id}) }}"><i class="material-icons">favorite</i>{{ article.like|length }} j'aime</a>
+
+                      {% for commentaire in commentaires %}
+                    {% if loop.first %}
+                       <i class="material-icons">comment</i> {{ commentaires|length }} commentaires
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="content cards ">
+                 {{ article.description   }}
+              </div>
+            </div>
+          </div>
+    </div>
+
 
 
 <div class="fb-like" data-href="http://digital-oi.simplonreunion.co/article/{{article.id}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 
 
+    <!-- //script  -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <!-- fin script -->
+          <br>
 
 
+          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
 
-<!-- //script  -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<!-- fin script -->
-      <br>
+          {{ form_start(form) }}
+          {{ form_widget(form) }}
+<input  class="waves-effect waves-light btn"type="submit"  value="Envoyer">
+          {{ form_end(form) }}
 
-      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-      {{ form_start(form) }}
-      {{ form_widget(form) }}
-      <input type="submit" value="Create" />
-      {{ form_end(form) }}
-
-      {% endif %}
-
-      <br><br><br><br>
+          {% endif %}
+    <!-- col s12 m8 offset-m2 l6 offset-l3 -->
+<!--     commentaire -->
+          <br><br><br><br>
+             {% for commentaire in commentaires %}
+          <div class="col s12 ">
+                  <div class="card-panel grey lighten-5 z-depth-1">
+                    <div class="row valign-wrapper">
+                      <div class="col s2">
+                        <img  class="image"src="{{ asset('img/users/')~  commentaire.user.imageName }}" >
 
 
-      <table>
-        <thead>
-          <tr>
-            <!-- <th>Id</th> -->
-            <th>Utilisateur</th>
-            <th>Commentaire</th>
-            <th>Date</th>
-            <!-- <th>Actions</th> -->
-          </tr>
-        </thead>
-        <tbody>
-          {% for commentaire in commentaires %}
-          <tr>
-            <!-- <td><a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">{{ commentaire.id }}</a></td> -->
+                      </div>
+                      <div class="col s9">
+                            <h6>   {{ commentaire.user.username }}</h6>
+                        <p class="black-text">
+                          {{ commentaire.commentaire }}
+                    </p>
 
-            <td>{{ commentaire.user.username }}</td>
+                      </div>
+                      <div class="jaime">
+                            {% if commentaire.date %}
+                            <p class="heure ">
+                                   {{ commentaire.date|date("D M Y h:i:s"| trans) }} <br>
+                             </p >
+                            {% endif %}
+                            <a style="color:red" href="{{ path('commentaire_like_new',{'article':article.id, 'commentaire':commentaire.id}) }}"><i class="material-icons  " style="color:red">favorite</i>{{ commentaire.like|length }} j'aime</a>
+                     </div>
+                    </div>
 
-            <td>{{ commentaire.commentaire }}</td>
-            <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('article_edit', { 'id': article.id }) }}">Editer</a>
 
-            <td>
-              <a href="{{ path('commentaire_like_new',{'article':article.id, 'commentaire':commentaire.id}) }}"><i class="material-icons">favorite</i>{{ commentaire.like|length }} j'aime</a>
-            </td>
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                    {{ form_end(delete_form) }}
+                    {% endif %}
+                  </div>
+                </div>
+        {% endfor %}
 
-            <!-- <td>
-            <ul>
-            <li>
-            <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">show</a>
-          </li>
-          <li>
-          <a href="{{ path('commentaire_edit', { 'id': commentaire.id }) }}">edit</a>
-        </li>
-      </ul>
-    </td> -->
-  </tr>
-{% endfor %}
-</tbody>
-</table>
-
-<br><br><br><br>
+        </div>
+        </div>
+        </div>
 
 
+    <!-- <h1>Article</h1>
 
+    <table>
+    <tbody>
+    <tr>
+    <th>Id</th>
+    <td>{#{ article.id }#}</td>
+    </tr>
+    <tr>
+    <th>Titre</th>
+    <td>{#{ article.titre }#}</td>
+    </tr>
+    <tr>
+    <th>Description</th>
+    <td>{#{ article.description }#}</td>
+    </tr>
+    </tbody>
+    </table>
 
-{% if is_granted('ROLE_ADMIN') %}
-<a href="{{ path('article_edit', { 'id': article.id }) }}">Editer</a>
+    <ul>
+    <li>
+    <a href="{#{ path('article_index') }#}">Back to the list</a>
+    </li>
+    <li>
+    <a href="{#{ path('article_edit', { 'id': article.id }) }#}">Edit</a>
+    </li>
+    <li>
+    {#{ form_start(delete_form) }#}
+    <input type="submit" value="Delete">
+    {#{ form_end(delete_form) }#}
+    </li>
+    </ul> -->
+    {% endblock %}
 
-{{ form_start(delete_form) }}
-<input type="submit" value="Delete">
-{{ form_end(delete_form) }}
-{% endif %}
-</div>
-</div>
-</div>
-<!-- <h1>Article</h1>
+    {% block fos_user_content %}{% endblock %}
 
-<table>
-<tbody>
-<tr>
-<th>Id</th>
-<td>{#{ article.id }#}</td>
-</tr>
-<tr>
-<th>Titre</th>
-<td>{#{ article.titre }#}</td>
-</tr>
-<tr>
-<th>Description</th>
-<td>{#{ article.description }#}</td>
-</tr>
-</tbody>
-</table>
+    <!-- footer -->
+    {% block footer %}
+    <div class="container">
+        <div class="row">
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12">
+                            <p class="center-align">
+                                MADE WITH LOVE BY SIMPLON.CO
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    {% endblock %}
+    <!-- fin footer -->
 
-<ul>
-<li>
-<a href="{#{ path('article_index') }#}">Back to the list</a>
-</li>
-<li>
-<a href="{#{ path('article_edit', { 'id': article.id }) }#}">Edit</a>
-</li>
-<li>
-{#{ form_start(delete_form) }#}
-<input type="submit" value="Delete">
-{#{ form_end(delete_form) }#}
-</li>
-</ul> -->
-{% endblock %}
+    <!-- script -->
+    {% block javascripts %}
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="{{asset('materialize/js/bin/materialize.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
+    <script type="text/javascript">
+    $(".button-collapse").sideNav();
+    $("select").material_select();
+    </script>
+    {% endblock %}
+    <!-- fin script -->
+</body>
+</html>
