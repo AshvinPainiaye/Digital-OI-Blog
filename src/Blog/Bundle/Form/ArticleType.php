@@ -22,7 +22,7 @@ class ArticleType extends AbstractType
                 'Publique' => 'Publique',
               )
             ))
-            ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => true))
+            ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => false))
         ;
     }
     /**

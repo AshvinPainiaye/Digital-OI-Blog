@@ -12,10 +12,10 @@
       <div class="col s5">
 
         <div class="collection">
-          <a href="commentaire/" class="collection-item active">Tout</a>
+          <a href="{{ path('commentaire_index')}}" class="collection-item">Tout</a>
           <a href="{{ path('commentaire_postes',{'id':user.id}) }}" class="collection-item">Postés</a>
           <a href="jaime/recus" class="collection-item">J'aime reçus</a>
-          <a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item">J'aime postés</a>
+          <a href="{#{ path('jaime_postes')}#}" class="collection-item active">J'aime postés</a>
 
 
         </div>
@@ -25,49 +25,44 @@
       <div class="col s7">
 
 
+        {% for commentaire in commentaires %}
+        {% if loop.first %}
+        {% for like in commentaire.like %}
+        {% for test in like.commentairelike %}
+
+        <article>
+          <h3>
+            {{test.article.titre}}
+          </h3>
+          <p>
+            {{test.commentaire}}
+          </p>
+          <div class="right-align">
+
+            <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}" class="btn">VOIR</a>
+          </div>
+        </article>
 
 
+        {% endfor %}
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
 
 
-
-
-
-
-
-
-
-
-
-
-  {% for commentaire in commentaires %}
-
-
-  <article>
-
-    <h3>{{commentaire.article.titre}}</h3>
-    <p>
-    {{ commentaire.commentaire }}
-  </p>
-  <div class="right-align">
-
-    <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}" class="btn">VOIR</a>
+      </div>
+    </div>
   </div>
-</article>
-
-{% endfor %}
-</div>
-</div>
-</div>
 
 
-<!-- <table>
-<thead>
-<tr>
-<th>Id</th>
-<th>Nom de l'article</th>
-<th>Commentaire</th>
-<th>Date</th>
-<th>Actions</th>
+  <!-- <table>
+  <thead>
+  <tr>
+  <th>Id</th>
+  <th>Nom de l'article</th>
+  <th>Commentaire</th>
+  <th>Date</th>
+  <th>Actions</th>
 </tr>
 </thead>
 <tbody>
