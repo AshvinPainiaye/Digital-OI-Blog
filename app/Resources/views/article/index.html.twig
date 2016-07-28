@@ -30,13 +30,14 @@
         </tr>
       </thead>
       <tbody>
-        {% for article in articles %}
+        {% for article in articles|reverse %}
+
         <tr>
           <td>
-              <img  class="image"src="{{ asset('img/articles/')~  article.imageName }}" >
+            <a href="{{ path('article_show', { 'id': article.id }) }}">  <img  class="image"src="{{ asset('img/articles/')~  article.imageName }}" > </a>
           </td>
           <td>   <h6 >
-                         {{ article.titre | truncate(60, true, '...')  }}
+                        <a href="{{ path('article_show', { 'id': article.id }) }}"> {{ article.titre | truncate(60, true, '...')  }}</a>
                      </h6 >
           </td>
 
@@ -69,7 +70,8 @@
 
           <td><a href="{{ path('article_edit', { 'id': article.id }) }}"><i class="material-icons">mode_edit</i></a></td>
           <td>
-
+            <a href="{{ path('blogpost_instant_delete', { 'id': article.id }) }}"><i
+        class="material-icons">delete</i></a>
           </td>
         </tr>
         {% endfor %}

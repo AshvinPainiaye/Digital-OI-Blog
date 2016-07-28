@@ -1,84 +1,93 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="container">
-      <div class="row">
-<div class="col s12 ">
-    <h2 class="header center-align">Paramètres Compte</h2>
-    <div class="card horizontal">
-      <div class="card-stacked">
-        <div class="card-content">
-         {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-         <div class="row">
-           <div class="input-field col s12">
-             {{ form_label(form.nom) }}
-             {{ form_widget(form.nom, {'attr':{'class':'validate'}}) }}
-             {{ form_errors(form.nom) }}
-           </div>
-         </div>
+  <div class="row">
+    <div class="col s12 ">
+      <h2 class="header center-align">Paramètres Compte</h2>
+      <div class="card horizontal">
+        <div class="card-stacked">
+          <div class="card-content">
+            {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+            <div class="row">
+              <div class="input-field col s12">
+                {{ form_label(form.nom) }}
+                {{ form_widget(form.nom, {'attr':{'class':'validate'}}) }}
+                {{ form_errors(form.nom) }}
+              </div>
+            </div>
 
-         <div class="row">
-           <div class="input-field col s12">
-             {{ form_label(form.prenom) }}
-             {{ form_widget(form.prenom, {'attr':{'class':'validate'}}) }}
-             {{ form_errors(form.prenom) }}
-           </div>
-         </div>
-         <div class="row">
-           <div class="input-field col s12">
-             {{ form_label(form.email) }}
-             {{ form_widget(form.email, {'attr':{'class':'validate'}}) }}
-             {{ form_errors(form.email) }}
-           </div>
-         </div>
+            <div class="row">
+              <div class="input-field col s12">
+                {{ form_label(form.prenom) }}
+                {{ form_widget(form.prenom, {'attr':{'class':'validate'}}) }}
+                {{ form_errors(form.prenom) }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, {'attr':{'class':'validate'}}) }}
+                {{ form_errors(form.email) }}
+              </div>
+            </div>
 
-         <div class="row">
-           <div class="input-field col s12">
-             {{ form_label(form.username) }}
-             {{ form_widget(form.username, {'attr':{'class':'validate'}}) }}
-             {{ form_errors(form.username) }}
-           </div>
-         </div>
+            <div class="row">
+              <div class="input-field col s12">
+                {{ form_label(form.username) }}
+                {{ form_widget(form.username, {'attr':{'class':'validate'}}) }}
+                {{ form_errors(form.username) }}
+              </div>
+            </div>
 
-         <div class="row">
-           <div class="input-field col s12">
-             {{ form_label(form.imageFile) }}
+            <div class="row">
+              <div class="input-field col s12">
+                {{ form_label(form.imageFile) }}
 
-           </div>
-         </div>
+              </div>
+            </div>
 
-          <div class="row">
-         <div class="file-field input-field col s12 ">
-            <!--        <div class="btn-floating btn-large waves-effect waves-light tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Avatar">
-              <i class="material-icons">perm_identity</i>
+            <div class="row">
+              <div class="file-field input-field col s12 ">
+                <div class="btn-floating btn-large waves-effect waves-light tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Avatar">
+                  <i class="material-icons">perm_identity</i>
+                </div>
+                <div class="profile_edit_photo">
 
-            </div> -->
-                     {{ form_widget(form.imageFile) }}
-                   <div class="file-path-wrapper">
-                     <input class="file-path validate" type="text">
-                   </div>
-                 </div>
-                   </div>
+                {{ form_widget(form.imageFile) }}
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
 
-         <div class="row">
-           <div class="input-field col s12">
-            {{ form_label(form.current_password) }}
-            {{ form_widget(form.current_password, {'attr':{'class':'validate'}}) }}
-            {{ form_errors(form.current_password) }}
-           </div>
-         </div>
+              </div>
+
+              </div>
+            </div>
 
 
-        </div>
+            <!-- <div id="fos_user_profile_form_imageFile"><div><label for="fos_user_profile_form_imageFile_file"> </label><input type="file" id="fos_user_profile_form_imageFile_file" name="fos_user_profile_form[imageFile][file]" /></div><div><label for="fos_user_profile_form_imageFile_delete">Supprimer ?</label><input type="checkbox" id="fos_user_profile_form_imageFile_delete" name="fos_user_profile_form[imageFile][delete]" value="1" /></div></div> -->
 
-        <div class="card-action">
-             {{ form_widget(form) }}
-             <div>
-                 <input class="waves-effect waves-light btn " type="submit" value="{{ 'profile.edit.submit'|trans }}" />
-             </div>
-         {{ form_end(form) }}
+
+
+            <div class="row">
+              <div class="input-field col s12">
+                {{ form_label(form.current_password) }}
+                {{ form_widget(form.current_password, {'attr':{'class':'validate'}}) }}
+                {{ form_errors(form.current_password) }}
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="card-action">
+            {{ form_widget(form) }}
+            <div>
+              <input class="waves-effect waves-light btn " type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+            </div>
+            {{ form_end(form) }}
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>

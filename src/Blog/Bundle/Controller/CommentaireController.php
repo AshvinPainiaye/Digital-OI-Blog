@@ -156,10 +156,8 @@ class CommentaireController extends Controller
 
 
 
-
-
   /**
-  * Lists all Commentaire entities.
+  * Lists tout les commentaires posté par l'utilisateur
   *
   * @Route("/postes/{id}", name="commentaire_postes")
   * @Method("GET")
@@ -178,10 +176,8 @@ class CommentaireController extends Controller
 
 
 
-
-
   /**
-  * Lists all Commentaire entities.
+  * Lister tout les j'aimes posté par l'utilisateur
   *
   * @Route("/jaime/postes/{id}", name="jaime_postes")
   * @Method("GET")
@@ -193,9 +189,8 @@ class CommentaireController extends Controller
     $comments = $user->getCommentairelike();
     return $this->render('commentaire/jaimePostes.html.twig', array(
       'commentaires' => $comments,
+        'user' => $user,
     ));
   }
-
-
 
 }

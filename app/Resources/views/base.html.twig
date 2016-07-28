@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="En route vers la culture du numérique de l'Océan Indien">
+    <meta name="author" content="Anais MARIMOUTOU , Ashvin PAINIAYE , David ATCHIAMAN , Faïza MOUNIR">
+     <meta name="keywords" content="blog, digital, ocean indien" />
     <title>{% block title %}Digital OI{% endblock %}</title>
     {% block stylesheets %}
     <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.min.css')}}">
@@ -12,7 +15,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <!-- body -->
-<body>
+<body data-spy="scroll" data-target=".navbar-collapse-1" id="returnTop">
 
     <!-- DEBUT PRELOADER -->
     <div id="page-loader">
@@ -50,25 +53,14 @@
                                         </li>
                                   </div>
                                         {% endif %}
-                                        {% if is_granted('ROLE_ADMIN') %}
+                                        {# if is_granted('ROLE_ADMIN') #}
                                         <li><a href="/commentaire">Commentaires</a></li>
-                                        {% endif %}
+                                        {# endif #}
                                         <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
                                     </ul>
 
                                     {% else %}
                                     <li><a href="/login">CONNEXION</a></li>
-                                    {% endif %}
-                                </ul>
-
-                                <ul class="side-nav" id="mobile-demo">
-                                    <li><a href="/">Accueil</a></li>
-                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                    <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i> <img src="img/users/{{ app.user.imageName }}"> {{ app.user.username }}</a></li>
-                                    <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
-                                    {% else %}
-                                    <li><a href="/login">Connexion</a></li>
-                                    <li><a href="/register">S'inscrire</a></li>
                                     {% endif %}
                                 </ul>
                             </div>
@@ -92,7 +84,7 @@
 
     {% block body %}{% endblock %}
     {% block fos_user_content %}{% endblock %}
-
+<a href="#returnTop"><i class="material-icons icon-return-top">keyboard_arrow_up</i></a>
     <!-- footer -->
     {% block footer %}
     <div class="container">

@@ -12,8 +12,10 @@
       <div class="col s5">
 
         <div class="collection">
+            {% if is_granted('ROLE_ADMIN') %}
           <a href="{{ path('commentaire_index')}}" class="collection-item">Tout</a>
-          <a href="{#{ path('commentaire_postes',{'id':user.id}) }#}" class="collection-item">Postés</a>
+{% endif %}
+          <a href="{{ path('commentaire_postes',{'id':user.id}) }}" class="collection-item">Postés</a>
           <a href="jaime/recus" class="collection-item">J'aime reçus</a>
           <a href="{#{ path('jaime_postes')}#}" class="collection-item active">J'aime postés</a>
 

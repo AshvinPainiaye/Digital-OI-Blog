@@ -11,9 +11,7 @@ use Blog\Bundle\Form\ArticleType;
 
 use Blog\Bundle\Entity\Commentaire;
 use Blog\Bundle\Form\CommentaireType;
-// use Vich\UploaderBundle\Form\Type\VichImageType;
 
-// use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
 * Article controller.
@@ -149,7 +147,7 @@ public function editAction(Request $request, Article $article)
     $em->persist($article);
     $em->flush();
 
-    return $this->redirectToRoute('article_edit', array('id' => $article->getId()));
+    return $this->redirectToRoute('article_show', array('id' => $article->getId()));
   }
   return $this->render('article/edit.html.twig', array(
     'article' => $article,
@@ -203,7 +201,7 @@ private function createDeleteForm(Article $article)
 
 
 /**
-* Add a new like to a commentaire.
+* Ajouter un like sur un commentaire
 * @Method({"GET", "POST"})
 * @Route("/{article}/{commentaire}/like", name="commentaire_like_new")
 */
@@ -225,7 +223,7 @@ public function LikeDislikeToCommentaire(Article $article, Commentaire $commenta
 
 
 /**
-* Add a new like to an article.
+* Ajouter un like sur un article
 * @Method({"GET", "POST"})
 * @Route("/{id}/like", name="article_like_new")
 */
@@ -245,6 +243,21 @@ public function LikeDislikeToArticle(Article $article, Request $request) {
   return $this->redirectToRoute('article_show', array('id' => $article->getId()));
 }
 
+
+
+/**
+ * Supprime un article depuis "mes articles"
+ *
+ * @Route("/{id}/instant", name="blogpost_instant_delete")
+ */
+public function deleteInstantAction(Article $article) {
+    if ($article) {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($article);
+        $em->flush();
+    }
+    return $this->redirectToRoute('article_index');
+}
 
 
 

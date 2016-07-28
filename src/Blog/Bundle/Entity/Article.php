@@ -83,8 +83,8 @@ class Article
     private $user;
 
     /**
-    * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
-    * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id")
+    * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article", cascade={"persist", "remove"}))
+    * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id"))
     */
     private $commentaire;
 
@@ -220,6 +220,8 @@ class Article
         $this->commentaire = new \Doctrine\Common\Collections\ArrayCollection();
         $this->like = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+
 
     /**
      * Set date
