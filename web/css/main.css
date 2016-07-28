@@ -6231,8 +6231,9 @@ h5 {
   font-family: monospace; }
 
 hr {
-  border: 2px dashed grey; }
+  border: 1px dashed grey; }
 
+/* boutton tout les article  */
 .tout {
   left: 50%; }
 
@@ -6270,5 +6271,19 @@ footer {
   #commentaire article h3 {
     font-size: 16px;
     font-weight: bold; }
+
+.cards {
+  overflow-y: scroll;
+  height: 200px; }
+
+.heure {
+  font-family: monospace;
+  font-weight: bold; }
+
+h5 {
+  color: #0d47a1; }
+
+h6 {
+  font-weight: bold; }
 
 /*# sourceMappingURL=main.css.map */
