@@ -31,13 +31,33 @@ class DefaultController extends Controller
     public function brouillonAction()
     {
       $em = $this->getDoctrine()->getManager();
+      $user = $this->getUser();
 
-      $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Brouillon'));
+      $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Brouillon','user'=>$user));
 
-      return $this->render('BlogBundle:Default:index.html.twig', array(
+      return $this->render('article/index.html.twig', array(
           'articles' => $articles,
+          'user' => $user,
       ));
     }
+
+
+    /**
+     * @route("/publique")
+     */
+        public function publicAction()
+        {
+          $em = $this->getDoctrine()->getManager();
+          $user = $this->getUser();
+
+          $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Publique','user'=>$user));
+
+          return $this->render('article/index.html.twig', array(
+              'articles' => $articles,
+              'user' => $user,
+          ));
+        }
+
 
 
     /**
