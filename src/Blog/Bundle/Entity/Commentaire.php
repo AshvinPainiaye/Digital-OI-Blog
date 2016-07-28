@@ -52,50 +52,51 @@ class Commentaire
 
   /**
    * @var
-   * @ORM\ManyToMany(targetEntity="User", mappedBy="commentairelikes")
+   * @ORM\ManyToMany(targetEntity="User", mappedBy="commentairelike")
    */
-  private $likes;
+  public $like;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->like = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
-  /**
-   * @var
-   * @ORM\ManyToMany(targetEntity="Article", mappedBy="articlelikes")
-   */
-  private $likesArticle;
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-  /**
-  * Get id
-  *
-  * @return int
-  */
-  public function getId()
-  {
-    return $this->id;
-  }
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     *
+     * @return Commentaire
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
 
-  /**
-  * Set commentaire
-  *
-  * @param string $commentaire
-  *
-  * @return Commentaire
-  */
-  public function setCommentaire($commentaire)
-  {
-    $this->commentaire = $commentaire;
+        return $this;
+    }
 
-    return $this;
-  }
-
-  /**
-  * Get commentaire
-  *
-  * @return string
-  */
-  public function getCommentaire()
-  {
-    return $this->commentaire;
-  }
+    /**
+     * Get commentaire
+     *
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
 
     /**
      * Set date
@@ -120,7 +121,6 @@ class Commentaire
     {
         return $this->date;
     }
-
 
     /**
      * Set user
@@ -169,13 +169,6 @@ class Commentaire
     {
         return $this->article;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->likes = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Add like
@@ -186,7 +179,7 @@ class Commentaire
      */
     public function addLike(\Blog\Bundle\Entity\User $like)
     {
-        $this->likes[] = $like;
+        $this->like[] = $like;
 
         return $this;
     }
@@ -198,50 +191,16 @@ class Commentaire
      */
     public function removeLike(\Blog\Bundle\Entity\User $like)
     {
-        $this->likes->removeElement($like);
+        $this->like->removeElement($like);
     }
 
     /**
-     * Get likes
+     * Get like
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getLikes()
+    public function getLike()
     {
-        return $this->likes;
-    }
-
-    /**
-     * Add likesArticle
-     *
-     * @param \Blog\Bundle\Entity\Article $likesArticle
-     *
-     * @return Commentaire
-     */
-    public function addLikesArticle(\Blog\Bundle\Entity\Article $likesArticle)
-    {
-        $this->likesArticle[] = $likesArticle;
-
-        return $this;
-    }
-
-    /**
-     * Remove likesArticle
-     *
-     * @param \Blog\Bundle\Entity\Article $likesArticle
-     */
-    public function removeLikesArticle(\Blog\Bundle\Entity\Article $likesArticle)
-    {
-        $this->likesArticle->removeElement($likesArticle);
-    }
-
-    /**
-     * Get likesArticle
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getLikesArticle()
-    {
-        return $this->likesArticle;
+        return $this->like;
     }
 }

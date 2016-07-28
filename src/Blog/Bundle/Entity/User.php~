@@ -68,11 +68,17 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="Commentaire", inversedBy="likes")
+     * @ORM\ManyToMany(targetEntity="Commentaire", inversedBy="like")
      * @ORM\JoinTable(name="commentaire_like")
      */
-    protected $commentairelikes;
-    
+    public $commentairelike;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Article", inversedBy="like")
+     * @ORM\JoinTable(name="article_like")
+     */
+    public $articlelike;
 
     public function __construct()
     {
@@ -133,177 +139,5 @@ class User extends BaseUser
       return $this->imageFile;
     }
 
-    /**
-     * Add article
-     *
-     * @param \Blog\Bundle\Entity\Article $article
-     *
-     * @return User
-     */
-    public function addArticle(\Blog\Bundle\Entity\Article $article)
-    {
-        $this->article[] = $article;
-
-        return $this;
-    }
-
-    /**
-     * Remove article
-     *
-     * @param \Blog\Bundle\Entity\Article $article
-     */
-    public function removeArticle(\Blog\Bundle\Entity\Article $article)
-    {
-        $this->article->removeElement($article);
-    }
-
-    /**
-     * Get article
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getArticle()
-    {
-        return $this->article;
-    }
-
-    /**
-     * Set prenom
-     *
-     * @param string $prenom
-     *
-     * @return User
-     */
-    public function setPrenom($prenom)
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    /**
-     * Get prenom
-     *
-     * @return string
-     */
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
-
-    /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return User
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get nom
-     *
-     * @return string
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * Set auteur
-     *
-     * @param \Blog\Bundle\Entity\Commentaire $auteur
-     *
-     * @return User
-     */
-    public function setAuteur(\Blog\Bundle\Entity\Commentaire $auteur = null)
-    {
-        $this->auteur = $auteur;
-
-        return $this;
-    }
-
-    /**
-     * Get auteur
-     *
-     * @return \Blog\Bundle\Entity\Commentaire
-     */
-    public function getAuteur()
-    {
-        return $this->auteur;
-    }
-
-    /**
-     * Add commentaire
-     *
-     * @param \Blog\Bundle\Entity\Commentaire $commentaire
-     *
-     * @return User
-     */
-    public function addCommentaire(\Blog\Bundle\Entity\Commentaire $commentaire)
-    {
-        $this->commentaire[] = $commentaire;
-
-        return $this;
-    }
-
-    /**
-     * Remove commentaire
-     *
-     * @param \Blog\Bundle\Entity\Commentaire $commentaire
-     */
-    public function removeCommentaire(\Blog\Bundle\Entity\Commentaire $commentaire)
-    {
-        $this->commentaire->removeElement($commentaire);
-    }
-
-    /**
-     * Get commentaire
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCommentaire()
-    {
-        return $this->commentaire;
-    }
-
-    /**
-     * Add commentairelike
-     *
-     * @param \Blog\Bundle\Entity\Commentaire $commentairelike
-     *
-     * @return User
-     */
-    public function addCommentairelike(\Blog\Bundle\Entity\Commentaire $commentairelike)
-    {
-        $this->commentairelikes[] = $commentairelike;
-
-        return $this;
-    }
-
-    /**
-     * Remove commentairelike
-     *
-     * @param \Blog\Bundle\Entity\Commentaire $commentairelike
-     */
-    public function removeCommentairelike(\Blog\Bundle\Entity\Commentaire $commentairelike)
-    {
-        $this->commentairelikes->removeElement($commentairelike);
-    }
-
-    /**
-     * Get commentairelikes
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCommentairelikes()
-    {
-        return $this->commentairelikes;
-    }
+  
 }

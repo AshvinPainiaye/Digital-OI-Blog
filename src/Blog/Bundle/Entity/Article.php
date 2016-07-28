@@ -90,10 +90,10 @@ class Article
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="Commentaire", inversedBy="likesArticle")
-     * @ORM\JoinTable(name="article_like")
+     * @var
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="articlelike")
      */
-    protected $articlelikes;
+    public $like;
 
   /**
   * Get id
@@ -212,54 +212,62 @@ class Article
   }
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commentaire = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->like = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
-  /**
-  * Set date
-  *
-  * @param \DateTime $date
-  *
-  * @return Article
-  */
-  public function setDate($date)
-  {
-    $this->date = $date;
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Article
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-  * Get date
-  *
-  * @return \DateTime
-  */
-  public function getDate()
-  {
-    return $this->date;
-  }
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
 
-  /**
-  * Set disponibilite
-  *
-  * @param integer $disponibilite
-  *
-  * @return Article
-  */
-  public function setDisponibilite($disponibilite)
-  {
-    $this->disponibilite = $disponibilite;
+    /**
+     * Set disponibilite
+     *
+     * @param string $disponibilite
+     *
+     * @return Article
+     */
+    public function setDisponibilite($disponibilite)
+    {
+        $this->disponibilite = $disponibilite;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-  * Get disponibilite
-  *
-  * @return integer
-  */
-  public function getDisponibilite()
-  {
-    return $this->disponibilite;
-  }
+    /**
+     * Get disponibilite
+     *
+     * @return string
+     */
+    public function getDisponibilite()
+    {
+        return $this->disponibilite;
+    }
 
     /**
      * Set updatedAt
@@ -310,37 +318,6 @@ class Article
     }
 
     /**
-     * Set commentaire
-     *
-     * @param \Blog\Bundle\Entity\Commentaire $commentaire
-     *
-     * @return Article
-     */
-    public function setCommentaire(\Blog\Bundle\Entity\Commentaire $commentaire = null)
-    {
-        $this->commentaire = $commentaire;
-
-        return $this;
-    }
-
-    /**
-     * Get commentaire
-     *
-     * @return \Blog\Bundle\Entity\Commentaire
-     */
-    public function getCommentaire()
-    {
-        return $this->commentaire;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->commentaire = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
      * Add commentaire
      *
      * @param \Blog\Bundle\Entity\Commentaire $commentaire
@@ -365,36 +342,46 @@ class Article
     }
 
     /**
-     * Add articlelike
+     * Get commentaire
      *
-     * @param \Blog\Bundle\Entity\Commentaire $articlelike
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * Add like
+     *
+     * @param \Blog\Bundle\Entity\User $like
      *
      * @return Article
      */
-    public function addArticlelike(\Blog\Bundle\Entity\Commentaire $articlelike)
+    public function addLike(\Blog\Bundle\Entity\User $like)
     {
-        $this->articlelikes[] = $articlelike;
+        $this->like[] = $like;
 
         return $this;
     }
 
     /**
-     * Remove articlelike
+     * Remove like
      *
-     * @param \Blog\Bundle\Entity\Commentaire $articlelike
+     * @param \Blog\Bundle\Entity\User $like
      */
-    public function removeArticlelike(\Blog\Bundle\Entity\Commentaire $articlelike)
+    public function removeLike(\Blog\Bundle\Entity\User $like)
     {
-        $this->articlelikes->removeElement($articlelike);
+        $this->like->removeElement($like);
     }
 
     /**
-     * Get articlelikes
+     * Get like
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getArticlelikes()
+    public function getLike()
     {
-        return $this->articlelikes;
+        return $this->like;
     }
 }

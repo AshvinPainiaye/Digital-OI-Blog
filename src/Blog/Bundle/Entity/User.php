@@ -68,11 +68,17 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="Commentaire", inversedBy="likes")
+     * @ORM\ManyToMany(targetEntity="Commentaire", inversedBy="like")
      * @ORM\JoinTable(name="commentaire_like")
      */
-    protected $commentairelikes;
-    
+    public $commentairelike;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Article", inversedBy="like")
+     * @ORM\JoinTable(name="article_like")
+     */
+    public $articlelike;
 
     public function __construct()
     {
@@ -133,39 +139,7 @@ class User extends BaseUser
       return $this->imageFile;
     }
 
-    /**
-     * Add article
-     *
-     * @param \Blog\Bundle\Entity\Article $article
-     *
-     * @return User
-     */
-    public function addArticle(\Blog\Bundle\Entity\Article $article)
-    {
-        $this->article[] = $article;
-
-        return $this;
-    }
-
-    /**
-     * Remove article
-     *
-     * @param \Blog\Bundle\Entity\Article $article
-     */
-    public function removeArticle(\Blog\Bundle\Entity\Article $article)
-    {
-        $this->article->removeElement($article);
-    }
-
-    /**
-     * Get article
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getArticle()
-    {
-        return $this->article;
-    }
+  
 
     /**
      * Set prenom
@@ -216,27 +190,37 @@ class User extends BaseUser
     }
 
     /**
-     * Set auteur
+     * Add article
      *
-     * @param \Blog\Bundle\Entity\Commentaire $auteur
+     * @param \Blog\Bundle\Entity\Article $article
      *
      * @return User
      */
-    public function setAuteur(\Blog\Bundle\Entity\Commentaire $auteur = null)
+    public function addArticle(\Blog\Bundle\Entity\Article $article)
     {
-        $this->auteur = $auteur;
+        $this->article[] = $article;
 
         return $this;
     }
 
     /**
-     * Get auteur
+     * Remove article
      *
-     * @return \Blog\Bundle\Entity\Commentaire
+     * @param \Blog\Bundle\Entity\Article $article
      */
-    public function getAuteur()
+    public function removeArticle(\Blog\Bundle\Entity\Article $article)
     {
-        return $this->auteur;
+        $this->article->removeElement($article);
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticle()
+    {
+        return $this->article;
     }
 
     /**
@@ -282,7 +266,7 @@ class User extends BaseUser
      */
     public function addCommentairelike(\Blog\Bundle\Entity\Commentaire $commentairelike)
     {
-        $this->commentairelikes[] = $commentairelike;
+        $this->commentairelike[] = $commentairelike;
 
         return $this;
     }
@@ -294,16 +278,50 @@ class User extends BaseUser
      */
     public function removeCommentairelike(\Blog\Bundle\Entity\Commentaire $commentairelike)
     {
-        $this->commentairelikes->removeElement($commentairelike);
+        $this->commentairelike->removeElement($commentairelike);
     }
 
     /**
-     * Get commentairelikes
+     * Get commentairelike
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCommentairelikes()
+    public function getCommentairelike()
     {
-        return $this->commentairelikes;
+        return $this->commentairelike;
+    }
+
+    /**
+     * Add articlelike
+     *
+     * @param \Blog\Bundle\Entity\Article $articlelike
+     *
+     * @return User
+     */
+    public function addArticlelike(\Blog\Bundle\Entity\Article $articlelike)
+    {
+        $this->articlelike[] = $articlelike;
+
+        return $this;
+    }
+
+    /**
+     * Remove articlelike
+     *
+     * @param \Blog\Bundle\Entity\Article $articlelike
+     */
+    public function removeArticlelike(\Blog\Bundle\Entity\Article $articlelike)
+    {
+        $this->articlelike->removeElement($articlelike);
+    }
+
+    /**
+     * Get articlelike
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticlelike()
+    {
+        return $this->articlelike;
     }
 }

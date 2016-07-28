@@ -31,30 +31,48 @@ class DefaultController extends Controller
     public function brouillonAction()
     {
       $em = $this->getDoctrine()->getManager();
+      $user = $this->getUser();
 
-      $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Brouillon'));
+      $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Brouillon','user'=>$user));
 
-      return $this->render('BlogBundle:Default:index.html.twig', array(
+      return $this->render('article/index.html.twig', array(
           'articles' => $articles,
+          'user' => $user,
       ));
     }
 
 
     /**
-     * @route("/mes-articles")
+     * @route("/publique")
      */
-        public function mesArticleAction()
+        public function publicAction()
         {
+          $em = $this->getDoctrine()->getManager();
           $user = $this->getUser();
 
-          $em = $this->getDoctrine()->getManager();
+          $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Publique','user'=>$user));
 
-          $articles = $em->getRepository('BlogBundle:Article')->findBy(['user'=>$user]);
-
-          return $this->render('article/mes-articles.html.twig', array(
+          return $this->render('article/index.html.twig', array(
               'articles' => $articles,
-               'user' => $user,
+              'user' => $user,
           ));
         }
+
+
+
+    /**
+     * @Route("/all/articles")
+     */
+    public function allArticlesAction()
+    {
+      $em = $this->getDoctrine()->getManager();
+
+      $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Publique'));
+
+      return $this->render('BlogBundle:Default:allArticle.html.twig', array(
+          'articles' => $articles,
+      ));
+
+    }
 
 }

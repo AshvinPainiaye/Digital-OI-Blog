@@ -6231,9 +6231,9 @@ h5 {
   font-family: monospace; }
 
 hr {
-  width: 1000px;
   border: 1px dashed grey; }
 
+/* boutton tout les article  */
 .tout {
   left: 50%; }
 
@@ -6272,12 +6272,18 @@ footer {
     font-size: 16px;
     font-weight: bold; }
 
-.card-content {
-  width: 1000px;
-  height: 100%; }
-
 .cards {
-  width: 1000px;
-  height: 100%; }
+  overflow-y: scroll;
+  height: 200px; }
+
+.heure {
+  font-family: monospace;
+  font-weight: bold; }
+
+h5 {
+  color: #0d47a1; }
+
+h6 {
+  font-weight: bold; }
 
 /*# sourceMappingURL=main.css.map */

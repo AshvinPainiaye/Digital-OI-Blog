@@ -196,4 +196,56 @@ private function createDeleteForm(Article $article)
   ;
 }
 
+
+
+
+
+
+
+/**
+* Add a new like to a commentaire.
+* @Method({"GET", "POST"})
+* @Route("/{article}/{commentaire}/like", name="commentaire_like_new")
+*/
+public function LikeDislikeToCommentaire(Article $article, Commentaire $commentaire, Request $request) {
+  $user = $this->getUser();
+  $listeLike = $commentaire->getLike();
+  if ($listeLike->contains($user)) {
+    $commentaire->removeLike($user);
+    $user->removeCommentairelike($commentaire);
+  } else {
+    $user->addCommentairelike($commentaire);
+    $commentaire->addLike($user);
+  }
+  $em = $this->getDoctrine()->getManager();
+  $em->persist($commentaire);
+  $em->flush();
+  return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+}
+
+
+/**
+* Add a new like to an article.
+* @Method({"GET", "POST"})
+* @Route("/{id}/like", name="article_like_new")
+*/
+public function LikeDislikeToArticle(Article $article, Request $request) {
+  $user = $this->getUser();
+  $listeLike = $article->getLike();
+  if ($listeLike->contains($user)) {
+    $article->removeLike($user);
+    $user->removeArticlelike($article);
+  } else {
+    $user->addArticlelike($article);
+    $article->addLike($user);
+  }
+  $em = $this->getDoctrine()->getManager();
+  $em->persist($article);
+  $em->flush();
+  return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+}
+
+
+
+
 }

@@ -1,29 +1,41 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <!-- <h1>Article edit</h1> -->
+<!-- <h1>Article edit</h1> -->
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-
-
-
-        <input type="submit" value="Edit" />
-
-
-    {{ form_end(edit_form) }}
+{{ form_start(edit_form) }}
 
 
 
 
-    <ul>
-        <!-- <li>
-            <a href="{{ path('article_index') }}">Back to the list</a>
-        </li> -->
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+
+
+<div class=" container row ">
+        <div class="col col s12 ">
+          <div class="card">
+            <div class="card-content">
+              {{ form_widget(edit_form) }}
+            </div>
+            <div class="card-action">
+                  <input type="submit" value="Edit" />
+                  {{ form_end(edit_form) }}
+                  {{ form_start(delete_form) }}
+                  <input type="submit" value="Delete">
+                  {{ form_end(delete_form) }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+<ul>
+    <!-- <li>
+    <a href="{{ path('article_index') }}">Back to the list</a>
+</li> -->
+<li>
+
+</li>
+</ul>
 {% endblock %}
