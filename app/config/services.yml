@@ -22,3 +22,8 @@ services:
         class: Blog\Bundle\Form\ProfileFormType
         tags:
             - { name: form.type, alias: app_user_profile }
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
