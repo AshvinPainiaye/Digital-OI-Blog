@@ -59,7 +59,7 @@
                                 <ul class="side-nav" id="mobile-demo">
                                     <li><a href="/">Accueil</a></li>
                                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                    <li><a href="/profile"><i class="fa fa-user"aria-hidden="true"></i> <img src="{{asset('img/users/ '){{ app.user.imageName }}}}"> {{ app.user.username }}</a></li>
+                                    <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i> <img src="img/users/{{ app.user.imageName }}"> {{ app.user.username }}</a></li>
                                     <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
                                     {% else %}
                                     <li><a href="/login">Connexion</a></li>

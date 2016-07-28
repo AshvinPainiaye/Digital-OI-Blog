@@ -139,7 +139,7 @@ class User extends BaseUser
       return $this->imageFile;
     }
 
-  
+
 
     /**
      * Set prenom
