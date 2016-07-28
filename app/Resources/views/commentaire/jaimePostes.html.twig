@@ -26,7 +26,8 @@
 
 
         {% for commentaire in commentaires %}
-        {% if loop.first %}
+        {{dump(commentaire)}}
+        {# if loop.first #}
         {% for like in commentaire.like %}
         {% for test in like.commentairelike %}
 
@@ -46,7 +47,7 @@
 
         {% endfor %}
         {% endfor %}
-        {% endif %}
+        {# endif #}
         {% endfor %}
 
 

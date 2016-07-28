@@ -177,29 +177,6 @@ class CommentaireController extends Controller
 
 
 
-  // /**
-  // * Lists all Commentaire entities.
-  // *
-  // * @Route("/jaime/postes/{id}", name="jaime_postes")
-  // * @Method("GET")
-  // */
-  // public function jaimePostesAction()
-  // {
-  //   $em = $this->getDoctrine()->getManager();
-  //
-  //   $user = $this->getUser();
-  //
-  //   $commentaires = $em->getRepository('BlogBundle:Commentaire')->findBy(['user'=>$user]);
-  //
-  //
-  //   return $this->render('commentaire/index.html.twig', array(
-  //     'commentaires' => $commentaires,
-  //     'user' => $user,
-  //   ));
-
-
-
-
   /**
   * Lists all Commentaire entities.
   *
@@ -208,31 +185,52 @@ class CommentaireController extends Controller
   */
   public function jaimePostesAction()
   {
-    // $userId = $this->getUser();
-    // $userId->getId();
-       $user = $this->getUser();
+    $em = $this->getDoctrine()->getManager();
 
-       $em = $this->getDoctrine()->getManager();
+    $user = $this->getUser();
+    $like = $user->getCommentairelike();
 
-
-
-
-       $usersRepository = $this->getDoctrine()
-                ->getRepository('BlogBundle:User');
-        $listeUsers = $usersRepository->findAll();
-
-
-
-     $utilisateur = $em->getRepository('BlogBundle:User')->findBy(['id'=>$user]);
     $commentaires = $em->getRepository('BlogBundle:Commentaire')->findBy(['user'=>$user]);
 
 
-    return $this->render('commentaire/jaimePostes.html.twig', array(
+    return $this->render('commentaire/index.html.twig', array(
       'commentaires' => $commentaires,
       'user' => $user,
-      'id' => $user,
-      'listeUsers' => $listeUsers
     ));
+
+
+
+
+  // /**
+  // * Lists all Commentaire entities.
+  // *
+  // * @Route("/jaime/postes/{id}", name="jaime_postes")
+  // * @Method("GET")
+  // */
+  // public function jaimePostesAction()
+  // {
+  //   // $userId = $this->getUser();
+  //   // $userId->getId();
+  //      $user = $this->getUser();
+  //
+  //      $like = $user->getCommentairelike();
+  //
+  //      $em = $this->getDoctrine()->getManager();
+  //
+  //      $usersRepository = $this->getDoctrine()
+  //               ->getRepository('BlogBundle:User');
+  //       $listeUsers = $usersRepository->findAll();
+  //
+  //    $utilisateur = $em->getRepository('BlogBundle:User')->findBy(['id'=>$user]);
+  //   $commentaires = $em->getRepository('BlogBundle:Commentaire')->findBy(['user'=>$user]);
+  //
+  //
+  //   return $this->render('commentaire/jaimePostes.html.twig', array(
+  //     'commentaires' => $commentaires,
+  //     'user' => $user,
+  //     'id' => $user,
+  //     'listeUsers' => $listeUsers
+  //   ));
 
 
 
