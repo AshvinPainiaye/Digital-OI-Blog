@@ -7,49 +7,68 @@
     <div class="card horizontal">
       <div class="card-stacked">
         <div class="card-content">
-             <div class="row">
-               <div class="input-field col s12">
-                 {{ form_label(form.email) }}
-                 {{ form_widget(form.email, {'attr':{'class':'validate'}}) }}
-                 {{ form_errors(form.email) }}
-               </div>
-             </div>
+         {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+         <div class="row">
+           <div class="input-field col s12">
+             {{ form_label(form.nom) }}
+             {{ form_widget(form.nom, {'attr':{'class':'validate'}}) }}
+             {{ form_errors(form.nom) }}
+           </div>
+         </div>
 
-             <div class="row">
-               <div class="input-field col s12">
-                 {{ form_label(form.username) }}
-                 {{ form_widget(form.username, {'attr':{'class':'validate'}}) }}
-                 {{ form_errors(form.username) }}
-               </div>
-             </div>
+         <div class="row">
+           <div class="input-field col s12">
+             {{ form_label(form.prenom) }}
+             {{ form_widget(form.prenom, {'attr':{'class':'validate'}}) }}
+             {{ form_errors(form.prenom) }}
+           </div>
+         </div>
+         <div class="row">
+           <div class="input-field col s12">
+             {{ form_label(form.email) }}
+             {{ form_widget(form.email, {'attr':{'class':'validate'}}) }}
+             {{ form_errors(form.email) }}
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="input-field col s12">
+             {{ form_label(form.username) }}
+             {{ form_widget(form.username, {'attr':{'class':'validate'}}) }}
+             {{ form_errors(form.username) }}
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="input-field col s12">
+             {{ form_label(form.imageFile) }}
+
+           </div>
+         </div>
+
+          <div class="row">
+         <div class="file-field input-field col s12 ">
+            <!--        <div class="btn-floating btn-large waves-effect waves-light tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Avatar">
+              <i class="material-icons">perm_identity</i>
+
+            </div> -->
+                     {{ form_widget(form.imageFile) }}
+                   <div class="file-path-wrapper">
+                     <input class="file-path validate" type="text">
+                   </div>
+                 </div>
+                   </div>
+
+         <div class="row">
+           <div class="input-field col s12">
+            {{ form_label(form.current_password) }}
+            {{ form_widget(form.current_password, {'attr':{'class':'validate'}}) }}
+            {{ form_errors(form.current_password) }}
+           </div>
+         </div>
 
 
-             <div class="row">
-               <div class="input-field col s12">
-                 {{ form_label(form.nom) }}
-                 {{ form_widget(form.nom, {'attr':{'class':'validate'}}) }}
-                 {{ form_errors(form.nom) }}
-               </div>
-             </div>
-
-             <div class="row">
-               <div class="input-field col s12">
-                 {{ form_label(form.prenom) }}
-                 {{ form_widget(form.prenom, {'attr':{'class':'validate'}}) }}
-                 {{ form_errors(form.prenom) }}
-               </div>
-             </div>
-
-             <div class="file-field input-field col s12 m8 offset-m2 l6 offset-l3">
-                       <div class="btn-floating btn-large waves-effect waves-light tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Avatar" style="width:45px !important">
-                         <i class="material-icons" style="top:-4px !important; position: relative;">perm_identity</i>
-                        {{ form_widget(form.imageFile) }}
-                       </div>
-                       <div class="file-path-wrapper">
-                         <input class="file-path validate" type="text">
-                       </div>
-                     </div>
-
+        </div>
 
         <div class="card-action">
              {{ form_widget(form) }}
