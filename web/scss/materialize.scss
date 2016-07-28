@@ -124,113 +124,113 @@
       }
     }
   }
-/* .active{
+  /* .active{
 
-      border-bottom: 5px inset rgba(51,13,0,0.65);
+  border-bottom: 5px inset rgba(51,13,0,0.65);
 } */
 .logo{
-    margin-top: 10px;
+  margin-top: 10px;
 }
 .image{
 
-margin-right: 10px;
-margin-left: 10px;
-overflow:hidden;
--webkit-border-radius:50px;
--moz-border-radius:50px;
-border-radius:50px;
-width:100px;
-height:100px;
+  margin-right: 10px;
+  margin-left: 10px;
+  overflow:hidden;
+  -webkit-border-radius:50px;
+  -moz-border-radius:50px;
+  border-radius:50px;
+  width:100px;
+  height:100px;
 
 }
 .avatar{
 
-margin-right: 10px;
-margin-left: 10px;
-overflow:hidden;
--webkit-border-radius:50px;
--moz-border-radius:50px;
-border-radius:50px;
-width:50px;
-height:50px;
+  margin-right: 10px;
+  margin-left: 10px;
+  overflow:hidden;
+  -webkit-border-radius:50px;
+  -moz-border-radius:50px;
+  border-radius:50px;
+  width:50px;
+  height:50px;
 
 }
 .titre{
-font-size: 45px;
-color: #0d47a1;
+  font-size: 45px;
+  color: #0d47a1;
 }
 
 h5 {
-    color: #606064;
-    margin-bottom: 30px;
-    font-family: monospace;
+  color: #606064;
+  margin-bottom: 30px;
+  font-family: monospace;
 }
 
 hr{
-border: 1px dashed grey;
+  border: 1px dashed grey;
 }
 
 /* boutton tout les article  */
 .tout{
-    left: 50%;
+  left: 50%;
 }
 
 /* FIN HEADER */
 
 
-  /* DEBUT FOOTER */
+/* DEBUT FOOTER */
 
-  footer{
-    padding:30px 0 15px 0;
+footer{
+  padding:30px 0 15px 0;
+  background-color: $secondary-color;
+  p{
+    color: #fff;
+  }
+}
+
+
+/* FIN FOOTER */
+
+#mes-articles{
+
+  table.highlight > tbody > tr:hover {
     background-color: $secondary-color;
-    p{
-      color: #fff;
-    }
+    color: #fff;
   }
 
+  table{
+    box-shadow: 0 0px 0px 0 transparent, 0px 5px 7px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom:70px;
+  }
 
-  /* FIN FOOTER */
-
-  #mes-articles{
-
-    table.highlight > tbody > tr:hover {
-      background-color: $secondary-color;
-      color: #fff;
+  #checkboxPublique{
+    label input[type="checkbox"][disabled] + .lever::after, .switch label input[type="checkbox"][disabled]:checked + .lever::after {
+      background-color: #a7ceec;
     }
-
-    table{
-      box-shadow: 0 0px 0px 0 transparent, 0px 5px 7px 0 rgba(0, 0, 0, 0.19);
-      margin-bottom:70px;
-    }
-
-    #checkboxPublique{
-      label input[type="checkbox"][disabled] + .lever::after, .switch label input[type="checkbox"][disabled]:checked + .lever::after {
-        background-color: #a7ceec;
-      }
-      label .lever {
-        background-color: #a7ceec;
-        &:after{
-          background-color: #2196F3 !important;
-          left: 27px;
-        }
+    label .lever {
+      background-color: #a7ceec;
+      &:after{
+        background-color: #2196F3 !important;
+        left: 27px;
       }
     }
-
   }
 
-  #new-article{
-    .sauvegarder{
-      background-color: transparent;
-      border:none;
-    }
+}
 
-    .brouillon{
-
-    }
+#new-article{
+  .sauvegarder{
+    background-color: transparent;
+    border:none;
   }
 
-  #commentaire{
-    article{
+  .brouillon{
+
+  }
+}
+
+#commentaire{
+  article{
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
     padding: 10px 10px 10px 15px;
     margin-bottom: 20px;
@@ -238,36 +238,62 @@ border: 1px dashed grey;
       font-size:16px;
       font-weight: bold;
     }
-}
   }
+}
 
 
 .heure{
-      font-family: monospace;
-      font-weight: bold;
+  font-family: monospace;
+  font-weight: bold;
 
 }
 h5{
-color: #0d47a1;
+  color: #0d47a1;
 }
 h6{
-      font-weight: bold;
+  font-weight: bold;
 }
 
 .titres{
-background-color: rgba(255, 255, 255, 0.8);;
+  background-color: rgba(255, 255, 255, 0.8);;
 }
 .card.large{
-      height: 500% !important;
+  height: 500% !important;
 }
 .chips{
-      margin-top: 15px;
-      margin-bottom: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .texte_article {
-text-align: justify;
-padding: 20px;
+  text-align: justify;
+  padding: 20px;
 }
 .image_article{
-      border-bottom: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+
+
+/* cache texte supprimer edit profile */
+.profile_edit_photo{
+  #fos_user_profile_form_imageFile{
+    label {
+      color: transparent !important;
+    }
+  }
+}
+
+
+
+
+.icon-return-top {
+  position: fixed;
+  right: 10px;
+  color: white;
+  bottom: 20px;
+  font-size: 17px;
+  background-color: $secondary-color;
+  padding: 10px;
+  border-radius: 100px;
+  visibility: hidden;
+  z-index: 99;
 }

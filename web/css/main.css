@@ -6208,9 +6208,9 @@ nav {
         background-color: #2196F3;
         color: #fff; }
 
-/* .active{
+  /* .active{
 
-      border-bottom: 5px inset rgba(51,13,0,0.65);
+  border-bottom: 5px inset rgba(51,13,0,0.65);
 } */
 .logo {
   margin-top: 10px; }
@@ -6312,5 +6312,21 @@ h6 {
 
 .image_article {
   border-bottom: 1px solid grey; }
+
+/* cache texte supprimer edit profile */
+.profile_edit_photo #fos_user_profile_form_imageFile label {
+  color: transparent !important; }
+
+.icon-return-top {
+  position: fixed;
+  right: 10px;
+  color: white;
+  bottom: 20px;
+  font-size: 17px;
+  background-color: #2196F3;
+  padding: 10px;
+  border-radius: 100px;
+  visibility: hidden;
+  z-index: 99; }
 
 /*# sourceMappingURL=main.css.map */
