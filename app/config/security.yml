@@ -40,3 +40,9 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/Manage, role: ROLE_ADMIN }
+        - { path: ^/brouillon, role: ROLE_ADMIN }
+        - { path: ^/publique, role: ROLE_ADMIN }
+        - { path: ^/article/new, role: ROLE_ADMIN }
+        - { path: /article$, role: ROLE_ADMIN }
+        - { path: /commentaire/, role: IS_AUTHENTICATED_REMEMBERED }

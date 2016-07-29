@@ -30,13 +30,19 @@ class CommentaireController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
 
-    $commentaires = $em->getRepository('BlogBundle:Commentaire')->findAll();
-    $user = $this->getUser();
+    $securityContext = $this->container->get('security.authorization_checker');
+    if ($securityContext->isGranted('ROLE_ADMIN')) {
+      $user = $this->getUser();
+      $commentaires = $em->getRepository('BlogBundle:Commentaire')->findAll();
+    }
+    else{
+      $user = $this->getUser();
+      $commentaires = $em->getRepository('BlogBundle:Commentaire')->findBy(['user'=>$user]);
+    }
 
     return $this->render('commentaire/index.html.twig', array(
       'commentaires' => $commentaires,
       'user' => $user,
-
     ));
   }
 
@@ -104,9 +110,8 @@ class CommentaireController extends Controller
       $em->persist($commentaire);
       $em->flush();
 
-      return $this->redirectToRoute('commentaire_edit', array('id' => $commentaire->getId()));
-      // return $this->redirectToRoute('article_show', array('id' => $article->getId()));
-
+      // return $this->redirectToRoute('commentaire_edit', array('id' => $commentaire->getId()));
+      return $this->redirectToRoute('accueil');
 
     }
 
@@ -134,7 +139,9 @@ class CommentaireController extends Controller
       $em->flush();
     }
 
-    return $this->redirectToRoute('commentaire_index');
+    // return $this->redirectToRoute('commentaire_index');
+    return $this->redirectToRoute('accueil');
+
   }
 
   /**
@@ -152,10 +159,6 @@ class CommentaireController extends Controller
     ->getForm()
     ;
   }
-
-
-
-
 
 
 
@@ -192,8 +195,38 @@ class CommentaireController extends Controller
     $comments = $user->getCommentairelike();
     return $this->render('commentaire/jaimePostes.html.twig', array(
       'commentaires' => $comments,
-        'user' => $user,
+      'user' => $user,
     ));
   }
+
+
+  // /**
+  // * Lister mes commentaires qui ont été liké
+  // *
+  // * @Route("/jaime/{id}", name="jaime_recu")
+  // * @Method("GET")
+  // */
+  // public function jaimeRecuAction()
+  // {
+  //   //Get current user
+  //   $user = $this->getUser();
+  //   $userId = $user->getId();
+  //
+  //   $comments = array();
+  //   $comments2 = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(['user' => $userId]);
+  //   foreach ($comments2 as $comment) {
+  //     foreach ($comment->getLikes() as $liker) {
+  //       array_push($comments, $comment);
+  //       break;
+  //     }
+  //   }
+  //
+  //   return $this->render('commentaire/jaimeRecu.html.twig', array(
+  //     'commentaires' => $comments,
+  //   ));
+  //
+  // }
+
+
 
 }

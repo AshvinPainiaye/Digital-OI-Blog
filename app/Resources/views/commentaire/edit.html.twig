@@ -1,21 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Commentaire edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+<div class="container">
+  <div class="row">
+    <div class="col s8 offset-s2">
 
-    <ul>
-        <li>
-            <!-- <a href="{#{ path('commentaire_index') }#}">Back to the list</a> -->
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+      <h1 class="center-align">Editer votre commentaire</h1>
+
+      {{ form_start(edit_form) }}
+
+      <div class="row">
+        <div class="input-field col s12">
+          {{form_widget(edit_form)}}
+        </div>
+      </div>
+
+      <div class="row" style="text-align:center; margin-top:70px;">
+        <button class="btn-floating btn-large waves-effect waves-light tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Enregistrer">
+          <i class="material-icons right">save</i>
+        </button>
+      </div>
+
+      {{ form_end(edit_form) }}
+
+      {{ form_start(delete_form) }}
+      <div class="row" style="text-align:center; margin-top:70px;">
+        <input class="btn-large waves-effect waves-light red" type="submit" value="Supprimer">
+      </div>
+      {{ form_end(delete_form) }}
+
+    </div>
+  </div>
+</div>
 {% endblock %}

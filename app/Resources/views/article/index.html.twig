@@ -20,9 +20,9 @@
     <table class="highlight bordered z-depth-2">
       <thead>
         <tr>
-            <th>
+          <th>
 
-            </th>
+          </th>
           <th class="center-align">Articles</th>
 
           <th>Publié</th>
@@ -37,42 +37,38 @@
             <a href="{{ path('article_show', { 'id': article.id }) }}">  <img  class="image"src="{{ asset('img/articles/')~  article.imageName }}" > </a>
           </td>
           <td>   <h6 >
-                        <a href="{{ path('article_show', { 'id': article.id }) }}"> {{ article.titre | truncate(60, true, '...')  }}</a>
-                     </h6 >
-          </td>
+            <a href="{{ path('article_show', { 'id': article.id }) }}"> {{ article.titre | truncate(60, true, '...')  }}</a>
+          </h6 >
+        </td>
 
 
+        {% if article.disponibilite == 'Publique' %}
+        <td>
+          <div id="checkboxPublique" class="switch">
+            <label>
+              <input disabled type="checkbox">
+              <span class="lever"></span>
+            </label>
+          </div>
+        </td>
 
-          {% if article.disponibilite == 'Publique' %}
-          <td>
-            <div id="checkboxPublique" class="switch">
-              <label>
-                <input disabled type="checkbox">
-                <span class="lever"></span>
-              </label>
-            </div>
-          </td>
+        {% else %}
+        <td>
+          <div class="switch">
+            <label>
+              <input disabled type="checkbox">
+              <span class="lever"></span>
+            </label>
+          </div>
+        </td>
 
-          {% else %}
-          <td>
-            <div class="switch">
-              <label>
-                <input disabled type="checkbox">
-                <span class="lever"></span>
-              </label>
-            </div>
-          </td>
+        {% endif %}
 
-          {% endif %}
+        <td><a href="{{ path('article_edit', { 'id': article.id }) }}"><i class="material-icons">mode_edit</i></a>
+          <a href="{{ path('blogpost_instant_delete', { 'id': article.id }) }}"><i
+            class="material-icons">delete</i></a>
+        </td>
 
-          <!--
-          <td>{{ article.disponibilite }}</td> -->
-
-          <td><a href="{{ path('article_edit', { 'id': article.id }) }}"><i class="material-icons">mode_edit</i></a></td>
-          <td>
-            <a href="{{ path('blogpost_instant_delete', { 'id': article.id }) }}"><i
-        class="material-icons">delete</i></a>
-          </td>
         </tr>
         {% endfor %}
       </tbody>
