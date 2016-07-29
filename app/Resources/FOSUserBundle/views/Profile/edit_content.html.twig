@@ -64,10 +64,6 @@
             </div>
 
 
-            <!-- <div id="fos_user_profile_form_imageFile"><div><label for="fos_user_profile_form_imageFile_file"> </label><input type="file" id="fos_user_profile_form_imageFile_file" name="fos_user_profile_form[imageFile][file]" /></div><div><label for="fos_user_profile_form_imageFile_delete">Supprimer ?</label><input type="checkbox" id="fos_user_profile_form_imageFile_delete" name="fos_user_profile_form[imageFile][delete]" value="1" /></div></div> -->
-
-
-
             <div class="row">
               <div class="input-field col s12">
                 {{ form_label(form.current_password) }}
@@ -82,7 +78,7 @@
           <div class="card-action">
             {{ form_widget(form) }}
             <div>
-              <input class="waves-effect waves-light btn " type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+              <input class="btn" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
             </div>
             {{ form_end(form) }}
           </div>

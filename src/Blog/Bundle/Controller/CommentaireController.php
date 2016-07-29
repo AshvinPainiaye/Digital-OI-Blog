@@ -215,7 +215,7 @@ class CommentaireController extends Controller
   //   $comments = array();
   //   $comments2 = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(['user' => $userId]);
   //   foreach ($comments2 as $comment) {
-  //     foreach ($comment->getLikes() as $liker) {
+  //     foreach ($comment->getLike() as $liker) {
   //       array_push($comments, $comment);
   //       break;
   //     }

@@ -16,7 +16,7 @@
           <a href="{{ path('commentaire_index') }}" class="collection-item active">Tout</a>
           {% endif %}
           <a href="{{ path('commentaire_postes',{'id':user.id}) }}" class="collection-item">Postés</a>
-          <a href="jaime/recus" class="collection-item">J'aime reçus</a>
+          <a href="{#{ path('jaime_recu') }#}" class="collection-item">J'aime reçus</a>
           <a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item">J'aime postés</a>
 
 
