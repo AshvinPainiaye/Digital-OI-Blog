@@ -105,6 +105,9 @@ class CommentaireController extends Controller
       $em->flush();
 
       return $this->redirectToRoute('commentaire_edit', array('id' => $commentaire->getId()));
+      // return $this->redirectToRoute('article_show', array('id' => $article->getId()));
+
+
     }
 
     return $this->render('commentaire/edit.html.twig', array(
