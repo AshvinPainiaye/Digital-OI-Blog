@@ -124,11 +124,11 @@
           }
         }
       }
-
       .dropdown-content{
         a{
           color:#000;
           font-weight: bold;
+          text-align: center !important;
           &:hover {
             background-color: $secondary-color;
             color:#fff;
@@ -139,10 +139,10 @@
   }
 
 
-.date{
-color: #999;
-font-size: 14px;
-}
+  .date{
+    color: #999;
+    font-size: 14px;
+  }
 
 
 
@@ -163,18 +163,16 @@ font-size: 14px;
     height:100px;
 
   }
-  // .avatar{
-  //
-  //   margin-right: 10px;
-  //   margin-left: 10px;
-  //   overflow:hidden;
-  //   -webkit-border-radius:50px;
-  //   -moz-border-radius:50px;
-  //   border-radius:50px;
-  //   width:50px;
-  //   height:50px;
-  //
-  // }
+  .avatarUser{
+    margin-right: 10px;
+    margin-left: 10px;
+    overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    width:50px;
+    height:50px;
+  }
   .titre{
     font-size: 45px;
     color: #0d47a1;
@@ -188,10 +186,10 @@ font-size: 14px;
 
 
 
-  /* boutton tout les article  */
-  .tout{
-    left: 50%;
-  }
+  // /* boutton tout les article  */
+  // .tout{
+  //   left: 50%;
+  // }
 
   /* FIN HEADER */
 
@@ -210,7 +208,6 @@ font-size: 14px;
   /* FIN FOOTER */
 
   #mes-articles{
-
     table.highlight > tbody > tr:hover {
       background-color: $secondary-color;
       color: #fff;
@@ -241,10 +238,6 @@ font-size: 14px;
       background-color: transparent;
       border:none;
     }
-
-    .brouillon{
-
-    }
   }
 
   #commentaire{
@@ -273,9 +266,7 @@ font-size: 14px;
   }
 
   .titres{
-
     background-color: rgba(255, 255, 255, 0.8);
-
   }
   .card.large{
     height: 500% !important;
@@ -324,8 +315,32 @@ font-size: 14px;
   .img_menu{
     height: 400px;
   }
-  .card .card-image .card-title{
-    color: #0d47a1;
-    background-color: rgba(255, 255, 255, 0.8);
-    font-size: 35px;
+
+
+
+
+  /* DEBUT CARD */
+  .card{
+    .card-image{
+      .card-title{
+        color: $secondary-color;
+        background-color: rgba(255, 255, 255, 0.8);
+        font-size: 25px;
+      }
+    }
+    .card-content{
+      p{
+        color: #000;
+      }
+    }
+  }
+  /* FIN CARD */
+
+
+
+
+  @media #{$small-and-down} {
+    .activeLien{
+      height: 56px !important;
+    }
   }

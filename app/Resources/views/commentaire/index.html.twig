@@ -27,7 +27,7 @@
           <a href="{{ path('commentaire_postes',{'id':user.id}) }}" class="collection-item">Postés</a>
           {% endif %}
 
-          <a href="{{ path('jaime_recu',{'id':user.id}) }}" class="collection-item">J'aime reçus</a>
+          <!-- <a href="{#{ path('jaime_recu',{'id':user.id}) }#}" class="collection-item">J'aime reçus</a> -->
 
           {% if app.request.get('_route') == 'jaime_postes' %}
           <a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item active">J'aime postés</a>

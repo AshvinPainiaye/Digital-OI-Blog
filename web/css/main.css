@@ -6212,7 +6212,8 @@ nav {
       padding: 14px 16px !important; }
   nav .navCenter .dropdown-content a {
     color: #000;
-    font-weight: bold; }
+    font-weight: bold;
+    text-align: center !important; }
     nav .navCenter .dropdown-content a:hover {
       background-color: #2196F3;
       color: #fff; }
@@ -6236,6 +6237,16 @@ nav {
   width: 100px;
   height: 100px; }
 
+.avatarUser {
+  margin-right: 10px;
+  margin-left: 10px;
+  overflow: hidden;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px; }
+
 .titre {
   font-size: 45px;
   color: #0d47a1; }
@@ -6244,10 +6255,6 @@ h5 {
   color: #606064;
   margin-bottom: 30px;
   font-family: monospace; }
-
-/* boutton tout les article  */
-.tout {
-  left: 50%; }
 
 /* FIN HEADER */
 /* DEBUT FOOTER */
@@ -6332,9 +6339,17 @@ h6 {
 .img_menu {
   height: 400px; }
 
+/* DEBUT CARD */
 .card .card-image .card-title {
-  color: #0d47a1;
+  color: #2196F3;
   background-color: rgba(255, 255, 255, 0.8);
-  font-size: 35px; }
+  font-size: 25px; }
+.card .card-content p {
+  color: #000; }
+
+/* FIN CARD */
+@media only screen and (max-width: 600px) {
+  .activeLien {
+    height: 56px !important; } }
 
 /*# sourceMappingURL=main.css.map */

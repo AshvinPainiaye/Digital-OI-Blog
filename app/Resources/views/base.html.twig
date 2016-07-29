@@ -38,35 +38,88 @@
       <header>
         <div >
           <nav class="navbar-fixed">
-            <ul class=" center-align navCenter">
+            <ul class="center-align navCenter">
               {% block lienMenuNavigation %}
+              {% if app.request.get('_route') == 'accueil' %}
               <li class="col s6"><a href="/" class="activeLien">ACCUEIL</a></li>
+              {% elseif app.request.get('_route') == 'allArticle' %}
+              <li class="col s6"><a href="/" class="activeLien">ACCUEIL</a></li>
+              {% else %}
+              <li class="col s6"><a href="/">ACCUEIL</a></li>
+              {% endif %}
               {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
+              {% if is_granted('ROLE_ADMIN') %}
 
-                    {% if is_granted('ROLE_ADMIN') %}
+
+              {% if app.request.get('_route') == 'fos_user_profile_show' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% elseif app.request.get('_route') == 'fos_user_change_password' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% elseif app.request.get('_route') == 'fos_user_profile_edit' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% elseif app.request.get('_route') == '_manage' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% elseif app.request.get('_route') == '_edit' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% elseif app.request.get('_route') == 'blog__default_public' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% elseif app.request.get('_route') == 'blog__default_brouillon' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% elseif app.request.get('_route') == 'jaime_recu' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% elseif app.request.get('_route') == 'commentaire_index' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% elseif app.request.get('_route') == 'article_edit' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% elseif app.request.get('_route') == 'article_new' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% elseif app.request.get('_route') == 'article_index' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% elseif app.request.get('_route') == 'commentaire_postes' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% elseif app.request.get('_route') == 'jaime_postes' %}
+              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+
+              {% else %}
               <li class="col s6"><a class="dropdown-button" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              {% endif %}
+
               {% else %}
               <li class="col s6"><a class="dropdown-button" href="#!" data-activates="dropdown1">UTILISATEUR</a></li>
-{% endif %}
+              {% endif %}
 
 
-              <ul id="dropdown1" class="dropdown-content">
+              <ul id="dropdown1" class="dropdown-content center-align">
 
                 {% if app.user.imageName == null %}
                 <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i> profil</a></li>
                 {% else %}
-                <div class="chips">
-                  <li><a href="/profile">
-                    <img class="avatar"src="{{asset('img/users/')~ app.user.imageName }}">
+                <li><a href="/profile">
+                  <div class="chips">
+                    <img class="avatarUser"src="{{asset('img/users/')~ app.user.imageName }}">
+                    <br>
                     {{ app.user.username }}
-                  </a>
-                </li>
-              </div>
+                  </div>
+                </a>
+              </li>
               {% endif %}
               {% if is_granted('ROLE_ADMIN') %}
               <li><a href="/article">Mes articles</a></li>
-              {% endif %}  
+              {% endif %}
               <li><a href="/commentaire">Commentaires</a></li>
               {% if is_granted('ROLE_ADMIN') %}
               <li><a href="/Manage">Gestion</a></li>
@@ -76,9 +129,17 @@
             </ul>
 
             {% else %}
+
+
+            {% if app.request.get('_route') == 'fos_user_security_login' %}
+            <li class="col s6"><a href="/login" class="activeLien">CONNEXION</a></li>
+            {% elseif app.request.get('_route') == 'fos_user_registration_register' %}
+            <li class="col s6"><a href="/login" class="activeLien">CONNEXION</a></li>
+            {% else %}
             <li class="col s6"><a href="/login">CONNEXION</a></li>
             {% endif %}
-              {% endblock lienMenuNavigation %}
+            {% endif %}
+            {% endblock lienMenuNavigation %}
           </ul>
         </nav>
       </div>
@@ -129,6 +190,7 @@
 <script type="text/javascript">
 $(".button-collapse").sideNav();
 $("select").material_select();
+$('.chips').material_chip();
 </script>
 {% endblock %}
 <!-- fin script -->
