@@ -84,6 +84,7 @@ class User extends BaseUser
     {
         parent::__construct();
         // your own logic
+        $this->roles = array('ROLE_UTILISATEUR');
     }
 
     /**
@@ -141,7 +142,7 @@ class User extends BaseUser
 
 
 
-  
+
 
     /**
      * Set prenom
