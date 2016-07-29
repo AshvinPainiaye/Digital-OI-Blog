@@ -14,3 +14,7 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/web/img/articles/*
+!web/img/articles/.gitkeep
+/web/img/users/*
+!web/img/users/.gitkeep
