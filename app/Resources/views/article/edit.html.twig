@@ -1,35 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<!-- <h1>Article edit</h1> -->
-
 {{ form_start(edit_form) }}
+<div class="container">
+      <div class="row">
+            <div class="col s12">
+                  Posté par : <span style="font-weight:bold">{{  article.user.username  }}</span>  le
+                  {{ article.date| localizeddate('full', 'none') }} à {{article.date|date('H:i:s')}}
+                  <!-- article_image/article_titre -->
+                  <div class="row">
+                        <div class="col s12 ">
+                              <div class=" card large center-align">
+                                    <div class="card-image">
+                                          <img class="image_article"
+                                          src="{{ asset('img/articles/')~  article.imageName }}">
+                                          <span class="card-title">
+                                                <h5 class=" titres center-align"> {{ form_label(edit_form.titre) }} {{ form_widget(edit_form.titre) }}</h5>
+                                          </span>
+                                    </div>
+                                    <!-- fin article_image/article_titre -->
+                                    <!-- article_contenu -->
+                                    <div class="des content cards ">
+                                          <p class="input-field col s12 texte_article">
+                                                    {{ form_label(edit_form.description, 'Contenu') }} {{ form_widget(edit_form.description) }}
+                                          </p>
+                                    </div>
+                                    <!-- fin article_contenu -->
+                                    <div class="row">
+                                           <div class="file-field input-field col s6">
+                                               <div class="btn-floating btn-flat waves-effect waves-light tooltipped "></i> {{ form_widget(edit_form.imageFile) }}
+                                               </div>
+                                               <div class="file-path-wrapper">
+                                                   <input class="file-path validate" type="text">
+                                               </div>
+                                           </div>
+                                       </div>
+                                   <div class="row">
+                                           <div class="input-field col s12">
+                                               {{ form_widget(edit_form, {'label':'Publier' , 'attr': {'class':'waves-effect waves-light btn-flat blue lighten-1 white-text'}}) }} {{ form_widget(delete_form, {'label':'Enregistrer comme brouillon' , 'attr': {'class':'waves-effect waves-light btn-flat orange darken-1 lighten-1 white-text'}}) }}
+                                           </div>
+                              </div>
+                        </div>
+                  </div>
+                  <!-- fin article show -->
 
-<div class=" container row ">
-        <div class="col col s12 ">
-          <div class="card">
-            <div class="card-content">
-              {{ form_widget(edit_form) }}
-            </div>
-            <div class="card-action">
-                  <input type="submit" value="Edit" />
-                  {{ form_end(edit_form) }}
-                  {{ form_start(delete_form) }}
-                  <input type="submit" value="Delete">
-                  {{ form_end(delete_form) }}
-            </div>
-          </div>
-        </div>
-      </div>
 
 
-
-<ul>
-    <!-- <li>
-    <a href="{{ path('article_index') }}">Back to the list</a>
-</li> -->
-<li>
-
-</li>
-</ul>
 {% endblock %}

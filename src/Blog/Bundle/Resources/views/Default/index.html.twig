@@ -10,9 +10,9 @@
     <div class="card z-depth-1  hoverable ">
       <div class="card-image ">
 
-        <img src="{{ asset('img/articles/')~  article.imageName }}">
+        <img class="img_menu" src="{{ asset('img/articles/')~  article.imageName }}">
 
-        <span class="card-title">{{ article.titre }}</span>
+        <span class=" titre_menu card-title">{{ article.titre }}</span>
       </div>
       <div class="card-content">
         <p>{{ article.description | truncate(150, true, '...') }}</p>
@@ -28,8 +28,10 @@
     </a>
   </div>
   {% endfor %}
+  <div class="row center-align" style="margin-top:50px;">
+        <a href="/all/articles" class="tout waves-effect waves-dark btn-large btn col s2 m2 offset-m3 l4 offset-l4">TOUS LES ARTICLES</a>
 
-   <a href="/all/articles" class="tout waves-effect waves-dark btn-large btn col s12">TOUS LES ARTICLES</a>
+  </div>
 
 </div>
 

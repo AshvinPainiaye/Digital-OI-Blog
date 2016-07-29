@@ -6302,6 +6302,9 @@ h6 {
 .card.large {
   height: 500% !important; }
 
+.des {
+  height: 500% !important; }
+
 .chips {
   margin-top: 15px;
   margin-bottom: 15px; }
@@ -6312,5 +6315,13 @@ h6 {
 
 .image_article {
   border-bottom: 1px solid grey; }
+
+.img_menu {
+  height: 400px; }
+
+.card .card-image .card-title {
+  color: #0d47a1;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 35px; }
 
 /*# sourceMappingURL=main.css.map */
