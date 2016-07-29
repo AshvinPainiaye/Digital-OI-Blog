@@ -6302,9 +6302,6 @@ h6 {
 .card.large {
   height: 500% !important; }
 
-.des {
-  height: 500% !important; }
-
 .chips {
   margin-top: 15px;
   margin-bottom: 15px; }
@@ -6318,6 +6315,8 @@ h6 {
 
 /* cache texte supprimer edit profile */
 .profile_edit_photo #fos_user_profile_form_imageFile label {
+  color: transparent !important; }
+.profile_edit_photo #article_imageFile label {
   color: transparent !important; }
 
 .icon-return-top {

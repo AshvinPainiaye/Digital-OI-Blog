@@ -262,9 +262,7 @@ background-color: rgba(255, 255, 255, 0.8);
 .card.large{
   height: 500% !important;
 }
-.des{
-      height: 500% !important;
-}
+
 .chips{
   margin-top: 15px;
   margin-bottom: 15px;
@@ -273,6 +271,7 @@ background-color: rgba(255, 255, 255, 0.8);
   text-align: justify;
   padding: 20px;
 }
+
 .image_article{
   border-bottom: 1px solid grey;
 }
@@ -285,10 +284,12 @@ background-color: rgba(255, 255, 255, 0.8);
       color: transparent !important;
     }
   }
+  #article_imageFile{
+        label {
+          color: transparent !important;
+        }
+ }
 }
-
-
-
 
 .icon-return-top {
   position: fixed;
