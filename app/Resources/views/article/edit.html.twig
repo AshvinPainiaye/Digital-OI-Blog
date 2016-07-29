@@ -7,43 +7,69 @@
             <div class="col s12">
                   Posté par : <span style="font-weight:bold">{{  article.user.username  }}</span>  le
                   {{ article.date| localizeddate('full', 'none') }} à {{article.date|date('H:i:s')}}
-                  <!-- article_image/article_titre -->
                   <div class="row">
                         <div class="col s12 ">
                               <div class=" card large center-align">
+                                    <!--image_article -->
                                     <div class="card-image">
-                                          <img class="image_article"
+                                          <img class="image_articles"
                                           src="{{ asset('img/articles/')~  article.imageName }}">
-                                          <span class="card-title">
-                                                <h5 class="titres center-align"> {{ form_label(edit_form.titre) }} {{ form_widget(edit_form.titre) }}</h5>
+
+                                          <span class="card-title" style="width: 100%;">
+                                                <div class="row">
+                                                      <div class="input-field col s12">
+                                                            {{ form_label(edit_form.imageFile) }}
+                                                      </div>
+                                                </div>
+
+                                                <div class="row">
+                                                      <div class="file-field input-field col s12 m8 offset-m2 l6 offset-l3 ">
+                                                            <div class="btn-floating btn-large waves-effect waves-light tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Avatar">
+                                                                  <i class="material-icons ">attach_file</i>
+                                                            </div>
+                                                            <div class="profile_edit_photo">
+                                                                  {{ form_widget(edit_form.imageFile) }}
+                                                                  <div class="file-path-wrapper">
+                                                                        <input class="file-path validate" type="text">
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                </div>
                                           </span>
                                     </div>
-                                    <!-- fin article_image/article_titre -->
-                                    <!-- article_contenu -->
-                                    <div class="des content cards ">
-                                          <p class="input-field col s12 texte_article">
-                                                    {{ form_label(edit_form.description, 'Contenu') }} {{ form_widget(edit_form.description) }}
-                                          </p>
+                                    <!-- imagefile -->
+                                    <div class="card-content">
+                                          <div class="input-fieldcol s12 m8 offset-m2 l6 offset-l3 " style:"text-align:center;" >
+                                                {{ form_label(edit_form.titre) }} {{ form_widget(edit_form.titre,{'attr':{'style':'text-align:center'}}) }}
+                                          </div>
+                                          <!--      <label for="textarea1">Modifier le Titre</label> -->
                                     </div>
-                                    <!-- fin article_contenu -->
-                                    <div class="row">
-                                           <div class="file-field input-field col s6">
-                                               <div class="btn-floating btn-flat waves-effect waves-light tooltipped "></i> {{ form_widget(edit_form.imageFile) }}
-                                               </div>
-                                               <div class="file-path-wrapper">
-                                                   <input class="file-path validate" type="text">
-                                               </div>
-                                           </div>
-                                       </div>
-                                   <div class="row">
-                                           <div class="input-field col s12">
-                                               {{ form_widget(edit_form, {'label':'Publier' , 'attr': {'class':'waves-effect waves-light btn-flat blue lighten-1 white-text'}}) }} {{ form_widget(delete_form, {'label':'Enregistrer comme brouillon' , 'attr': {'class':'waves-effect waves-light btn-flat orange darken-1 lighten-1 white-text'}}) }}
-                                           </div>
+                                    <!--  description -->
+                                    <div class="card-content">
+                                          <div class="row">
+                                                <div class="container">
+                                                      {{ form_label(edit_form.description) }} {{ form_widget(edit_form.description,{'attr':{'class':'input-field col s12 texte_article materialize-textarea'}}) }}
+                                                </div>
+                                          </div>
+
+                                    </div>
+                                    <!-- bouton disponible,  edit et supprimer -->
+                                    <div class="card-content">
+                                          <div class="row">
+                                                <div class="input-field col s12">
+                                                      {{ form_widget(edit_form.disponibilite) }}
+                                                </div>
+                                          </div>
+                                          <input class="waves-effect waves-light btn green col m2" type="submit" value="Modifier" />
+                                          {{ form_end(edit_form) }}
+                                          {{ form_start(delete_form) }}
+                                          <input class="waves-effect waves-light btn red col m2" style="margin-left:5px;"type="submit" value="Suppimer">
+                                          {{ form_end(delete_form) }}
+                                    </div>
                               </div>
                         </div>
                   </div>
-                  <!-- fin article show -->
-
-
-
+            </div>
+      </div>
+</div>
 {% endblock %}

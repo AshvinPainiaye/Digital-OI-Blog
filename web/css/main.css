@@ -6209,7 +6209,7 @@ nav {
     right: 0px !important;
     left: inherit !important; }
     nav .navCenter #dropdown1 li a {
-      padding: 14px 16px; }
+      padding: 14px 16px !important; }
   nav .navCenter .dropdown-content a {
     color: #000;
     font-weight: bold; }
@@ -6306,7 +6306,20 @@ h6 {
 .card.large {
   height: 500% !important; }
 
-.des {
+.heure {
+  font-family: monospace;
+  font-weight: bold; }
+
+h5 {
+  color: #0d47a1; }
+
+h6 {
+  font-weight: bold; }
+
+.titres {
+  background-color: rgba(255, 255, 255, 0.8); }
+
+.card.large {
   height: 500% !important; }
 
 .chips {
@@ -6322,6 +6335,8 @@ h6 {
 
 /* cache texte supprimer edit profile */
 .profile_edit_photo #fos_user_profile_form_imageFile label {
+  color: transparent !important; }
+.profile_edit_photo #article_imageFile label {
   color: transparent !important; }
 
 .icon-return-top {
