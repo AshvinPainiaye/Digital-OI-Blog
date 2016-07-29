@@ -6217,6 +6217,10 @@ nav {
       background-color: #2196F3;
       color: #fff; }
 
+.date {
+  color: #999;
+  font-size: 14px; }
+
 .logo {
   margin-top: 10px; }
   .logo hr {
@@ -6231,16 +6235,6 @@ nav {
   border-radius: 50px;
   width: 100px;
   height: 100px; }
-
-.avatar {
-  margin-right: 10px;
-  margin-left: 10px;
-  overflow: hidden;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  border-radius: 50px;
-  width: 50px;
-  height: 50px; }
 
 .titre {
   font-size: 45px;
@@ -6306,22 +6300,6 @@ h6 {
 .card.large {
   height: 500% !important; }
 
-.heure {
-  font-family: monospace;
-  font-weight: bold; }
-
-h5 {
-  color: #0d47a1; }
-
-h6 {
-  font-weight: bold; }
-
-.titres {
-  background-color: rgba(255, 255, 255, 0.8); }
-
-.card.large {
-  height: 500% !important; }
-
 .chips {
   margin-top: 15px;
   margin-bottom: 15px; }
@@ -6341,9 +6319,9 @@ h6 {
 
 .icon-return-top {
   position: fixed;
-  right: 10px;
+  right: 20px;
   color: white;
-  bottom: 20px;
+  bottom: 30px;
   font-size: 17px;
   background-color: #2196F3;
   padding: 10px;

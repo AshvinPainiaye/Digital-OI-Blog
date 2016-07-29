@@ -12,49 +12,58 @@
       <div class="col s5">
 
         <div class="collection">
-            {% if is_granted('ROLE_ADMIN') %}
+          {% if is_granted('ROLE_ADMIN') %}
           <a href="{{ path('commentaire_index')}}" class="collection-item">Tout</a>
-{% endif %}
-          <a href="{{ path('commentaire_postes',{'id':user.id}) }}" class="collection-item">Postés</a>
-          <a href="{{ path('jaime_recu',{'id':user.id}) }}" class="collection-item">J'aime reçus</a>
-          <a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item active">J'aime postés</a>
-
-
-        </div>
-      </div>
-
-      <div class="col s7">
-
-        {% for comments in commentaires %}
-
-        <article>
-          <h3>
-
-          </h3>
-          <p>
-            {{comments.commentaire}}
-          </p>
-          <div class="right-align">
-
-            <a href="{#{ path('commentaire_show', { 'id': commentaire.id }) }#}" class="btn">VOIR</a>
-          </div>
-        </article>
-
-        {% endfor %}
-
+        {% endif %}
+        <a href="{{ path('commentaire_postes',{'id':user.id}) }}" class="collection-item">Postés</a>
+        <a href="{{ path('jaime_recu',{'id':user.id}) }}" class="collection-item">J'aime reçus</a>
+        <a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item active">J'aime postés</a>
       </div>
     </div>
+
+    <div class="col s7">
+
+      {% for commentaire in commentaires|reverse %}
+
+      <article>
+        <h3 class="center-align">{{commentaire.article.titre}}</h3>
+
+        <ul class="collection">
+            <li class="collection-item avatar">
+              <img src="{{asset('img/users/')~ commentaire.user.imageName }}" alt="" class="circle">
+               <span class="title">{{ commentaire.commentaire }}</span>
+               <p class="date">
+                 {% if commentaire.date %}{{ commentaire.date|date('d/m/y') }}{% endif %}
+               </p>
+            </li>
+          </ul>
+        </li>
+
+        <!-- <img class="avatar"src="{{asset('img/users/')~ commentaire.user.imageName }}"> -->
+
+        <!-- {#{ commentaire.commentaire }#} | {# if commentaire.date #}{#{ commentaire.date|date('d/m/y') }#}{# endif #} -->
+
+        <div class="right-align" style="margin-top:10px;">
+
+          <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}" class="btn">VOIR</a>
+        </div>
+      </article>
+
+    {% endfor %}
+
+    </div>
   </div>
+</div>
 
 
-  <!-- <table>
-  <thead>
-  <tr>
-  <th>Id</th>
-  <th>Nom de l'article</th>
-  <th>Commentaire</th>
-  <th>Date</th>
-  <th>Actions</th>
+<!-- <table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Nom de l'article</th>
+<th>Commentaire</th>
+<th>Date</th>
+<th>Actions</th>
 </tr>
 </thead>
 <tbody>

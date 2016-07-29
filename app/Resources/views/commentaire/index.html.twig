@@ -12,12 +12,29 @@
       <div class="col s5">
 
         <div class="collection">
+
           {% if is_granted('ROLE_ADMIN') %}
+          {% if app.request.get('_route') == 'commentaire_index' %}
           <a href="{{ path('commentaire_index') }}" class="collection-item active">Tout</a>
+          {% else %}
+          <a href="{{ path('commentaire_index') }}" class="collection-item">Tout</a>
           {% endif %}
+          {% endif %}
+
+          {% if app.request.get('_route') == 'commentaire_postes' %}
+          <a href="{{ path('commentaire_postes',{'id':user.id}) }}" class="collection-item active">Postés</a>
+          {% else %}
           <a href="{{ path('commentaire_postes',{'id':user.id}) }}" class="collection-item">Postés</a>
+          {% endif %}
+
           <a href="{{ path('jaime_recu',{'id':user.id}) }}" class="collection-item">J'aime reçus</a>
-          <a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item">J'aime postés</a>
+
+          {% if app.request.get('_route') == 'jaime_postes' %}
+          <a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item active">J'aime postés</a>
+{% else %}
+<a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item">J'aime postés</a>
+{% endif %}
+
 
 
         </div>
@@ -25,23 +42,35 @@
 
       <div class="col s7">
 
-  {% for commentaire in commentaires|reverse %}
+        {% for commentaire in commentaires|reverse %}
 
-  <article>
-    <h3>{{commentaire.article.titre}}</h3>
-    <p>
-    {{ commentaire.commentaire }}
-  </p>
-  Posté par : {{commentaire.user}}
-  <div class="right-align">
+        <article>
+          <h3 class="center-align">{{commentaire.article.titre}}</h3>
 
-    <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}" class="btn">VOIR</a>
+          <ul class="collection">
+            <li class="collection-item avatar">
+              <img src="{{asset('img/users/')~ commentaire.user.imageName }}" alt="" class="circle">
+              <span class="title">{{ commentaire.commentaire }}</span>
+              <p class="date">
+                {% if commentaire.date %}{{ commentaire.date|date('d/m/y') }}{% endif %}
+              </p>
+            </li>
+          </ul>
+        </li>
+
+        <!-- <img class="avatar"src="{{asset('img/users/')~ commentaire.user.imageName }}"> -->
+
+        <!-- {#{ commentaire.commentaire }#} | {# if commentaire.date #}{#{ commentaire.date|date('d/m/y') }#}{# endif #} -->
+
+        <div class="right-align" style="margin-top:10px;">
+
+          <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}" class="btn">VOIR</a>
+        </div>
+      </article>
+
+      {% endfor %}
+    </div>
   </div>
-</article>
-
-{% endfor %}
-</div>
-</div>
 </div>
 
 

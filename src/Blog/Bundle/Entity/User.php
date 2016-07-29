@@ -80,6 +80,16 @@ class User extends BaseUser
      */
     public $articlelike;
 
+
+    /**
+    * @ORM\Column(type="datetime", nullable=true))
+    *
+    * @var \DateTime
+    */
+    private $updatedAt;
+
+
+
     public function __construct()
     {
         parent::__construct();
@@ -326,5 +336,29 @@ class User extends BaseUser
     public function getArticlelike()
     {
         return $this->articlelike;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return User
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }
