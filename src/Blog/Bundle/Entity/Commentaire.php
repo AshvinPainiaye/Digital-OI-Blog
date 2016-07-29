@@ -22,9 +22,9 @@ class Commentaire
   private $id;
 
   /**
-  * @var string
+  * @var text
   *
-  * @ORM\Column(name="commentaire", type="string", length=255)
+  * @ORM\Column(name="commentaire", type="text")
   */
   private $commentaire;
 

@@ -23,7 +23,7 @@ $(document).ready(function () {
 //fin
 
 
-  $('a[href^="#returnTop"]').click(function () {
+  $('a[href^="#returnTop"], a[href^="#postcommentaire"]').click(function () {
     var the_id = $(this).attr("href");
 
     $('html, body').animate({

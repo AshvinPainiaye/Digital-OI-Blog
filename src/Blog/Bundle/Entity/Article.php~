@@ -83,7 +83,7 @@ class Article
     private $user;
 
     /**
-    * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
+    * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article", cascade={"persist", "remove"}))
     * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id"))
     */
     private $commentaire;

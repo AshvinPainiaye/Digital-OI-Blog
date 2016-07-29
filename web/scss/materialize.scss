@@ -97,7 +97,7 @@
     }
     .navCenter{
       li{
-         padding:0 !important;
+        padding:0 !important;
         .activeLien{
           border-bottom: 4px solid #166CC7;
           background-color: transparent;
@@ -109,7 +109,7 @@
           color:#fff;
           font-weight: bold;
           width:100%;
-        padding:0;
+          padding:0;
         }
       }
       #dropdown1{
@@ -120,15 +120,15 @@
         left: inherit !important;
         li{
           a{
-padding: 14px 16px !important;
+            padding: 14px 16px !important;
           }
         }
       }
-
       .dropdown-content{
         a{
           color:#000;
           font-weight: bold;
+          text-align: center !important;
           &:hover {
             background-color: $secondary-color;
             color:#fff;
@@ -137,6 +137,14 @@ padding: 14px 16px !important;
       }
     }
   }
+
+
+  .date{
+    color: #999;
+    font-size: 14px;
+  }
+
+
 
   .logo{
     margin-top: 10px;
@@ -155,8 +163,7 @@ padding: 14px 16px !important;
     height:100px;
 
   }
-  .avatar{
-
+  .avatarUser{
     margin-right: 10px;
     margin-left: 10px;
     overflow:hidden;
@@ -165,7 +172,6 @@ padding: 14px 16px !important;
     border-radius:50px;
     width:50px;
     height:50px;
-
   }
   .titre{
     font-size: 45px;
@@ -180,10 +186,10 @@ padding: 14px 16px !important;
 
 
 
-  /* boutton tout les article  */
-  .tout{
-    left: 50%;
-  }
+  // /* boutton tout les article  */
+  // .tout{
+  //   left: 50%;
+  // }
 
   /* FIN HEADER */
 
@@ -202,7 +208,6 @@ padding: 14px 16px !important;
   /* FIN FOOTER */
 
   #mes-articles{
-
     table.highlight > tbody > tr:hover {
       background-color: $secondary-color;
       color: #fff;
@@ -233,10 +238,6 @@ padding: 14px 16px !important;
       background-color: transparent;
       border:none;
     }
-
-    .brouillon{
-
-    }
   }
 
   #commentaire{
@@ -265,84 +266,81 @@ padding: 14px 16px !important;
   }
 
   .titres{
-
     background-color: rgba(255, 255, 255, 0.8);
-
   }
   .card.large{
     height: 500% !important;
   }
 
+  .chips{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .texte_article {
+    text-align: justify;
+    padding: 20px;
+  }
+
+  .image_article{
+    border-bottom: 1px solid grey;
+  }
 
 
-
-
-.heure{
-  font-family: monospace;
-  font-weight: bold;
-
-}
-h5{
-  color: #0d47a1;
-}
-h6{
-  font-weight: bold;
-}
-
-.titres{
-
-background-color: rgba(255, 255, 255, 0.8);
-
-}
-.card.large{
-  height: 500% !important;
-}
-
-.chips{
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-.texte_article {
-  text-align: justify;
-  padding: 20px;
-}
-
-.image_article{
-  border-bottom: 1px solid grey;
-}
-
-
-/* cache texte supprimer edit profile */
-.profile_edit_photo{
-  #fos_user_profile_form_imageFile{
-    label {
-      color: transparent !important;
+  /* cache texte supprimer edit profile */
+  .profile_edit_photo{
+    #fos_user_profile_form_imageFile{
+      label {
+        color: transparent !important;
+      }
+    }
+    #article_imageFile{
+      label {
+        color: transparent !important;
+      }
     }
   }
-  #article_imageFile{
-        label {
-          color: transparent !important;
-        }
- }
-}
 
-.icon-return-top {
-  position: fixed;
-  right: 10px;
-  color: white;
-  bottom: 20px;
-  font-size: 17px;
-  background-color: $secondary-color;
-  padding: 10px;
-  border-radius: 100px;
-  visibility: hidden;
-  z-index: 99;
-}
-.img_menu{
-      height: 400px;
-}
-.card .card-image .card-title{
-color: #0d47a1;
-background-color: rgba(255, 255, 255, 0.8);
-font-size: 35px;
-}
+  .icon-return-top {
+    position: fixed;
+    right: 20px;
+    color: white;
+    bottom: 30px;
+    font-size: 17px;
+    background-color: $secondary-color;
+    padding: 10px;
+    border-radius: 100px;
+    visibility: hidden;
+    z-index: 99;
+  }
+  .img_menu{
+    height: 400px;
+  }
+
+
+
+
+  /* DEBUT CARD */
+  .card{
+    .card-image{
+      .card-title{
+        color: $secondary-color;
+        background-color: rgba(255, 255, 255, 0.8);
+        font-size: 25px;
+      }
+    }
+    .card-content{
+      p{
+        color: #000;
+      }
+    }
+  }
+  /* FIN CARD */
+
+
+
+
+  @media #{$small-and-down} {
+    .activeLien{
+      height: 56px !important;
+    }
+  }

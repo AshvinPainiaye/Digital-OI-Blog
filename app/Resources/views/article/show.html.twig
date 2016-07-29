@@ -12,6 +12,7 @@
 <meta property="og:locale" content="fr_FR" />
 {% endblock %}
 
+{% block title %}Digital OI - {{ article.titre }}{% endblock %}
 
 {% block lienMenuNavigation %}
 <li class="col s4"><a href="/">ACCUEIL</a></li>
@@ -20,19 +21,20 @@
 <li class="col s4"><a class="dropdown-button" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
 
 <ul id="dropdown1" class="dropdown-content">
-  {% if is_granted('ROLE_ADMIN') %}
-  <li><a href="/article">Mes articles</a></li>
-  {% endif %}
   {% if app.user.imageName == null %}
   <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i> profil</a></li>
   {% else %}
-  <div class="chips">
-    <li><a href="/profile">
-      <img class="avatar"src="{{asset('img/users/')~ app.user.imageName }}">
+  <li><a href="/profile">
+    <div class="chips">
+      <img class="avatarUser"src="{{asset('img/users/')~ app.user.imageName }}">
+      <br>
       {{ app.user.username }}
-    </a>
-  </li>
-</div>
+    </div>
+  </a>
+</li>
+{% endif %}
+{% if is_granted('ROLE_ADMIN') %}
+<li><a href="/article">Mes articles</a></li>
 {% endif %}
 <li><a href="/commentaire">Commentaires</a></li>
 {% if is_granted('ROLE_ADMIN') %}
@@ -53,7 +55,7 @@
   <div class="row">
     <div class="col s12">
       Posté par : <span style="font-weight:bold">{{  article.user.username  }}</span>  le
-      {{ article.date| localizeddate('full', 'none') }} à {{article.date|date('H:i:s')}}
+      {{ article.date| localizeddate('full', 'none') }} à {{article.date|date('H:i')}}
       <!-- article_image/article_titre -->
       <div class="row">
         <div class="col s12 ">
@@ -67,95 +69,128 @@
             </div>
             <!-- fin article_image/article_titre -->
             <!-- article_j'aime/article_nbr_commentaire -->
-            <div class="chips center-align">
-              <a href="{{ path('article_like_new',{'id':article.id}) }}"><i class="material-icons">favorite</i>{{ article.like|length }} j'aime</a>
+            <div class="center-align" style="margin-top:20px;">
+              <a style="color:red" href="{{ path('article_like_new',{'id':article.id}) }}"><i class="material-icons" style="color:red; position:relative;top:6px;">favorite</i>{{ article.like|length }} j'aime</a>
               {% for commentaire in commentaires %}
               {% if loop.first %}
-              <i class="material-icons">comment</i>
-              {{ commentaires|length }} commentaires
-              {% endif %}
-              {% endfor %}
-            </div>
-            <!-- fin article_j'aime/article_nbr_commentaire -->
-            <!-- article_contenu -->
-            <div class="content cards ">
-              <p class="texte_article">
-                {{ article.description   }}
-              </p>
-            </div>
-            <!-- fin article_contenu -->
-          </div>
-        </div>
-      </div>
-      <!-- fin article show -->
-      <!-- partage facebook -->
-      <div class="fb-share-button" data-href="http://digital-oi.simplonreunion.co/article/{{article.id}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Partager</a>
-      </div>
-      <div id="fb-root"></div>
-      <!--       fin partage facebook -->
-      <br>
-
-      <!--     commentaire envoie -->
-      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-      {{ form_start(form) }}
-      {{ form_widget(form) }}
-      <input  class="waves-effect waves-light btn"type="submit"  value="Publier" style="margin-bottom:20px">
-      {{ form_end(form) }}
-      {% endif %}
-      <!--    FIN  commentaire envoie -->
-      <!--     commentaire show -->
-      {% for commentaire in commentaires|reverse %}
-      <div class="col s12 "><!-- col s12 m8 offset-m2 l6 offset-l3 -->
-        <div class="card-panel grey lighten-5 z-depth-1">
-          <div class="row valign-wrapper">
-            <!--       avatar_user_commentaire -->
-            <div class="col s2">
-              <img  class="image"
-              src="{{ asset('img/users/')~ commentaire.user.imageName }}" >
-            </div>
-            <!--       fin avatar_user_commentaire -->
-            <!--       commentaire_user_username / commentaire_user -->
-            <div class="col s7">
-              <h6>{{ commentaire.user.username }}</h6>
-              <p class="black-text">
-                {{ commentaire.commentaire }}
-
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {% if commentaire.user.id == app.user.id %}
-                <a href="{{ path('commentaire_edit' , {'id': commentaire.id }) }}"><i class="material-icons">mode_edit</i><a>
-                  {% endif %}
-                  {% endif %}
-
+              <a href="#postcommentaire" style="margin:auto 20px;">
+                <i class="material-icons" style="position:relative; top:6px;">comment</i>
+                {{ commentaires|length }} commentaires</a>
+                {% endif %}
+                {% endfor %}
+              </div>
+              <!-- fin article_j'aime/article_nbr_commentaire -->
+              <!-- article_contenu -->
+              <div class="content cards ">
+                <p class="texte_article">
+                  {{ article.description   }}
                 </p>
               </div>
-              <!--      fin  commentaire_user_username / commentaire_user -->
-              <!--       j'aime_user_username / date_heure_commentaire_user -->
-              <div class=" col s4 jaime">
-                {% if commentaire.date %}
-                <p class="heure ">
-                  {{ commentaire.date| localizeddate('full', 'none') }} à {{commentaire.date|date('H:i:s')}}
-                  <br>
-                </p >
-                {% endif %}
-                <a style="color:red"
-                href="{{ path('commentaire_like_new',
-                {'article':article.id, 'commentaire':commentaire.id}) }}">
-                <i class="material-icons  " style="color:red">favorite</i>
-                {{ commentaire.like|length }} j'aime</a>
-              </div>
+              <!-- fin article_contenu -->
             </div>
-            <!--       j'aime_user_username / date_commentaire_user -->
-            <!--      modifier_commentaire / supprimer_commentaire -->
-
-            <!--   fin  modifier_commentaire / supprimer_commentaire -->
           </div>
         </div>
-        {% endfor %}
+        <!-- fin article show -->
 
+        <div class="container" style="margin-bottom:100px;">
+          <div class="row">
+            <div class="col s12 center-align">
+
+              <a style="color:red" href="{{ path('article_like_new',{'id':article.id}) }}"><i class="material-icons" style="color:red; position:relative;top:6px;">favorite</i>{{ article.like|length }} j'aime</a>
+
+
+              <span style="position:relative; top:5px !important; margin:auto 20px;">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-via="AshvinPainiaye">Tweet</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              </span>
+
+              <!-- partage facebook -->
+              <div style="position:relative; bottom:1px !important;" class="fb-share-button" data-href="http://digital-oi.simplonreunion.co/article/{{article.id}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Partager</a>
+              </div>
+              <div id="fb-root"></div>
+              <!--       fin partage facebook -->
+
+            </div>
+          </div>
+        </div>
+
+
+        <!--     commentaire envoie -->
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ form_start(form) }}
+        <div class="container" id="postcommentaire">
+          <div class="row">
+            <div class="col s12 input-field">
+              <img src="{{asset('img/users/')~ app.user.imageName }}" style="-webkit-border-radius:50px; -moz-border-radius:50px; border-radius:50px; width:50px; height:50px; position:absolute; left:-60px">
+              {{ form_label(form.commentaire) }}
+              {{ form_widget(form.commentaire,{'attr':{'class':'materialize-textarea'}}) }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12 center-align">
+              <input  class="waves-effect waves-light btn"type="submit"  value="Commenter" style="margin-bottom:80px">
+            </div>
+          </div>
+
+        </div>
+        {{ form_end(form) }}
+        {% endif %}
+
+        <!--    FIN  commentaire envoie -->
+        <!--     commentaire show -->
+        {% for commentaire in commentaires|reverse %}
+        <div class="col s12 "><!-- col s12 m8 offset-m2 l6 offset-l3 -->
+          <div class="card-panel grey lighten-5 z-depth-1">
+            <div class="row valign-wrapper">
+              <!--       avatar_user_commentaire -->
+              <div class="col s2">
+                <img  class="image"
+                src="{{ asset('img/users/')~ commentaire.user.imageName }}" >
+              </div>
+              <!--       fin avatar_user_commentaire -->
+              <!--       commentaire_user_username / commentaire_user -->
+              <div class="col s7">
+                <h6>{{ commentaire.user.username }}</h6>
+                <p class="black-text">
+                  {{ commentaire.commentaire }}
+
+                  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                  {% if commentaire.user.id == app.user.id %}
+                  <a href="{{ path('commentaire_edit' , {'id': commentaire.id }) }}"><i class="material-icons">mode_edit</i><a>
+                    {% endif %}
+                    {% endif %}
+
+                  </p>
+                </div>
+                <!--      fin  commentaire_user_username / commentaire_user -->
+                <!--       j'aime_user_username / date_heure_commentaire_user -->
+                <div class=" col s4 jaime">
+                  {% if commentaire.date %}
+                  <p class="heure ">
+                    {{ commentaire.date| localizeddate('full', 'none') }} à {{commentaire.date|date('H:i')}}
+                    <br>
+                  </p >
+                  {% endif %}
+                  <a style="color:red"
+                  href="{{ path('commentaire_like_new',
+                  {'article':article.id, 'commentaire':commentaire.id}) }}">
+                  <i class="material-icons  " style="color:red; position:relative;top:6px;">favorite</i>
+                  {{ commentaire.like|length }} j'aime</a>
+                </div>
+              </div>
+              <!--       j'aime_user_username / date_commentaire_user -->
+              <!--      modifier_commentaire / supprimer_commentaire -->
+
+              <!--   fin  modifier_commentaire / supprimer_commentaire -->
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
       </div>
     </div>
-  </div>
-{% endblock %}
+  {% endblock %}
 
 {% block fos_user_content %}{% endblock %}
 

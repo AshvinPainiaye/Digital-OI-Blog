@@ -3,31 +3,63 @@
 {% block body %}
 <div class="container">
 
-<div class="row">
-  {% for article in articles|reverse|slice(0, 4) %}
-  <div class="col s6">
-    <a href="{{ path('article_show', { 'id': article.id }) }}">
-    <div class="card z-depth-1  hoverable ">
-      <div class="card-image ">
+  <div class="row">
+    {% if app.request.get('_route') == 'accueil' %}
+    {% for article in articles|reverse|slice(0, 4) %}
+    <div class="col s12 l6">
+      <a href="{{ path('article_show', { 'id': article.id }) }}">
+        <div class="card z-depth-1  hoverable ">
+          <div class="card-image ">
 
-        <img class="img_menu" src="{{ asset('img/articles/')~  article.imageName }}">
+            <img class="img_menu" src="{{ asset('img/articles/')~  article.imageName }}">
 
-        <span class=" titre_menu card-title">{{ article.titre }}</span>
-      </div>
-      <div class="card-content">
-        <p>{{ article.description | truncate(150, true, '...') }}</p>
-      </div>
-    
+            <span class=" titre_menu card-title">{{ article.titre }}</span>
+          </div>
+          <div class="card-content">
+            <p>{{ article.description | truncate(150, true, '...') }}</p>
+          </div>
+
+        </div>
+      </a>
     </div>
-    </a>
-  </div>
-  {% endfor %}
-  <div class="row center-align" style="margin-top:50px;">
-        <a href="/all/articles" class="tout waves-effect waves-dark btn-large btn col s2 m2 offset-m3 l4 offset-l4">TOUS LES ARTICLES</a>
+    {% endfor %}
+    {% endif %}
+
+
+    {% if app.request.get('_route') == 'allArticle' %}
+    {% for article in articles|reverse %}
+    <div class="col s12 l6">
+      <a href="{{ path('article_show', { 'id': article.id }) }}">
+        <div class="card z-depth-1  hoverable ">
+          <div class="card-image ">
+
+            <img class="img_menu" src="{{ asset('img/articles/')~  article.imageName }}">
+
+            <span class=" titre_menu card-title">{{ article.titre }}</span>
+          </div>
+          <div class="card-content">
+            <p>{{ article.description | truncate(150, true, '...') }}</p>
+          </div>
+
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+    <div class="row center-align" style="margin-top:50px;">
+      <div class="col s12">
+          {% if app.request.get('_route') == 'accueil' %}
+        <a href="/all/articles" class="waves-effect waves-dark btn-large btn" style="padding: 0 4rem; margin-top:40px;">TOUS LES ARTICLES</a>
+        {% else %}
+            <a href="/" class="waves-effect waves-dark btn-large btn" style="padding: 0 4rem; margin-top:40px;">MOINS D'ARTICLES</a>
+        {% endif %}
+      </div>
+
+    </div>
 
   </div>
-
-</div>
 
 </div>
 
