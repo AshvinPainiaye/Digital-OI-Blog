@@ -16,7 +16,7 @@
           <a href="{{ path('commentaire_index') }}" class="collection-item active">Tout</a>
           {% endif %}
           <a href="{{ path('commentaire_postes',{'id':user.id}) }}" class="collection-item">Postés</a>
-          <a href="{#{ path('jaime_recu') }#}" class="collection-item">J'aime reçus</a>
+          <a href="{{ path('jaime_recu',{'id':user.id}) }}" class="collection-item">J'aime reçus</a>
           <a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item">J'aime postés</a>
 
 
@@ -28,11 +28,11 @@
   {% for commentaire in commentaires|reverse %}
 
   <article>
-
     <h3>{{commentaire.article.titre}}</h3>
     <p>
     {{ commentaire.commentaire }}
   </p>
+  Posté par : {{commentaire.user}}
   <div class="right-align">
 
     <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}" class="btn">VOIR</a>

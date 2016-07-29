@@ -1,23 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
 {% for comments in commentaires %}
-                <li class="collection-item avatar">
-                    <div class="s1">
+
 {{dump(comments)}}
-                        <span class="title">{{ comments.auteur.nom }} {{ comments.auteur.prenom }}</span>
-                        <p>{{ comments.contenu }}<br>
-                            <br>
-                            <span><b>Le: </b>{{ comments.creationDate|date('d-m-Y \\à\ H:i:s' ) }}</span><br>
-                        </p>
-                        <p class="secondary-content col s3">
-                            <a class="like" id="{{ comments.id }}"><i class="material-icons icon-red">favorite</i></a>
-                            <span id="div{{ comments.id }}" class="like likes">{{ comments.likes|length }}J'aime</span>
-                        </p>
-                    </div>
-                    {% if is_granted("ROLE_ADMIN") %}
-                        <a class="waves-effect waves-light btn"><i class="material-icons">delete</i></a>
-                    {% endif %}
-                    {% if app.user.id == comments.auteur.id and is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN") %}
-                        <a class="waves-effect waves-light btn"><i class="material-icons">delete</i></a>
-                    {% endif %}
-                    <a href="{{ path('articles_view_one', {'id':comments.article.id}) }}" class="waves-effect waves-light btn"><i class="material-icons">remove_red_eye</i></a>
-                </li>
+
+{{comments.commentaire}}
+
 {% endfor %}
+
+{% endblock %}
