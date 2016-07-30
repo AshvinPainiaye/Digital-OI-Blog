@@ -85,7 +85,7 @@ fos_user:
             # type: app_user_registration
 
     from_email:
-        sender_name:    Simplon
+        sender_name:    Digital OI
 
     service:
         mailer: fos_user.mailer.twig_swift
