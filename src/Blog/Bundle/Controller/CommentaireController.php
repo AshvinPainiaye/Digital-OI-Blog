@@ -177,7 +177,6 @@ class CommentaireController extends Controller
   }
 
 
-
   /**
   * Lister tout les j'aimes posté par l'utilisateur
   *
@@ -196,34 +195,6 @@ class CommentaireController extends Controller
   }
 
 
-  /**
-  * Lister mes commentaires qui ont été liké
-  *
-  * @Route("/jaime/recu/{id}", name="jaime_recu")
-  * @Method("GET")
-  */
-  public function jaimeRecuAction()
-  {
-    //Get current user
-    $user = $this->getUser();
-    $userId = $user->getId();
-
-    $commentaires = array();
-    $commentaires2 = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(['user' => $userId]);
-    foreach ($commentaires2 as $commentaire) {
-      foreach ($commentaire->getLike() as $liker) {
-        array_push($commentaires, $commentaire);
-        break;
-      }
-    }
-
-    return $this->render('commentaire/jaimeRecu.html.twig', array(
-      'commentaires' => $commentaires,
-      'user' => $user,
-    ));
-
-  }
-  
   /**
   * Supprime un commentaire depuis "commentaire"
   *

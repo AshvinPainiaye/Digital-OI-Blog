@@ -2,15 +2,10 @@
 
 {% block body %}
 <section id="commentaire">
-
   <h1 class="center-align">Commentaires</h1>
-
-
   <div class="container">
     <div class="row">
-
       <div class="col m5 s12">
-
         <div class="collection">
 
           {% if is_granted('ROLE_ADMIN') %}
@@ -21,13 +16,21 @@
           {% endif %}
           {% endif %}
 
+          {% if is_granted('ROLE_UTILISATEUR') and not is_granted('ROLE_ADMIN') %}
+          {% if app.request.get('_route') == 'commentaire_index' %}
+          <a href="{{ path('commentaire_index') }}" class="collection-item active">Postés</a>
+          {% else %}
+          <a href="{{ path('commentaire_index') }}" class="collection-item">Postés</a>
+          {% endif %}
+          {% endif %}
+
+          {% if is_granted('ROLE_ADMIN') %}
           {% if app.request.get('_route') == 'commentaire_postes' %}
           <a href="{{ path('commentaire_postes',{'id':user.id}) }}" class="collection-item active">Postés</a>
           {% else %}
           <a href="{{ path('commentaire_postes',{'id':user.id}) }}" class="collection-item">Postés</a>
           {% endif %}
-
-          <!-- <a href="{#{ path('jaime_recu',{'id':user.id}) }#}" class="collection-item">J'aime reçus</a> -->
+          {% endif %}
 
           {% if app.request.get('_route') == 'jaime_postes' %}
           <a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item active">J'aime postés</a>
@@ -35,13 +38,10 @@
           <a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item">J'aime postés</a>
           {% endif %}
 
-
-
         </div>
       </div>
 
       <div class="col m7 s12">
-
         {% for commentaire in commentaires|reverse %}
 
         <article>
@@ -57,27 +57,23 @@
 
               <span class="title">{{ commentaire.commentaire }}</span>
               <p class="date">
-              Le {% if commentaire.date %}{{ commentaire.date|date('d/m/y \\à\ H\\h\i') }}{% endif %}
+                Le {% if commentaire.date %}{{ commentaire.date|date('d/m/y \\à\ H\\h\i') }}{% endif %}
               </p>
             </li>
           </ul>
         </li>
 
-
-        <!-- <div class="left-align" style="margin-top:10px;"> -->
-          <div class="row">
-            <div class="col s3" style="margin-top:15px; margin-bottom:5px">
-              <i class="material-icons" style="color:red; position:relative;top:6px;">favorite</i>{{ commentaire.like|length }} j'aime
-            </div>
-            <div class="col s9 right-align" style="margin-top:15px; margin-bottom:5px">
-               {% if is_granted("ROLE_ADMIN") %}
-              <a href="{{ path('comment_instant_delete', {'id': commentaire.id}) }}" style="padding: 0 2rem; color:#000;">SUPPRIMER</a>
-              {% endif %}
-              <a href="{{ path('article_show', { 'id': commentaire.article.id }) }}" class="btn">VOIR</a>
-            </div>
+        <div class="row">
+          <div class="col s3" style="margin-top:15px; margin-bottom:5px">
+            <i class="material-icons" style="color:red; position:relative;top:6px;">favorite</i>{{ commentaire.like|length }} j'aime
           </div>
-
-        <!-- </div> -->
+          <div class="col s9 right-align" style="margin-top:15px; margin-bottom:5px">
+            {% if is_granted("ROLE_ADMIN") %}
+            <a href="{{ path('comment_instant_delete', {'id': commentaire.id}) }}" style="padding: 0 2rem; color:#000;">SUPPRIMER</a>
+            {% endif %}
+            <a href="{{ path('article_show', { 'id': commentaire.article.id }) }}" class="btn">VOIR</a>
+          </div>
+        </div>
 
       </article>
 
