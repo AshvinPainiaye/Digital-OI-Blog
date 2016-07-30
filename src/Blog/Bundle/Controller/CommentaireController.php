@@ -230,4 +230,21 @@ class CommentaireController extends Controller
 
 
 
+
+  /**
+ * Supprime un commentaire depuis "commentaire"
+ *
+ * @Route("/{id}/instant", name="comment_instant_delete")
+ */
+public function deleteInstantAction(Commentaire $commentaire)
+{
+    if ($commentaire) {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($commentaire);
+        $em->flush();
+    }
+    return $this->redirectToRoute('commentaire_index');
+}
+
+
 }

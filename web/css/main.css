@@ -6202,14 +6202,6 @@ nav {
       font-weight: bold;
       width: 100%;
       padding: 0; }
-  nav .navCenter #dropdown1 {
-    top: 64px !important;
-    width: 30% !important;
-    top: 64px !important;
-    right: 0px !important;
-    left: inherit !important; }
-    nav .navCenter #dropdown1 li a {
-      padding: 14px 16px !important; }
   nav .navCenter .dropdown-content a {
     color: #000;
     font-weight: bold;
@@ -6278,6 +6270,10 @@ footer {
   #mes-articles #checkboxPublique label .lever:after {
     background-color: #2196F3 !important;
     left: 27px; }
+#mes-articles .switch label .lever {
+  background-color: #e0e0e0; }
+#mes-articles .switch label .lever::after {
+  background-color: #fff; }
 
 #new-article .sauvegarder {
   background-color: transparent;
@@ -6290,10 +6286,6 @@ footer {
   #commentaire article h3 {
     font-size: 16px;
     font-weight: bold; }
-
-.heure {
-  font-family: monospace;
-  font-weight: bold; }
 
 h5 {
   color: #0d47a1; }
@@ -6350,6 +6342,30 @@ h6 {
 /* FIN CARD */
 @media only screen and (max-width: 600px) {
   .activeLien {
-    height: 56px !important; } }
+    height: 56px !important; }
+
+  #dropdown1 {
+    top: 56px !important;
+    width: 100% !important;
+    right: 0px !important;
+    left: inherit !important; }
+    #dropdown1 li a {
+      padding: 14px 16px !important; }
+
+  h1 {
+    font-size: 40px;
+    margin-bottom: 30px; } }
+@media only screen and (min-width: 601px) {
+  #dropdown1 {
+    width: 30% !important;
+    top: 64px !important;
+    right: 0px !important;
+    left: inherit !important; }
+    #dropdown1 li a {
+      padding: 14px 16px !important; }
+
+  h1 {
+    font-size: 60px;
+    margin-bottom: 50px; } }
 
 /*# sourceMappingURL=main.css.map */

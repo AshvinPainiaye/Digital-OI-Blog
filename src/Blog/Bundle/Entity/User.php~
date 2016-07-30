@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -33,11 +33,20 @@ class User extends BaseUser
     private $imageFile;
 
     /**
-    * @ORM\Column(type="string", length=255, nullable=true)
+    * @ORM\Column(type="string", length=255)
     *
     * @var string
     */
     private $imageName;
+
+
+    /**
+    * @ORM\Column(type="datetime")
+    *
+    * @var \DateTime
+    */
+    private $updatedAt;
+
 
     /**
     * @ORM\Column(type="string", length=255)
@@ -81,12 +90,7 @@ class User extends BaseUser
     public $articlelike;
 
 
-    /**
-    * @ORM\Column(type="datetime", nullable=true))
-    *
-    * @var \DateTime
-    */
-    private $updatedAt;
+
 
 
 
@@ -138,7 +142,7 @@ class User extends BaseUser
       if ($image) {
         // It is required that at least one field changes if you are using doctrine
         // otherwise the event listeners won't be called and the file is lost
-        $this->date = new \DateTime('now');
+        $this->updatedAt = new \DateTime('now');
       }
       return $this;
     }
@@ -153,6 +157,29 @@ class User extends BaseUser
 
 
 
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return User
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
 
     /**
      * Set prenom
@@ -336,29 +363,5 @@ class User extends BaseUser
     public function getArticlelike()
     {
         return $this->articlelike;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return User
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 }

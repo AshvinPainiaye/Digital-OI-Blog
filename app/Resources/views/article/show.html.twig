@@ -55,7 +55,7 @@
   <div class="row">
     <div class="col s12">
       Posté par : <span style="font-weight:bold">{{  article.user.username  }}</span>  le
-      {{ article.date| localizeddate('full', 'none') }} à {{article.date|date('H:i')}}
+      {{ article.date|date('d/m') }} à {{article.date|date('H\\h\i')}}
       <!-- article_image/article_titre -->
       <div class="row">
         <div class="col s12 ">
@@ -121,7 +121,7 @@
         <div class="container" id="postcommentaire">
           <div class="row">
             <div class="col s12 input-field">
-              <img src="{{asset('img/users/')~ app.user.imageName }}" style="-webkit-border-radius:50px; -moz-border-radius:50px; border-radius:50px; width:50px; height:50px; position:absolute; left:-60px">
+              <img src="{{asset('img/users/')~ app.user.imageName }}" style="-webkit-border-radius:50px; -moz-border-radius:50px; border-radius:50px; width:50px; height:50px; position:absolute; left:-60px" class="hide-on-small-only">
               {{ form_label(form.commentaire) }}
               {{ form_widget(form.commentaire,{'attr':{'class':'materialize-textarea'}}) }}
             </div>
@@ -140,79 +140,65 @@
         <!--    FIN  commentaire envoie -->
         <!--     commentaire show -->
         {% for commentaire in commentaires|reverse %}
-        <div class="col s12 "><!-- col s12 m8 offset-m2 l6 offset-l3 -->
-          <div class="card-panel grey lighten-5 z-depth-1">
-            <div class="row valign-wrapper">
-              <!--       avatar_user_commentaire -->
-              <div class="col s2">
-                <img  class="image"
-                src="{{ asset('img/users/')~ commentaire.user.imageName }}" >
-              </div>
-              <!--       fin avatar_user_commentaire -->
-              <!--       commentaire_user_username / commentaire_user -->
-              <div class="col s7">
-                <h6>{{ commentaire.user.username }}</h6>
-                <p class="black-text">
-                  {{ commentaire.commentaire }}
-
-                  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                  {% if commentaire.user.id == app.user.id %}
-                  <a href="{{ path('commentaire_edit' , {'id': commentaire.id }) }}"><i class="material-icons">mode_edit</i><a>
-                    {% endif %}
-                    {% endif %}
-
-                  </p>
-                </div>
-                <!--      fin  commentaire_user_username / commentaire_user -->
-                <!--       j'aime_user_username / date_heure_commentaire_user -->
-                <div class=" col s4 jaime">
-                  {% if commentaire.date %}
-                  <p class="heure ">
-                    {{ commentaire.date| localizeddate('full', 'none') }} à {{commentaire.date|date('H:i')}}
-                    <br>
-                  </p >
+        <ul class="collection" style="padding:12px 0;">
+          <li class="collection-item avatar">
+            <img  class="circle"
+            src="{{ asset('img/users/')~ commentaire.user.imageName }}" >
+            <div class="col m9 s12">
+              <h6>{{ commentaire.user.username }}</h6>
+              <p style="margin-bottom:10px;">
+                {{ commentaire.commentaire }}
+              </p>
+            </div>
+            <div class="col m3 s12">
+              {% if commentaire.date %}
+              <p class="date" style="text-align:justify">
+                Le {{ commentaire.date|date('d/m') }} à {{commentaire.date|date('H\\h\i')}}
+                <br>
+                {% endif %}
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {% if commentaire.user.id == app.user.id %}
+                <a href="{{ path('commentaire_edit' , {'id': commentaire.id }) }}"><i class="material-icons">mode_edit</i> Editer<a>
                   {% endif %}
+                  {% endif %}
+                  <br>
                   <a style="color:red"
                   href="{{ path('commentaire_like_new',
                   {'article':article.id, 'commentaire':commentaire.id}) }}">
                   <i class="material-icons  " style="color:red; position:relative;top:6px;">favorite</i>
                   {{ commentaire.like|length }} j'aime</a>
-                </div>
+                </p>
               </div>
-              <!--       j'aime_user_username / date_commentaire_user -->
-              <!--      modifier_commentaire / supprimer_commentaire -->
-
-              <!--   fin  modifier_commentaire / supprimer_commentaire -->
-            </div>
-          </div>
-          {% endfor %}
+            </li>
+          </ul>
+        {% endfor %}
 
         </div>
       </div>
     </div>
-  {% endblock %}
+    {% endblock %}
 
-{% block fos_user_content %}{% endblock %}
+    {% block fos_user_content %}{% endblock %}
 
 
 
-{% block javascripts %}
-<!-- script -->
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="{{asset('materialize/js/bin/materialize.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/main.js')}}"></script>
-<script type="text/javascript">
-$(".button-collapse").sideNav();
-$("select").material_select();
-</script>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
+    {% block javascripts %}
+    <!-- script -->
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="{{asset('materialize/js/bin/materialize.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
+    <script type="text/javascript">
+    $(".button-collapse").sideNav();
+    $("select").material_select();
+    </script>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
 
-<!-- fin script -->
-{% endblock %}
+    <!-- fin script -->
+    {% endblock %}

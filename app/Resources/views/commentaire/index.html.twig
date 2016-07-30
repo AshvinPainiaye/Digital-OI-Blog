@@ -9,7 +9,7 @@
   <div class="container">
     <div class="row">
 
-      <div class="col s5">
+      <div class="col m5 s12">
 
         <div class="collection">
 
@@ -31,16 +31,16 @@
 
           {% if app.request.get('_route') == 'jaime_postes' %}
           <a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item active">J'aime postés</a>
-{% else %}
-<a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item">J'aime postés</a>
-{% endif %}
+          {% else %}
+          <a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item">J'aime postés</a>
+          {% endif %}
 
 
 
         </div>
       </div>
 
-      <div class="col s7">
+      <div class="col m7 s12">
 
         {% for commentaire in commentaires|reverse %}
 
@@ -52,20 +52,28 @@
               <img src="{{asset('img/users/')~ commentaire.user.imageName }}" alt="" class="circle">
               <span class="title">{{ commentaire.commentaire }}</span>
               <p class="date">
-                {% if commentaire.date %}{{ commentaire.date|date('d/m/y') }}{% endif %}
+              Le {% if commentaire.date %}{{ commentaire.date|date('d/m/y \\à\ H\\h\i') }}{% endif %}
               </p>
             </li>
           </ul>
         </li>
 
-        <!-- <img class="avatar"src="{{asset('img/users/')~ commentaire.user.imageName }}"> -->
 
-        <!-- {#{ commentaire.commentaire }#} | {# if commentaire.date #}{#{ commentaire.date|date('d/m/y') }#}{# endif #} -->
+        <!-- <div class="left-align" style="margin-top:10px;"> -->
+          <div class="row">
+            <div class="col s3" style="margin-top:15px; margin-bottom:5px">
+              <i class="material-icons" style="color:red; position:relative;top:6px;">favorite</i>{{ commentaire.like|length }} j'aime
+            </div>
+            <div class="col s9 right-align" style="margin-top:15px; margin-bottom:5px">
+               {% if is_granted("ROLE_ADMIN") %}
+              <a href="{{ path('comment_instant_delete', {'id': commentaire.id}) }}" style="padding: 0 2rem; color:#000;">SUPPRIMER</a>
+              {% endif %}
+              <a href="{{ path('article_show', { 'id': commentaire.article.id }) }}" class="btn">VOIR</a>
+            </div>
+          </div>
 
-        <div class="right-align" style="margin-top:10px;">
+        <!-- </div> -->
 
-          <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}" class="btn">VOIR</a>
-        </div>
       </article>
 
       {% endfor %}
