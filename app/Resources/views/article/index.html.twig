@@ -34,7 +34,7 @@
       <thead>
         <tr>
           <th>
-         </th>
+          </th>
           <th class="center-align">Articles</th>
           <th>Publié</th>
           <th>Actions</th>
@@ -45,56 +45,54 @@
 
         <tr>
           <td>
-              <a href="{{ path('article_show', { 'id': article.id }) }}">  <img  class="image"src="{{ asset('img/articles/')~  article.imageName }}" > </a>
-            </td>
-            <td>
-              <a href="{{ path('article_show', { 'id': article.id }) }}" style="color:#000"> {{ article.titre | truncate(60, true, '...')  }}</a>
-        </td>
-
-
-        {% if article.disponibilite == 'Publique' %}
-        <td>
-          <div id="checkboxPublique" class="switch">
-            <label>
-              <input disabled type="checkbox">
-              <span class="lever"></span>
-            </label>
-          </div>
-        </td>
-
-        {% else %}
-        <td>
-          <div class="switch">
-            <label>
-              <input disabled type="checkbox">
-              <span class="lever"></span>
-            </label>
-          </div>
-        </td>
-
-        {% endif %}
-
-        <td><a href="{{ path('article_edit', { 'id': article.id }) }}"><i class="material-icons" style="color:#c4e1f8;">mode_edit</i></a>
-          <a href="{{ path('blogpost_instant_delete', { 'id': article.id }) }}" style="color:#ff7043;"><i
-            class="material-icons">delete</i></a>
+            <a href="{{ path('article_show', { 'id': article.id }) }}">  <img  class="image"src="{{ asset('img/articles/')~  article.imageName }}" > </a>
+          </td>
+          <td>
+            <a href="{{ path('article_show', { 'id': article.id }) }}" style="color:#000"> {{ article.titre | truncate(60, true, '...')  }}</a>
           </td>
 
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+          {% if article.disponibilite == 'Publique' %}
+          <td>
+            <div id="checkboxPublique" class="switch">
+              <label>
+                <input disabled type="checkbox">
+                <span class="lever"></span>
+              </label>
+            </div>
+          </td>
 
-    <div class="row">
-      <div class="col s12 center-align">
-        <a href="{{ path('article_new') }}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-        <p>
-          Nouvel article
-        </p>
+          {% else %}
+          <td>
+            <div class="switch">
+              <label>
+                <input disabled type="checkbox">
+                <span class="lever"></span>
+              </label>
+            </div>
+          </td>
+          {% endif %}
 
+          <td><a href="{{ path('article_edit', { 'id': article.id }) }}"><i class="material-icons" style="color:#c4e1f8;">mode_edit</i></a>
+            <a href="{{ path('blogpost_instant_delete', { 'id': article.id }) }}" style="color:#ff7043;"><i
+              class="material-icons">delete</i></a>
+            </td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="row">
+        <div class="col s12 center-align">
+          <a href="{{ path('article_new') }}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+          <p>
+            Nouvel article
+          </p>
+
+        </div>
       </div>
-    </div>
 
-  </div>
-</section>
+    </div>
+  </section>
 
 {% endblock %}

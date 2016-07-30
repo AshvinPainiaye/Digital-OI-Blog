@@ -49,7 +49,12 @@
 
           <ul class="collection">
             <li class="collection-item avatar">
+              {% if commentaire.user.imageName == null %}
+              <img src="{{asset('img/user_icon_default_digital_OI.jpg')}}" class="circle">
+              {% else %}
               <img src="{{asset('img/users/')~ commentaire.user.imageName }}" alt="" class="circle">
+              {% endif %}
+
               <span class="title">{{ commentaire.commentaire }}</span>
               <p class="date">
               Le {% if commentaire.date %}{{ commentaire.date|date('d/m/y \\à\ H\\h\i') }}{% endif %}
@@ -82,45 +87,6 @@
 </div>
 
 
-<!-- <table>
-<thead>
-<tr>
-<th>Id</th>
-<th>Nom de l'article</th>
-<th>Commentaire</th>
-<th>Date</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody>
-{% for commentaire in commentaires %}
-<tr>
-<td><a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">{{ commentaire.id }}</a></td>
-<td>
-{{commentaire.article.titre}}
-</td>
-<td>{{ commentaire.commentaire }}</td>
-<td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d H:i:s') }}{% endif %}</td>
-<td>
-<ul>
-<li>
-<a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">show</a>
-</li>
-<li>
-<a href="{{ path('commentaire_edit', { 'id': commentaire.id }) }}">edit</a>
-</li>
-</ul>
-</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-
-<ul>
-<li>
-<a href="{{ path('commentaire_new') }}">Create a new entry</a>
-</li>
-</ul> -->
 </section>
 
 {% endblock %}

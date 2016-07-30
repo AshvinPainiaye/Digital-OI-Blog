@@ -154,7 +154,14 @@
               <ul id="dropdown1" class="dropdown-content center-align">
 
                 {% if app.user.imageName == null %}
-                <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i> profil</a></li>
+                <li><a href="/profile">
+                  <div class="chips">
+                    <img class="avatarUser"src="{{asset('img/user_icon_default_digital_OI.jpg')}}">
+                    <br>
+                    {{ app.user.username }}
+                  </div>
+                </a>
+              </li>
                 {% else %}
                 <li><a href="/profile">
                   <div class="chips">

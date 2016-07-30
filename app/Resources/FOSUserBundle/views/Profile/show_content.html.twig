@@ -7,7 +7,7 @@
       <div class="card ">
         <div class="card-image">
           {% if app.user.imageName == null %}
-          <a ><i class="fa fa-user" aria-hidden="true"></i> profil</a>
+          <img src="{{asset('img/user_icon_default_digital_OI.jpg')}}">
           {% else %}
           <img src="{{asset('img/users/')~ app.user.imageName }}">
           {% endif %}
@@ -23,7 +23,6 @@
               <span style="font-weight:bold ; color:#166CC7;"> {{ user.username }}
               </span>
               <br>
-              
               {{ 'profile.show.email'|trans }}:
               <span style="font-weight:bold ; color:#166CC7;"> {{ user.email }}
               </span>

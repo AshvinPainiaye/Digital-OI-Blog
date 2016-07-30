@@ -33,7 +33,7 @@ class User extends BaseUser
     private $imageFile;
 
     /**
-    * @ORM\Column(type="string", length=255)
+    * @ORM\Column(type="string", length=255, nullable=true)
     *
     * @var string
     */
@@ -41,7 +41,7 @@ class User extends BaseUser
 
 
     /**
-    * @ORM\Column(type="datetime")
+    * @ORM\Column(type="datetime", nullable=true)
     *
     * @var \DateTime
     */

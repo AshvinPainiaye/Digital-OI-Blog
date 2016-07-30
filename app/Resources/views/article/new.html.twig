@@ -5,17 +5,6 @@
 
   <h1 class="center-align">Créer un article</h1>
 
-  {# {{ form_start(form) }}
-  {{ form_widget(form) }}
-
-  {{ form_widget(form.disponibilite) }}
-
-  <input type="submit" value="PUBLIER" />
-  <a href="#">BROUILLON</a>
-  {{ form_end(form) }} #}
-
-
-
   <div class="row">
     <div class="col s8 offset-s2">
       <div class="card">
@@ -29,12 +18,10 @@
               {{ form_errors(form.titre) }}
             </div>
           </div>
-
         </div>
 
         <div class="card-content">
           <div class="row">
-
             <div class="input-field col s12">
               {{ form_label(form.description) }}
               {{ form_widget(form.description, {'attr':{'class':'validate materialize-textarea'}}) }}
@@ -49,29 +36,27 @@
               {{ form_widget(form.disponibilite) }}
             </div>
 
-
-          <div class="file-field input-field col s6">
-            <div class="btn-floating btn-large waves-effect waves-light tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Photo" style="width:45px !important">
-              <i class="material-icons" style="top:-4px !important; position: relative;">attach_file</i>
-              {{ form_widget(form.imageFile) }}
-            </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text">
+            <div class="file-field input-field col s6">
+              <div class="btn-floating btn-large waves-effect waves-light tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Photo" style="width:45px !important">
+                <i class="material-icons" style="top:-4px !important; position: relative;">attach_file</i>
+                {{ form_widget(form.imageFile) }}
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
             </div>
           </div>
         </div>
+        
+        <div class="card-content">
+          <a href="/article" style="padding: 0 2rem; color:#000;">ANNULER</a>
+          <input class="sauvegarder" type="submit" value="SAUVEGARDER" style="padding: 0 2rem; color:#000;"/>
+        </div>
+
+        {{ form_end(form) }}
       </div>
-
-
-      <div class="card-content">
-        <a href="/article">ANNULER</a>
-        <input class="sauvegarder" type="submit" value="SAUVEGARDER" />
-      </div>
-
-      {{ form_end(form) }}
     </div>
   </div>
-</div>
 
 </section>
 

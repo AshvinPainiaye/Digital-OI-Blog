@@ -15,14 +15,33 @@
 {% block title %}Digital OI - {{ article.titre }}{% endblock %}
 
 {% block lienMenuNavigation %}
-<li class="col s4"><a href="/">ACCUEIL</a></li>
-<li class="col s4"><a href="#!" class="activeLien">ARTICLE</a></li>
+
+<li class="col s4"><a href="/" class="hide-on-small-only">ACCUEIL</a></li>
+<li class="col s4"><a href="/" class="hide-on-med-and-up"><i class="large material-icons">home</i></a></li>
+
+<li class="col s4"><a href="#!" class="activeLien hide-on-small-only">ARTICLE</a></li>
+<li class="col s4"><a href="#!" class="activeLien hide-on-med-and-up"><i class="material-icons">description</i></a></li>
+
+
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-<li class="col s4"><a class="dropdown-button" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+{% if is_granted('ROLE_ADMIN') %}
+<li class="col s4"><a class="dropdown-button hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+<li class="col s4"><a class="dropdown-button hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
+{% else %}
+<li class="col s4"><a class="dropdown-button hide-on-small-only" href="#!" data-activates="dropdown1">UTILISATEUR</a></li>
+<li class="col s4"><a class="dropdown-button hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
+{% endif %}
 
 <ul id="dropdown1" class="dropdown-content">
   {% if app.user.imageName == null %}
-  <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i> profil</a></li>
+  <li><a href="/profile">
+    <div class="chips">
+      <img class="avatarUser"src="{{asset('img/user_icon_default_digital_OI.jpg')}}">
+      <br>
+      {{ app.user.username }}
+    </div>
+  </a>
+</li>
   {% else %}
   <li><a href="/profile">
     <div class="chips">
@@ -64,7 +83,7 @@
               <img class="image_article"
               src="{{ asset('img/articles/')~  article.imageName }}">
               <span class="card-title">
-                <h5 class=" titres center-align">{{ article.titre }}</h5>
+                <h3 class="titres center-align">{{ article.titre }}</h3>
               </span>
             </div>
             <!-- fin article_image/article_titre -->
@@ -121,7 +140,13 @@
         <div class="container" id="postcommentaire">
           <div class="row">
             <div class="col s12 input-field">
+
+              {% if app.user.imageName == null %}
+              <img src="{{asset('img/user_icon_default_digital_OI.jpg')}}" style="-webkit-border-radius:50px; -moz-border-radius:50px; border-radius:50px; width:50px; height:50px; position:absolute; left:-60px" class="hide-on-small-only">
+              {% else %}
               <img src="{{asset('img/users/')~ app.user.imageName }}" style="-webkit-border-radius:50px; -moz-border-radius:50px; border-radius:50px; width:50px; height:50px; position:absolute; left:-60px" class="hide-on-small-only">
+              {% endif %}
+
               {{ form_label(form.commentaire) }}
               {{ form_widget(form.commentaire,{'attr':{'class':'materialize-textarea'}}) }}
             </div>
@@ -142,8 +167,11 @@
         {% for commentaire in commentaires|reverse %}
         <ul class="collection" style="padding:12px 0;">
           <li class="collection-item avatar">
-            <img  class="circle"
-            src="{{ asset('img/users/')~ commentaire.user.imageName }}" >
+            {% if commentaire.user.imageName == null %}
+            <img src="{{asset('img/user_icon_default_digital_OI.jpg')}}" class="circle">
+            {% else %}
+            <img class="circle" src="{{ asset('img/users/')~ commentaire.user.imageName }}">
+            {% endif %}
             <div class="col m9 s12">
               <h6>{{ commentaire.user.username }}</h6>
               <p style="margin-bottom:10px;">
@@ -171,7 +199,7 @@
               </div>
             </li>
           </ul>
-        {% endfor %}
+          {% endfor %}
 
         </div>
       </div>

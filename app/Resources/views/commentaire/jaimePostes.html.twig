@@ -30,7 +30,13 @@
 
         <ul class="collection">
             <li class="collection-item avatar">
+
+              {% if commentaire.user.imageName == null %}
+              <img src="{{asset('img/user_icon_default_digital_OI.jpg')}}" class="circle">
+              {% else %}
               <img src="{{asset('img/users/')~ commentaire.user.imageName }}" alt="" class="circle">
+              {% endif %}
+
                <span class="title">{{ commentaire.commentaire }}</span>
                <p class="date">
                  {% if commentaire.date %}{{ commentaire.date|date('d/m/y') }}{% endif %}

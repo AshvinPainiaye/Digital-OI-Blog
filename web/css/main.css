@@ -6293,9 +6293,6 @@ h5 {
 h6 {
   font-weight: bold; }
 
-.titres {
-  background-color: rgba(255, 255, 255, 0.8); }
-
 .card.large {
   height: 500% !important; }
 
@@ -6333,13 +6330,22 @@ h6 {
 
 /* DEBUT CARD */
 .card .card-image .card-title {
-  color: #2196F3;
-  background-color: rgba(255, 255, 255, 0.8);
-  font-size: 25px; }
+  color: #fff;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.95) 0, transparent 100%);
+  font-size: 25px;
+  width: 100%; }
 .card .card-content p {
   color: #000; }
 
 /* FIN CARD */
+/* DEBUT GESTION */
+#gestion table {
+  margin-top: 50px; }
+
+.editRoles label {
+  margin-right: 100px; }
+
+/* FIN GESTION */
 @media only screen and (max-width: 600px) {
   .activeLien {
     height: 56px !important; }
@@ -6354,7 +6360,11 @@ h6 {
 
   h1 {
     font-size: 40px;
-    margin-bottom: 30px; } }
+    margin-bottom: 30px; }
+
+  #gestion table, #mes-articles table {
+    display: block;
+    overflow-x: auto; } }
 @media only screen and (min-width: 601px) {
   #dropdown1 {
     width: 30% !important;

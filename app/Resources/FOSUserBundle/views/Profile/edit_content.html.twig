@@ -52,17 +52,14 @@
                   <i class="material-icons">perm_identity</i>
                 </div>
                 <div class="profile_edit_photo">
+                  {{ form_widget(form.imageFile) }}
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                  </div>
 
-                {{ form_widget(form.imageFile) }}
-                <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text">
                 </div>
-
-              </div>
-
               </div>
             </div>
-
 
             <div class="row">
               <div class="input-field col s12">
@@ -72,16 +69,12 @@
               </div>
             </div>
 
-
           </div>
 
           <div class="card-action">
             {{ form_widget(form) }}
             <div>
-
               <input class="btn" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
-
-
             </div>
             {{ form_end(form) }}
           </div>
