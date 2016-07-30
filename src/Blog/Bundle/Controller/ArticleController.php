@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Blog\Bundle\Entity\Article;
 use Blog\Bundle\Form\ArticleType;
-
 use Blog\Bundle\Entity\Commentaire;
 use Blog\Bundle\Form\CommentaireType;
 
@@ -196,10 +195,6 @@ private function createDeleteForm(Article $article)
 
 
 
-
-
-
-
 /**
 * Ajouter un like sur un commentaire
 * @Method({"GET", "POST"})
@@ -246,17 +241,17 @@ public function LikeDislikeToArticle(Article $article, Request $request) {
 
 
 /**
- * Supprime un article depuis "mes articles"
- *
- * @Route("/{id}/instant", name="blogpost_instant_delete")
- */
+* Supprime un article depuis "mes articles"
+*
+* @Route("/{id}/instant", name="blogpost_instant_delete")
+*/
 public function deleteInstantAction(Article $article) {
-    if ($article) {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($article);
-        $em->flush();
-    }
-    return $this->redirectToRoute('article_index');
+  if ($article) {
+    $em = $this->getDoctrine()->getManager();
+    $em->remove($article);
+    $em->flush();
+  }
+  return $this->redirectToRoute('article_index');
 }
 
 

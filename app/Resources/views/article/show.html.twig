@@ -42,14 +42,14 @@
     </div>
   </a>
 </li>
-  {% else %}
-  <li><a href="/profile">
-    <div class="chips">
-      <img class="avatarUser"src="{{asset('img/users/')~ app.user.imageName }}">
-      <br>
-      {{ app.user.username }}
-    </div>
-  </a>
+{% else %}
+<li><a href="/profile">
+  <div class="chips">
+    <img class="avatarUser"src="{{asset('img/users/')~ app.user.imageName }}">
+    <br>
+    {{ app.user.username }}
+  </div>
+</a>
 </li>
 {% endif %}
 {% if is_granted('ROLE_ADMIN') %}
@@ -64,7 +64,8 @@
 </ul>
 
 {% else %}
-<li><a href="/login">CONNEXION</a></li>
+<li class="col s4"><a href="/login" class="hide-on-small-only">CONNEXION</a></li>
+<li class="col s4"><a href="/login" class="hide-on-med-and-up"><i class="material-icons">input</i></a></li>
 {% endif %}
 {% endblock lienMenuNavigation %}
 
@@ -89,10 +90,14 @@
             <!-- fin article_image/article_titre -->
             <!-- article_j'aime/article_nbr_commentaire -->
             <div class="center-align" style="margin-top:20px;">
+              {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
               <a style="color:red" href="{{ path('article_like_new',{'id':article.id}) }}"><i class="material-icons" style="color:red; position:relative;top:6px;">favorite</i>{{ article.like|length }} j'aime</a>
+              {% else %}
+              <span style="color:red"><i class="material-icons" style="color:red; position:relative;top:6px;">favorite</i>{{ article.like|length }} j'aime</span>
+              {% endif %}
               {% for commentaire in commentaires %}
               {% if loop.first %}
-              <a href="#postcommentaire" style="margin:auto 20px;">
+              <a href="#postcommentaire" style="margin:auto 20px; color: #000;">
                 <i class="material-icons" style="position:relative; top:6px;">comment</i>
                 {{ commentaires|length }} commentaires</a>
                 {% endif %}
@@ -115,7 +120,11 @@
           <div class="row">
             <div class="col s12 center-align">
 
+              {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
               <a style="color:red" href="{{ path('article_like_new',{'id':article.id}) }}"><i class="material-icons" style="color:red; position:relative;top:6px;">favorite</i>{{ article.like|length }} j'aime</a>
+              {% else %}
+              <span style="color:red"><i class="material-icons" style="color:red; position:relative;top:6px;">favorite</i>{{ article.like|length }} j'aime</span>
+              {% endif %}
 
 
               <span style="position:relative; top:5px !important; margin:auto 20px;">
@@ -190,43 +199,54 @@
                   {% endif %}
                   {% endif %}
                   <br>
+
+                  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
                   <a style="color:red"
                   href="{{ path('commentaire_like_new',
                   {'article':article.id, 'commentaire':commentaire.id}) }}">
                   <i class="material-icons  " style="color:red; position:relative;top:6px;">favorite</i>
                   {{ commentaire.like|length }} j'aime</a>
-                </p>
-              </div>
-            </li>
-          </ul>
-          {% endfor %}
+                  {% else %}
 
+                  <span style="color:red">
+                    <i class="material-icons  " style="color:red; position:relative;top:6px;">favorite</i>
+                    {{ commentaire.like|length }} j'aime</span>
+                    {% endif %}
+
+
+                  </p>
+                </div>
+              </li>
+            </ul>
+            {% endfor %}
+
+          </div>
         </div>
       </div>
-    </div>
-    {% endblock %}
+      {% endblock %}
 
-    {% block fos_user_content %}{% endblock %}
-
+      {% block fos_user_content %}{% endblock %}
 
 
-    {% block javascripts %}
-    <!-- script -->
-    <script src="//code.jquery.com/jquery.min.js"></script>
-    <script src="{{asset('materialize/js/bin/materialize.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
-    <script type="text/javascript">
-    $(".button-collapse").sideNav();
-    $("select").material_select();
-    </script>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    </script>
 
-    <!-- fin script -->
-    {% endblock %}
+      {% block javascripts %}
+      <!-- script -->
+      <script src="//code.jquery.com/jquery.min.js"></script>
+      <script src="{{asset('materialize/js/bin/materialize.min.js')}}"></script>
+      <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
+      <script type="text/javascript">
+      $(".button-collapse").sideNav();
+      $("select").material_select();
+      </script>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+      </script>
+
+      <!-- fin script -->
+      {% endblock %}

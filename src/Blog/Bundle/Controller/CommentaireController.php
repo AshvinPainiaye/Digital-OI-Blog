@@ -8,8 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Blog\Bundle\Entity\Commentaire;
 use Blog\Bundle\Form\CommentaireType;
-
-
 use Blog\Bundle\Entity\Article;
 
 
@@ -138,10 +136,8 @@ class CommentaireController extends Controller
       $em->remove($commentaire);
       $em->flush();
     }
-
     // return $this->redirectToRoute('commentaire_index');
     return $this->redirectToRoute('accueil');
-
   }
 
   /**
@@ -227,24 +223,20 @@ class CommentaireController extends Controller
     ));
 
   }
-
-
-
-
+  
   /**
- * Supprime un commentaire depuis "commentaire"
- *
- * @Route("/{id}/instant", name="comment_instant_delete")
- */
-public function deleteInstantAction(Commentaire $commentaire)
-{
+  * Supprime un commentaire depuis "commentaire"
+  *
+  * @Route("/{id}/instant", name="comment_instant_delete")
+  */
+  public function deleteInstantAction(Commentaire $commentaire)
+  {
     if ($commentaire) {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($commentaire);
-        $em->flush();
+      $em = $this->getDoctrine()->getManager();
+      $em->remove($commentaire);
+      $em->flush();
     }
     return $this->redirectToRoute('commentaire_index');
-}
-
+  }
 
 }
