@@ -41,11 +41,16 @@
             <ul class="center-align navCenter">
               {% block lienMenuNavigation %}
               {% if app.request.get('_route') == 'accueil' %}
-              <li class="col s6"><a href="/" class="activeLien">ACCUEIL</a></li>
+              <li class="col s6"><a href="/" class="activeLien hide-on-small-only">ACCUEIL</a></li>
+              <li class="col s6"><a href="/" class="activeLien hide-on-med-and-up"><i class="large material-icons">home</i></a></li>
               {% elseif app.request.get('_route') == 'allArticle' %}
-              <li class="col s6"><a href="/" class="activeLien">ACCUEIL</a></li>
+              <li class="col s6"><a href="/" class="activeLien hide-on-small-only">ACCUEIL</a></li>
+              <li class="col s6"><a href="/" class="activeLien hide-on-med-and-up"><i class="large material-icons">home</i></a></li>
               {% else %}
-              <li class="col s6"><a href="/">ACCUEIL</a></li>
+
+              <li class="col s6"><a href="/" class="hide-on-small-only">ACCUEIL</a></li>
+              <li class="col s6"><a href="/" class="hide-on-med-and-up"><i class="large material-icons">home</i></a></li>
+
               {% endif %}
               {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
@@ -53,55 +58,98 @@
 
 
               {% if app.request.get('_route') == 'fos_user_profile_show' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% elseif app.request.get('_route') == 'fos_user_change_password' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% elseif app.request.get('_route') == 'fos_user_profile_edit' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% elseif app.request.get('_route') == '_manage' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% elseif app.request.get('_route') == '_edit' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% elseif app.request.get('_route') == 'blog__default_public' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% elseif app.request.get('_route') == 'blog__default_brouillon' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% elseif app.request.get('_route') == 'jaime_recu' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% elseif app.request.get('_route') == 'commentaire_index' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% elseif app.request.get('_route') == 'article_edit' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% elseif app.request.get('_route') == 'article_new' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% elseif app.request.get('_route') == 'article_index' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% elseif app.request.get('_route') == 'commentaire_postes' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% elseif app.request.get('_route') == 'jaime_postes' %}
-              <li class="col s6"><a class="dropdown-button activeLien" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
 
               {% else %}
-              <li class="col s6"><a class="dropdown-button" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button hide-on-small-only" href="#!" data-activates="dropdown1">ADMINISTRATION</a></li>
+              <li class="col s6"><a class="dropdown-button hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
               {% endif %}
 
               {% else %}
-              <li class="col s6"><a class="dropdown-button" href="#!" data-activates="dropdown1">UTILISATEUR</a></li>
+
+              {% if app.request.get('_route') == 'fos_user_profile_show' %}
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">UTILISATEUR</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
+
+              {% elseif app.request.get('_route') == 'fos_user_change_password' %}
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">UTILISATEUR</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
+
+              {% elseif app.request.get('_route') == 'fos_user_profile_edit' %}
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">UTILISATEUR</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
+
+              {% elseif app.request.get('_route') == 'commentaire_index' %}
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">UTILISATEUR</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
+
+              {% elseif app.request.get('_route') == 'commentaire_postes' %}
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">UTILISATEUR</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
+
+              {% elseif app.request.get('_route') == 'jaime_postes' %}
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-small-only" href="#!" data-activates="dropdown1">UTILISATEUR</a></li>
+              <li class="col s6"><a class="dropdown-button activeLien hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
+
+              {% else %}
+              <li class="col s6"><a class="dropdown-button hide-on-small-only" href="#!" data-activates="dropdown1">UTILISATEUR</a></li>
+              <li class="col s6"><a class="dropdown-button hide-on-med-and-up" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
               {% endif %}
 
+              {% endif %}
 
               <ul id="dropdown1" class="dropdown-content center-align">
 
@@ -132,11 +180,15 @@
 
 
             {% if app.request.get('_route') == 'fos_user_security_login' %}
-            <li class="col s6"><a href="/login" class="activeLien">CONNEXION</a></li>
+            <li class="col s6"><a href="/login" class="activeLien hide-on-small-only">CONNEXION</a></li>
+            <li class="col s6"><a href="/login" class="activeLien hide-on-med-and-up"><i class="material-icons">input</i></a></li>
+
             {% elseif app.request.get('_route') == 'fos_user_registration_register' %}
-            <li class="col s6"><a href="/login" class="activeLien">CONNEXION</a></li>
+            <li class="col s6"><a href="/login" class="activeLien hide-on-small-only">CONNEXION</a></li>
+            <li class="col s6"><a href="/login" class="activeLien hide-on-med-and-up"><i class="material-icons">input</i></a></li>
             {% else %}
-            <li class="col s6"><a href="/login">CONNEXION</a></li>
+            <li class="col s6"><a href="/login" class="hide-on-small-only">CONNEXION</a></li>
+            <li class="col s6"><a href="/login" class="hide-on-med-and-up"><i class="material-icons">input</i></a></li>
             {% endif %}
             {% endif %}
             {% endblock lienMenuNavigation %}

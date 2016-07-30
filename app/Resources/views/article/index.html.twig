@@ -9,9 +9,23 @@
     <nav class="center-align">
       <div class="row">
         <div class="col s12">
-            <a href="/article" class="waves-effect waves-light btn">TOUT</a>
-            <a href="/publique" class="waves-effect waves-light btn">Publique</a>
-            <a href="/brouillon" class="waves-effect waves-light btn">Brouillon</a>
+          {% if app.request.get('_route') == 'article_index' %}
+          <a href="/article" style="padding: 0 2rem; color:#fff;">TOUT</a>
+          {% else %}
+          <a href="/article" style="padding: 0 2rem; color:#fff; opacity:0.5;">TOUT</a>
+          {% endif %}
+
+          {% if app.request.get('_route') == 'blog__default_public' %}
+          <a href="/publique" style="padding: 0 2rem; color:#fff;">Publique</a>
+          {% else %}
+          <a href="/publique" style="padding: 0 2rem; color:#fff; opacity:0.5;">Publique</a>
+          {% endif %}
+
+          {% if app.request.get('_route') == 'blog__default_brouillon' %}
+          <a href="/brouillon" style="padding: 0 2rem; color:#fff;">Brouillon</a>
+          {% else %}
+          <a href="/brouillon" style="padding: 0 2rem; color:#fff; opacity:0.5;">Brouillon</a>
+          {% endif %}
         </div>
       </div>
     </nav>
@@ -20,10 +34,8 @@
       <thead>
         <tr>
           <th>
-
-          </th>
+         </th>
           <th class="center-align">Articles</th>
-
           <th>Publié</th>
           <th>Actions</th>
         </tr>
@@ -33,11 +45,10 @@
 
         <tr>
           <td>
-            <a href="{{ path('article_show', { 'id': article.id }) }}">  <img  class="image"src="{{ asset('img/articles/')~  article.imageName }}" > </a>
-          </td>
-          <td>   <h6 >
-            <a href="{{ path('article_show', { 'id': article.id }) }}"> {{ article.titre | truncate(60, true, '...')  }}</a>
-          </h6 >
+              <a href="{{ path('article_show', { 'id': article.id }) }}">  <img  class="image"src="{{ asset('img/articles/')~  article.imageName }}" > </a>
+            </td>
+            <td>
+              <a href="{{ path('article_show', { 'id': article.id }) }}" style="color:#000"> {{ article.titre | truncate(60, true, '...')  }}</a>
         </td>
 
 
@@ -63,10 +74,10 @@
 
         {% endif %}
 
-        <td><a href="{{ path('article_edit', { 'id': article.id }) }}"><i class="material-icons">mode_edit</i></a>
-          <a href="{{ path('blogpost_instant_delete', { 'id': article.id }) }}"><i
+        <td><a href="{{ path('article_edit', { 'id': article.id }) }}"><i class="material-icons" style="color:#c4e1f8;">mode_edit</i></a>
+          <a href="{{ path('blogpost_instant_delete', { 'id': article.id }) }}" style="color:#ff7043;"><i
             class="material-icons">delete</i></a>
-        </td>
+          </td>
 
         </tr>
         {% endfor %}
