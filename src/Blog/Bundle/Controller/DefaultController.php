@@ -61,7 +61,7 @@ class DefaultController extends Controller
 
 
     /**
-     * @Route("/all/articles")
+     * @Route("/all/articles", name="allArticle")
      */
     public function allArticlesAction()
     {
@@ -69,7 +69,7 @@ class DefaultController extends Controller
 
       $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Publique'));
 
-      return $this->render('BlogBundle:Default:allArticle.html.twig', array(
+      return $this->render('BlogBundle:Default:index.html.twig', array(
           'articles' => $articles,
       ));
 

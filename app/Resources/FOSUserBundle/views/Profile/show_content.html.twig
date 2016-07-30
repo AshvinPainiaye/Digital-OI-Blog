@@ -1,34 +1,39 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="container">
-      <div class="row">
-<div class="col s6 m8 offset-m2 l6 offset-l3">
-    <h2 class="header center-align">Profile</h2>
-    <div class="card ">
-      <div class="card-image">
-            {% if app.user.imageName == null %}
-      <a ><i class="fa fa-user" aria-hidden="true"></i> profil</a>
-            {% else %}
-            <img src="{{asset('img/users/')~ app.user.imageName }}">
-            {% endif %}
-      </div>
-      <div class="card-stacked">
-        <div class="card-content">
-           <p class="">{{ 'profile.show.username'|trans }}:
-                 <span style="font-weight:bold ; color:#166CC7;"> {{ user.username }}
-                 </span>
-           </p>
-           <br>
-           <p class="">{{ 'profile.show.email'|trans }}:
-                 <span style="font-weight:bold ; color:#166CC7;"> {{ user.email }}
-                 </span>
-           </p>
+  <div class="row">
+    <div class="col s12 m8 offset-m2 l6 offset-l3">
+      <h2 class="header center-align">Profile</h2>
+      <div class="card ">
+        <div class="card-image">
+          {% if app.user.imageName == null %}
+          <a ><i class="fa fa-user" aria-hidden="true"></i> profil</a>
+          {% else %}
+          <img src="{{asset('img/users/')~ app.user.imageName }}">
+          {% endif %}
         </div>
-        <div class="card-action">
-          <a href="/profile/change-password">Modifier mot de passe</a> | <a href="/profile/edit">Modifier compte</a>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>
+              Nom:<span style="font-weight:bold; color:#166CC7;"> {{ user.nom }}</span>
+              <br>
+              Prenom:<span style="font-weight:bold; color:#166CC7;"> {{ user.prenom }}</span>
+              <br>
+              {{ 'profile.show.username'|trans }}:
+              <span style="font-weight:bold ; color:#166CC7;"> {{ user.username }}
+              </span>
+              <br>
+              
+              {{ 'profile.show.email'|trans }}:
+              <span style="font-weight:bold ; color:#166CC7;"> {{ user.email }}
+              </span>
+            </p>
+          </div>
+          <div class="card-action center-align">
+            <a href="/profile/change-password" style="color:#000;">Modifier mot de passe</a> <a href="/profile/edit" style="color:#000;">Modifier compte</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>

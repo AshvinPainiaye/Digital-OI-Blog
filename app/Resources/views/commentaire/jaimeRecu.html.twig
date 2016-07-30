@@ -1,13 +1,100 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<section id="commentaire">
 
-{% for comments in commentaires %}
+  <h1 class="center-align">Commentaires</h1>
 
-{{dump(comments)}}
 
-{{comments.commentaire}}
+  <div class="container">
+    <div class="row">
 
+      <div class="col s5">
+
+        <div class="collection">
+          {% if is_granted('ROLE_ADMIN') %}
+          <a href="{{ path('commentaire_index')}}" class="collection-item">Tout</a>
+        {% endif %}
+        <a href="{{ path('commentaire_postes',{'id':user.id}) }}" class="collection-item">Postés</a>
+        <a href="{{ path('jaime_recu',{'id':user.id}) }}" class="collection-item active">J'aime reçus</a>
+        <a href="{{ path('jaime_postes',{'id':user.id}) }}" class="collection-item">J'aime postés</a>
+      </div>
+    </div>
+
+    <div class="col s7">
+
+      {% for commentaire in commentaires|reverse %}
+      <article>
+        <h3 class="center-align">{{commentaire.article.titre}}</h3>
+
+        <ul class="collection">
+            <li class="collection-item avatar">
+              <img src="{{asset('img/users/')~ commentaire.user.imageName }}" alt="" class="circle">
+               <span class="title">{{ commentaire.commentaire }}</span>
+               <p class="date">
+                 {% if commentaire.date %}{{ commentaire.date|date('d/m/y') }}{% endif %}
+               </p>
+            </li>
+          </ul>
+        </li>
+        J'aime reçu de la part de : {{dump(commentaire.like)}}
+
+        <!-- <img class="avatar"src="{{asset('img/users/')~ commentaire.user.imageName }}"> -->
+
+        <!-- {#{ commentaire.commentaire }#} | {# if commentaire.date #}{#{ commentaire.date|date('d/m/y') }#}{# endif #} -->
+
+        <div class="right-align" style="margin-top:10px;">
+
+          <a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}" class="btn">VOIR</a>
+        </div>
+      </article>
+
+    {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+
+<!-- <table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Nom de l'article</th>
+<th>Commentaire</th>
+<th>Date</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+{% for commentaire in commentaires %}
+<tr>
+<td><a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">{{ commentaire.id }}</a></td>
+<td>
+{{commentaire.article.titre}}
+</td>
+<td>{{ commentaire.commentaire }}</td>
+<td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+<td>
+<ul>
+<li>
+<a href="{{ path('commentaire_show', { 'id': commentaire.id }) }}">show</a>
+</li>
+<li>
+<a href="{{ path('commentaire_edit', { 'id': commentaire.id }) }}">edit</a>
+</li>
+</ul>
+</td>
+</tr>
 {% endfor %}
+</tbody>
+</table>
+
+<ul>
+<li>
+<a href="{{ path('commentaire_new') }}">Create a new entry</a>
+</li>
+</ul> -->
+</section>
 
 {% endblock %}

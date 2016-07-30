@@ -192,9 +192,9 @@ class CommentaireController extends Controller
   {
     $user = $this->getUser();
     $userId = $user->getId();
-    $comments = $user->getCommentairelike();
-    return $this->render('commentaire/jaimePostes.html.twig', array(
-      'commentaires' => $comments,
+    $commentaires = $user->getCommentairelike();
+    return $this->render('commentaire/index.html.twig', array(
+      'commentaires' => $commentaires,
       'user' => $user,
     ));
   }
@@ -203,7 +203,7 @@ class CommentaireController extends Controller
   /**
   * Lister mes commentaires qui ont été liké
   *
-  * @Route("/jaime/{id}", name="jaime_recu")
+  * @Route("/jaime/recu/{id}", name="jaime_recu")
   * @Method("GET")
   */
   public function jaimeRecuAction()
@@ -212,21 +212,39 @@ class CommentaireController extends Controller
     $user = $this->getUser();
     $userId = $user->getId();
 
-    $comments = array();
-    $comments2 = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(['user' => $userId]);
-    foreach ($comments2 as $comment) {
-      foreach ($comment->getLike() as $liker) {
-        array_push($comments, $comment);
+    $commentaires = array();
+    $commentaires2 = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(['user' => $userId]);
+    foreach ($commentaires2 as $commentaire) {
+      foreach ($commentaire->getLike() as $liker) {
+        array_push($commentaires, $commentaire);
         break;
       }
     }
 
     return $this->render('commentaire/jaimeRecu.html.twig', array(
-      'commentaires' => $comments,
+      'commentaires' => $commentaires,
+      'user' => $user,
     ));
 
   }
 
+
+
+
+  /**
+ * Supprime un commentaire depuis "commentaire"
+ *
+ * @Route("/{id}/instant", name="comment_instant_delete")
+ */
+public function deleteInstantAction(Commentaire $commentaire)
+{
+    if ($commentaire) {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($commentaire);
+        $em->flush();
+    }
+    return $this->redirectToRoute('commentaire_index');
+}
 
 
 }

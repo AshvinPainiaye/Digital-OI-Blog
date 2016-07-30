@@ -6,7 +6,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -32,11 +32,20 @@ class User extends BaseUser
     private $imageFile;
 
     /**
-    * @ORM\Column(type="string", length=255, nullable=true)
+    * @ORM\Column(type="string", length=255)
     *
     * @var string
     */
     private $imageName;
+
+
+    /**
+    * @ORM\Column(type="datetime")
+    *
+    * @var \DateTime
+    */
+    private $updatedAt;
+
 
     /**
         * @ORM\Column(type="datetime", nullable=true)
@@ -86,6 +95,11 @@ class User extends BaseUser
      */
     public $articlelike;
 
+
+
+
+
+
     public function __construct()
     {
         parent::__construct();
@@ -118,6 +132,7 @@ class User extends BaseUser
     }
 
     /**
+<<<<<<< HEAD
  * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
  * of 'UploadedFile' is injected into this setter to trigger the  update. If this
  * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
@@ -151,6 +166,29 @@ public function setImageFile(File $image = null)
 
 
 
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return User
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
 
     /**
      * Set prenom
