@@ -91,34 +91,6 @@ class CommentaireController extends Controller
     ));
   }
 
-  // /**
-  // * Displays a form to edit an existing Commentaire entity.
-  // *
-  // * @Route("/{id}/edit", name="commentaire_edit")
-  // * @Method({"GET", "POST"})
-  // */
-  // public function editAction(Request $request, Commentaire $commentaire)
-  // {
-  //   $deleteForm = $this->createDeleteForm($commentaire);
-  //   $editForm = $this->createForm('Blog\Bundle\Form\CommentaireType', $commentaire);
-  //   $editForm->handleRequest($request);
-  //
-  //   if ($editForm->isSubmitted() && $editForm->isValid()) {
-  //     $em = $this->getDoctrine()->getManager();
-  //     $em->persist($commentaire);
-  //     $em->flush();
-  //
-  //     // return $this->redirectToRoute('commentaire_edit', array('id' => $commentaire->getId()));
-  //     return $this->redirectToRoute('accueil');
-  //
-  //   }
-  //
-  //   return $this->render('commentaire/edit.html.twig', array(
-  //     'commentaire' => $commentaire,
-  //     'edit_form' => $editForm->createView(),
-  //     'delete_form' => $deleteForm->createView(),
-  //   ));
-  // }
 
   /**
   * Displays a form to edit an existing Commentaire entity.
@@ -226,9 +198,9 @@ class CommentaireController extends Controller
   /**
   * Supprime un commentaire depuis "commentaire"
   *
-  * @Route("/{id}/instant", name="comment_instant_delete")
+  * @Route("/{id}/suppression", name="commentaire_suppression")
   */
-  public function deleteInstantAction(Commentaire $commentaire)
+  public function commentaire_suppressionAction(Commentaire $commentaire)
   {
     if ($commentaire) {
       $em = $this->getDoctrine()->getManager();

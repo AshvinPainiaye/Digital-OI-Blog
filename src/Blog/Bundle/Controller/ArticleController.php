@@ -243,9 +243,9 @@ public function LikeDislikeToArticle(Article $article, Request $request) {
 /**
 * Supprime un article depuis "mes articles"
 *
-* @Route("/{id}/instant", name="blogpost_instant_delete")
+* @Route("/{id}/suppression", name="article_suppression")
 */
-public function deleteInstantAction(Article $article) {
+public function article_suppressionAction(Article $article) {
   if ($article) {
     $em = $this->getDoctrine()->getManager();
     $em->remove($article);

@@ -73,7 +73,7 @@
           </div>
           <div class="col s9 right-align" style="margin-top:15px; margin-bottom:5px">
             {% if is_granted("ROLE_ADMIN") %}
-            <a href="{{ path('comment_instant_delete', {'id': commentaire.id}) }}" style="padding: 0 2rem; color:#000;">SUPPRIMER</a>
+            <a href="{{ path('commentaire_suppression', {'id': commentaire.id}) }}" style="padding: 0 2rem; color:#000;">SUPPRIMER</a>
             {% endif %}
             <a href="{{ path('article_show', { 'id': commentaire.article.id }) }}" class="btn">VOIR</a>
           </div>
