@@ -27,6 +27,13 @@
 
         <div class="row">
           <div class="input-field col s12">
+            {{form_widget(edit_form.nom)}}
+            <label class="active" for="username">Nom</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
             {{form_widget(edit_form.roles, {'attr':{'class':'editRoles'}}) }}
             <label class="active" for="username">Roles</label>
           </div>

@@ -43,7 +43,6 @@
 
       <div class="col m7 s12">
         {% for commentaire in commentaires|reverse %}
-
         <article>
           <h3 class="center-align">{{commentaire.article.titre}}</h3>
 
@@ -74,6 +73,12 @@
           <div class="col s9 right-align" style="margin-top:15px; margin-bottom:5px">
             {% if is_granted("ROLE_ADMIN") %}
             <a href="{{ path('commentaire_suppression', {'id': commentaire.id}) }}" style="padding: 0 2rem; color:#000;">SUPPRIMER</a>
+            {% else %}
+            {% if app.request.get('_route') == 'commentaire_index' %}
+              {% if commentaire.user.id == app.user.id %}
+              <a href="{{ path('commentaire_suppression', {'id': commentaire.id}) }}" style="padding: 0 2rem; color:#000;">SUPPRIMER</a>
+              {% endif %}
+              {% endif %}
             {% endif %}
             <a href="{{ path('article_show', { 'id': commentaire.article.id }) }}" class="btn">VOIR</a>
           </div>
