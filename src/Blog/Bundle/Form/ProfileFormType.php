@@ -14,7 +14,8 @@ class ProfileFormType extends AbstractType
     {
 
         $builder
-        ->add('nom')
+        // ->add('nom', UserType::class)
+        ->add('nom', null, array('label' => 'form.nom'))
         ->add('prenom')
         ->add('imageFile', VichImageType::class, array('label' => ' ', 'required' => false))
         ;
