@@ -30,7 +30,7 @@ class ArticleController extends Controller
 
     $em = $this->getDoctrine()->getManager();
     $user = $this->getUser();
-    $articles = $em->getRepository('BlogBundle:Article')->findAll();/*By(['user'=>$user]);*/
+    $articles = $em->getRepository('BlogBundle:Article')->findAll();
     return $this->render('article/index.html.twig', array(
       'articles' => $articles,
       'user' => $user,
@@ -59,7 +59,7 @@ class ArticleController extends Controller
       $em->persist($article);
       $em->flush();
 
-    return $this->redirectToRoute('accueil'/*, array('id' => $article->getId())*/);
+    return $this->redirectToRoute('accueil');
   }
 
   return $this->render('article/new.html.twig', array(
