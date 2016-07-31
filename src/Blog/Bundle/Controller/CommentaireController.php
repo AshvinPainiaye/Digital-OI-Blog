@@ -91,13 +91,42 @@ class CommentaireController extends Controller
     ));
   }
 
+  // /**
+  // * Displays a form to edit an existing Commentaire entity.
+  // *
+  // * @Route("/{id}/edit", name="commentaire_edit")
+  // * @Method({"GET", "POST"})
+  // */
+  // public function editAction(Request $request, Commentaire $commentaire)
+  // {
+  //   $deleteForm = $this->createDeleteForm($commentaire);
+  //   $editForm = $this->createForm('Blog\Bundle\Form\CommentaireType', $commentaire);
+  //   $editForm->handleRequest($request);
+  //
+  //   if ($editForm->isSubmitted() && $editForm->isValid()) {
+  //     $em = $this->getDoctrine()->getManager();
+  //     $em->persist($commentaire);
+  //     $em->flush();
+  //
+  //     // return $this->redirectToRoute('commentaire_edit', array('id' => $commentaire->getId()));
+  //     return $this->redirectToRoute('accueil');
+  //
+  //   }
+  //
+  //   return $this->render('commentaire/edit.html.twig', array(
+  //     'commentaire' => $commentaire,
+  //     'edit_form' => $editForm->createView(),
+  //     'delete_form' => $deleteForm->createView(),
+  //   ));
+  // }
+
   /**
   * Displays a form to edit an existing Commentaire entity.
   *
-  * @Route("/{id}/edit", name="commentaire_edit")
+  * @Route("/{id}/article/{articleId}/edit", name="commentaire_edit")
   * @Method({"GET", "POST"})
   */
-  public function editAction(Request $request, Commentaire $commentaire)
+  public function editAction(Request $request, Commentaire $commentaire , Article $articleId)
   {
     $deleteForm = $this->createDeleteForm($commentaire);
     $editForm = $this->createForm('Blog\Bundle\Form\CommentaireType', $commentaire);
@@ -108,9 +137,7 @@ class CommentaireController extends Controller
       $em->persist($commentaire);
       $em->flush();
 
-      // return $this->redirectToRoute('commentaire_edit', array('id' => $commentaire->getId()));
-      return $this->redirectToRoute('accueil');
-
+      return $this->redirectToRoute('article_show', array('id' => $articleId->getId()));
     }
 
     return $this->render('commentaire/edit.html.twig', array(
@@ -119,6 +146,7 @@ class CommentaireController extends Controller
       'delete_form' => $deleteForm->createView(),
     ));
   }
+
 
   /**
   * Deletes a Commentaire entity.
@@ -136,8 +164,8 @@ class CommentaireController extends Controller
       $em->remove($commentaire);
       $em->flush();
     }
-    // return $this->redirectToRoute('commentaire_index');
     return $this->redirectToRoute('accueil');
+
   }
 
   /**

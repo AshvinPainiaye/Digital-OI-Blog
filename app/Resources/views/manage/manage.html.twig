@@ -10,6 +10,9 @@
         <table class="bordered">
           <thead>
             <tr>
+              <th>
+
+              </th>
               <th>Nom d'utilisateur</th>
               <th>Email</th>
               <th>Roles</th>
@@ -20,6 +23,14 @@
           <tbody>
             {% for user in listeUsers %}
             <tr>
+              <td>
+
+              {% if user.imageName == null %}
+              <img src="{{asset('img/user_icon_default_digital_OI.jpg')}}" class="avatarUser">
+              {% else %}
+              <img class="avatarUser" src="{{ asset('img/users/')~ user.imageName }}">
+              {% endif %}
+            </td>
               <td>{{user.username}}</td>
               <td>{{user.email}}</td>
               {% if 'ROLE_SUPER_ADMIN' in user.roles %}
