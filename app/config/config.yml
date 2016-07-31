@@ -76,8 +76,8 @@ fos_user:
         form:
             type: Blog\Bundle\Form\ProfileFormType
     registration:
-        confirmation:
-            enabled: true
+        # confirmation:
+        #     enabled: true
         form:
             type: Blog\Bundle\Form\RegistrationFormType
             # if you are using Symfony < 2.8 you should use the type name instead
