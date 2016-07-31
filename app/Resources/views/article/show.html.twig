@@ -95,11 +95,20 @@
               {% else %}
               <span style="color:red"><i class="material-icons" style="color:red; position:relative;top:6px;">favorite</i>{{ article.like|length }} j'aime</span>
               {% endif %}
+              {% if article.commentaire is empty %}
+              <a href="#postcommentaire" style="margin:auto 20px; color: #000;">
+                <i class="material-icons" style="position:relative; top:6px;">comment</i> 0 commentaire</a>
+              {% endif %}
               {% for commentaire in commentaires %}
               {% if loop.first %}
               <a href="#postcommentaire" style="margin:auto 20px; color: #000;">
                 <i class="material-icons" style="position:relative; top:6px;">comment</i>
+                {% if commentaires|length == 1 %}
+                {{ commentaires|length }} commentaire</a>
+                {% else %}
                 {{ commentaires|length }} commentaires</a>
+                {% endif %}
+
                 {% endif %}
                 {% endfor %}
               </div>
@@ -196,8 +205,8 @@
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {% if commentaire.user.id == app.user.id %}
                 <!-- <a href="{#{ path('commentaire_edit' , {'id': commentaire.id }) }#}"><i class="material-icons">mode_edit</i> Editer<a> -->
-                    <a href="{{ path('commentaire_edit' , {'id': commentaire.id, 'articleId':article.id }) }}"><i class="material-icons">mode_edit</i> Editer<a>
-                      {% endif %}
+                <a href="{{ path('commentaire_edit' , {'id': commentaire.id, 'articleId':article.id }) }}"><i class="material-icons">mode_edit</i> Editer<a>
+                  {% endif %}
                   {% endif %}
                   <br>
 

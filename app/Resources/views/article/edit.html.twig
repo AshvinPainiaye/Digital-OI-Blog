@@ -5,8 +5,8 @@
 <div class="container">
       <div class="row">
             <div class="col s12">
-                  Posté par : <span style="font-weight:bold">{{  article.user.username  }}</span>  le
-                  {{ article.date| localizeddate('full', 'none') }} à {{article.date|date('H:i:s')}}
+              Posté par <span style="font-weight:bold">{{ article.user.username }}</span>  le
+              {{ article.date|date('d/m/Y') }}
                   <div class="row">
                         <div class="col s12 ">
                               <div class=" card large center-align">
@@ -24,7 +24,7 @@
 
                                                 <div class="row">
                                                       <div class="file-field input-field col s12 m8 offset-m2 l6 offset-l3 ">
-                                                            <div class="btn-floating btn-large waves-effect waves-light tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Avatar">
+                                                            <div class="btn-floating btn-large waves-effect waves-light tooltipped" type="submit" data-position="bottom" data-delay="50" data-tooltip="Photo" style="height:55.5px;">
                                                                   <i class="material-icons ">attach_file</i>
                                                             </div>
                                                             <div class="profile_edit_photo">
