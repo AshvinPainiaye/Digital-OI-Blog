@@ -30,7 +30,7 @@ class ArticleController extends Controller
 
     $em = $this->getDoctrine()->getManager();
     $user = $this->getUser();
-    $articles = $em->getRepository('BlogBundle:Article')->findBy(['user'=>$user]);
+    $articles = $em->getRepository('BlogBundle:Article')->findAll();/*By(['user'=>$user]);*/
     return $this->render('article/index.html.twig', array(
       'articles' => $articles,
       'user' => $user,

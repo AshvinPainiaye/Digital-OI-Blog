@@ -32,7 +32,7 @@ class DefaultController extends Controller
     $em = $this->getDoctrine()->getManager();
     $user = $this->getUser();
 
-    $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Brouillon','user'=>$user));
+    $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Brouillon'));
 
     return $this->render('article/index.html.twig', array(
       'articles' => $articles,
@@ -49,7 +49,7 @@ class DefaultController extends Controller
     $em = $this->getDoctrine()->getManager();
     $user = $this->getUser();
 
-    $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Publique','user'=>$user));
+    $articles = $em->getRepository('BlogBundle:Article')->findBy(array('disponibilite' =>'Publique'));
 
     return $this->render('article/index.html.twig', array(
       'articles' => $articles,

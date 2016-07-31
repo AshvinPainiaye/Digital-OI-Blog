@@ -55,7 +55,11 @@
               <img src="{{asset('img/users/')~ commentaire.user.imageName }}" alt="" class="circle">
               {% endif %}
 
-              <span class="title">{{ commentaire.commentaire }}</span>
+              <h6 class="title">{{ commentaire.user.username }}</h6>
+              <p>
+                {{commentaire.commentaire}}
+              </p>
+              <br>
               <p class="date">
                 Le {% if commentaire.date %}{{ commentaire.date|date('d/m/y \\à\ H\\h\i') }}{% endif %}
               </p>

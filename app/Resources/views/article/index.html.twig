@@ -5,7 +5,7 @@
 
   <div class="container">
 
-    <h1 class="center-align">Mes articles</h1>
+    <h1 class="center-align">Articles</h1>
     <nav class="center-align">
       <div class="row">
         <div class="col s12">
@@ -48,7 +48,14 @@
             <a href="{{ path('article_show', { 'id': article.id }) }}">  <img  class="image"src="{{ asset('img/articles/')~  article.imageName }}" > </a>
           </td>
           <td>
-            <a href="{{ path('article_show', { 'id': article.id }) }}" style="color:#000"> {{ article.titre | truncate(60, true, '...')  }}</a>
+            <a href="{{ path('article_show', { 'id': article.id }) }}" style="color:inherit"> {{ article.titre | truncate(60, true, '...')  }}</a>
+            <p style="opacity:0.4;">
+              {% if app.user.username == article.user.username %}
+              Editer par moi
+              {% else %}
+              Editer par {{article.user.username}}
+              {% endif %}
+            </p>
           </td>
 
           {% if article.disponibilite == 'Publique' %}

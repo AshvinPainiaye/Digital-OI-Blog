@@ -53,7 +53,7 @@
 </li>
 {% endif %}
 {% if is_granted('ROLE_ADMIN') %}
-<li><a href="/article">Mes articles</a></li>
+<li><a href="/article">Articles</a></li>
 {% endif %}
 <li><a href="/commentaire">Commentaires</a></li>
 {% if is_granted('ROLE_ADMIN') %}
@@ -74,8 +74,8 @@
 <div class="container">
   <div class="row">
     <div class="col s12">
-      Posté par : <span style="font-weight:bold">{{  article.user.username  }}</span>  le
-      {{ article.date|date('d/m') }} à {{article.date|date('H\\h\i')}}
+      Posté par <span style="font-weight:bold">{{ article.user.username }}</span>  le
+      {{ article.date|date('d/m/Y') }}
       <!-- article_image/article_titre -->
       <div class="row">
         <div class="col s12 ">
@@ -190,7 +190,7 @@
             <div class="col m3 s12">
               {% if commentaire.date %}
               <p class="date" style="text-align:justify">
-                Le {{ commentaire.date|date('d/m') }} à {{commentaire.date|date('H\\h\i')}}
+                Le {{ commentaire.date|date('d/m/Y') }} à {{commentaire.date|date('H\\h\i')}}
                 <br>
                 {% endif %}
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
