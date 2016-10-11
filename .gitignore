@@ -18,3 +18,4 @@
 !web/img/articles/.gitkeep
 /web/img/users/*
 !web/img/users/.gitkeep
+/nbproject/private/
