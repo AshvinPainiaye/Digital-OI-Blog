@@ -1,13 +1,6 @@
 
 $(document).ready(function () {
 
-  //Preloader
-  $(window).load(function () {
-    $('#page-loader').fadeOut(500);
-  });
-  //fin
-
-
   //affiche icone remonter
   $(window).scroll(
     function () {

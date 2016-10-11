@@ -43,28 +43,6 @@
 
 // MAIN
 
-/* DEBUT PRELOADER */
-#page-loader {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  width: 100%;
-  background: #fff;
-  z-index: 3000;
-  .page-loader-gif {
-    display: block;
-    width: 74px;
-    height: 74px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -32px 0 0 -32px;
-    background: url("../img/preloader.gif") no-repeat;
-    z-index: 1001; }
-  }
-  /* FIN PRELOADER */
-
 
   /* DEBUT formulaire */
   #formulaire{
@@ -286,6 +264,7 @@
     visibility: hidden;
     z-index: 99;
   }
+  
   .img_menu{
     height: 400px;
   }
